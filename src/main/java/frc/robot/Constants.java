@@ -1,0 +1,31 @@
+package frc.robot;
+
+public class Constants {
+
+    public static class MotorMap{
+
+        public static class Climber{
+
+            //change these values to ports later
+            public static int FLIMSEYARM = 4;
+            public static boolean FlIMSEYARM_REVERSED = false;
+
+            public static int SPOOLLEFT = 4;
+            public static boolean SPOOLLEFT_REVERSED = false;
+
+            public static int SPOOLRIGHT = 4;
+            public static boolean SPOOLRIGHT_REVERSED = false;
+        }
+    }
+
+    public static class PneumaticsMap{
+
+        public static class Climber{
+
+            //change these values to ports later
+            public static int SOLENOID1 = 1;
+            public static int SOLENOID2 = 2;
+            public static int SOLENOID3 = 3;
+        }
+    }
+}

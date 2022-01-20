@@ -1,0 +1,77 @@
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Constants;
+import edu.wpi.first.wpilibj.Solenoid;
+//import frc.robot.utility.Motor;
+
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.CANSparkMaxLowLevel;
+
+
+public class Climber extends subsystem{
+
+    public Solenoid pistonRaiserLeft;
+    public Solenoid pistonRaiserRight;
+    public Solenoid pistonGearBreak;
+
+    public Motor flimsyArm;
+    //nicknamed Francis
+    public Motor spoolLeft;
+    //nicknamed Jose
+    public Motor spoolRight;
+    //nicknamed Alberta
+
+    Climber(){
+        //pistons
+        Solenoid pistonRaiserLeft = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID1);
+        Solenoid pistonRaiserRight = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID2);
+        Solenoid pistonGearBreak = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID3);
+
+        //Motors, motor class is not set up.
+        flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushed, Constants.MotorMap.Climber.FlIMSEYARM_REVERSED, 30);
+        spoolLeft = new Motor(Constants.MotorMap.Climber.SPOOLLEFT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLLEFT_REVERSED, 30);
+        spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
+    }
+
+    public void Levitate(){
+        pistonRaiserLeft.set(true);
+        pistonRaiserRight.set(true);
+    }
+
+    public void stopLevitate(){
+        pistonRaiserLeft.set(false);
+        pistonRaiserRight.set(false);
+    }
+
+    public void activatePistonBreak(){
+        pistonGearBreak.set(true);
+    }
+
+    public void deactivatePistonBreak(){
+        pistonGearBreak.set(false);
+    }
+
+    public void setFlimseyArm(double value)
+    {
+        flimsyArm.set(value);
+    }
+
+    public void setSpools(double value)
+    {
+        spoolRight.set(value);
+        spoolLeft.set(value);
+    }
+
+    public void turnOffSpools(double value)
+    {
+        spoolRight.set(0);
+        spoolLeft.set(0);
+    }
+
+    public void turnOffFlimseyArm(double value)
+    {
+        spoolRight.set(0);
+        spoolLeft.set(0);
+    }
+}
