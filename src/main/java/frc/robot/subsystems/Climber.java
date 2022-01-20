@@ -26,7 +26,7 @@ public class Climber extends SubsystemBase{
     public Motor spoolRight;
     //nicknamed Alberta
 
-    Climber(){
+    public Climber(){
         //pistons
         Solenoid pistonRaiserLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PneumaticsMap.Climber.SOLENOID1);
         Solenoid pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM ,Constants.PneumaticsMap.Climber.SOLENOID2);
@@ -38,7 +38,7 @@ public class Climber extends SubsystemBase{
         spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
     }
 
-    public void Levitate(){
+    public void levitate(){
         pistonRaiserLeft.set(true);
         pistonRaiserRight.set(true);
     }
@@ -75,7 +75,6 @@ public class Climber extends SubsystemBase{
 
     public void turnOffFlimseyArm(double value)
     {
-        spoolRight.set(0);
-        spoolLeft.set(0);
+        flimsyArm.set(0);
     }
 }
