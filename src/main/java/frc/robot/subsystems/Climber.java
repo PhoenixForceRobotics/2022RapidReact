@@ -1,15 +1,19 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.utility.Motor;
+
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
-//import frc.robot.utility.Motor;
 
-//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-//import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkMaxLowLevel;
 
 
-public class Climber extends subsystem{
+public class Climber extends SubsystemBase{
 
     public Solenoid pistonRaiserLeft;
     public Solenoid pistonRaiserRight;
@@ -24,9 +28,9 @@ public class Climber extends subsystem{
 
     Climber(){
         //pistons
-        Solenoid pistonRaiserLeft = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID1);
-        Solenoid pistonRaiserRight = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID2);
-        Solenoid pistonGearBreak = new Solenoid(Constants.PneumaticsMap.Climber.SOLENOID3);
+        Solenoid pistonRaiserLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PneumaticsMap.Climber.SOLENOID1);
+        Solenoid pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM ,Constants.PneumaticsMap.Climber.SOLENOID2);
+        Solenoid pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM ,Constants.PneumaticsMap.Climber.SOLENOID3);
 
         //Motors, motor class is not set up.
         flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushed, Constants.MotorMap.Climber.FlIMSEYARM_REVERSED, 30);
