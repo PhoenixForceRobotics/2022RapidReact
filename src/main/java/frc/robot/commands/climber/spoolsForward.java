@@ -15,19 +15,18 @@ public class spoolsForward extends CommandBase{
         this.climber = Robot.climber;
       }
 
-
     @Override
     public void initialize() {
         climber.setSpools(0.1);
-  }
-
-  @Override
-  public void execute() {
-      
-  }
+    }
 
     @Override
-  public boolean isFinished() {
+    public void execute() {
+      
+    }
+
+    @Override
+    public boolean isFinished() {
     return false;
-  }
+    }
 }
