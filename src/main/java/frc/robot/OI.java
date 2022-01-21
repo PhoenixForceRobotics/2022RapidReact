@@ -28,11 +28,18 @@ public class OI {
   
       /// Driver:
       operatorController.rightStickButton.whenPressed(new activatePistons());
+      
+      operatorController.rightStickButton.whenPressed(new spoolsForward());
+      operatorController.rightStickButton.whenPressed(new spoolsBackward());
+      operatorController.rightStickButton.whenReleased(new spoolsStop());
+
+      operatorController.rightStickButton.whenPressed(new flimseyArmForward());
+      operatorController.rightStickButton.whenPressed(new flimseyArmBackward());
+      operatorController.rightStickButton.whenReleased(new flimseyArmStop());
+
       operatorController.rightStickButton.whenPressed(new deactivatePistons());
       operatorController.rightStickButton.whenPressed(new activatePistons());
       operatorController.rightStickButton.whenPressed(new deactivatePistonBreak());
-
-      
       // driverController.bButton.whenPressed(new ElevatorRelease(Robot.pto));
 
       /// Operator:z
