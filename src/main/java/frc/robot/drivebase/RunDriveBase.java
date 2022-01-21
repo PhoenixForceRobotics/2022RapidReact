@@ -11,11 +11,14 @@ public class RunDriveBase extends CommandBase {
 
 	private OI oi;
 	private CustomMath customMath;
+	private double multiplier;
+	private int reverser;
 
 	public RunDriveBase(Drivebase drivebase, OI oi)
 	{
-    	addRequirements(drivebase);
+    addRequirements(drivebase);
 		customMath = new CustomMath();
+
 		this.oi = oi;
 	}
 
@@ -35,14 +38,12 @@ public class RunDriveBase extends CommandBase {
 			drivebase.left_motorSpeed(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			drivebase.right_motorSpeed(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// Set the motor speeds
-			
 			//(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			//(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 		} else {
 			drivebase.left_motorSpeed(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			drivebase.right_motorSpeed(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// Set the motor speeds
-
 			// setLeft(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 		}

@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
 
   CommandBase autonomousCommand;
   SendableChooser<CommandBase> chooser = new SendableChooser<>();
- 
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // sets the command to new object
     drivebase = new Drivebase();
-   
+
   }
 
   public static void clearScheduler() {
@@ -75,14 +75,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    
+
   }
 
   @Override
   public void disabledPeriodic() {
     CommandScheduler.getInstance().run();
   }
-  
+
   /**
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable
@@ -114,10 +114,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().registerSubsystem(drivebase);
-    
+
     // actually adds the command to the robot
     addDriveBase();
-    
+
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

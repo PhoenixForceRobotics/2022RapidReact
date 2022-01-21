@@ -31,8 +31,6 @@ public class OI {
 
 
       /// Operator:
-      //operatorController.someButton.whenPressed(new someFunction());
-      
   }
 }
 
