@@ -2,15 +2,15 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.utility.Motor;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.utility.Motor;
 
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.CANSparkMaxLowLevel;
+//import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+//import com.revrobotics.CANSparkMaxLowLevel;
 
 
 public class Climber extends SubsystemBase{
@@ -29,8 +29,8 @@ public class Climber extends SubsystemBase{
     public Climber(){
         //pistons
         Solenoid pistonRaiserLeft = new Solenoid(PneumaticsModuleType.CTREPCM, Constants.PneumaticsMap.Climber.SOLENOID1);
-        Solenoid pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM ,Constants.PneumaticsMap.Climber.SOLENOID2);
-        Solenoid pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM ,Constants.PneumaticsMap.Climber.SOLENOID3);
+        Solenoid pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM,Constants.PneumaticsMap.Climber.SOLENOID2);
+        Solenoid pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM,Constants.PneumaticsMap.Climber.SOLENOID3);
 
         //Motors, motor class is not set up.
         flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushed, Constants.MotorMap.Climber.FlIMSEYARM_REVERSED, 30);
@@ -38,7 +38,7 @@ public class Climber extends SubsystemBase{
         spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
     }
 
-    public void levitate(){
+    public void Levitate(){
         pistonRaiserLeft.set(true);
         pistonRaiserRight.set(true);
     }
@@ -75,6 +75,7 @@ public class Climber extends SubsystemBase{
 
     public void turnOffFlimseyArm(double value)
     {
-        flimsyArm.set(0);
+        spoolRight.set(0);
+        spoolLeft.set(0);
     }
 }

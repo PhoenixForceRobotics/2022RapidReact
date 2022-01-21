@@ -28,9 +28,14 @@ public class OI {
   
       /// Driver:
       operatorController.rightStickButton.whenPressed(new activatePistons());
+      operatorController.rightStickButton.whenPressed(new deactivatePistons());
+      operatorController.rightStickButton.whenPressed(new activatePistons());
+      operatorController.rightStickButton.whenPressed(new deactivatePistonBreak());
+
+      
       // driverController.bButton.whenPressed(new ElevatorRelease(Robot.pto));
 
-      /// Operator:
+      /// Operator:z
        
   }
 }

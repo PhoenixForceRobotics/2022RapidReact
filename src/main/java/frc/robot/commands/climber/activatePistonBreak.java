@@ -6,11 +6,11 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class activatePistons extends CommandBase{
+public class activatePistonBreak extends CommandBase{
 
     private Climber climber;
 
-    public activatePistons() {
+    public activatePistonBreak() {
         // Use requires() here to declare subsystem dependencies
         this.climber = Robot.climber;
       }
@@ -18,8 +18,8 @@ public class activatePistons extends CommandBase{
 
     @Override
     public void initialize() {
-        climber.Levitate();
-  }
+        climber.activatePistonBreak();
+    }
 
   @Override
   public void execute() {
