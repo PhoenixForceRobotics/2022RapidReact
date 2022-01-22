@@ -41,11 +41,11 @@ public class Climber extends SubsystemBase {
                 Constants.PneumaticsMap.Climber.SOLENOID3);
 
         // Motors, motor class is not set up.
-        flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushed,
+        flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushless,
                 Constants.MotorMap.Climber.FlIMSEYARM_REVERSED, 30);
-        spoolLeft = new Motor(Constants.MotorMap.Climber.SPOOLLEFT, MotorType.kBrushed,
+        spoolLeft = new Motor(Constants.MotorMap.Climber.SPOOLLEFT, MotorType.kBrushless,
                 Constants.MotorMap.Climber.SPOOLLEFT_REVERSED, 30);
-        spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed,
+        spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushless,
                 Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
 
         // Encoders
