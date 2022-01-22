@@ -6,11 +6,11 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class spoolsStop extends CommandBase{
+public class SpoolsStop extends CommandBase{
 
     private Climber climber;
 
-    public spoolsStop() {
+    public SpoolsStop() {
         // Use requires() here to declare subsystem dependencies
         this.climber = Robot.climber;
       }

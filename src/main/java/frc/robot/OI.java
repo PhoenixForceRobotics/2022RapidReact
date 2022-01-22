@@ -27,19 +27,19 @@ public class OI {
       operatorController = new BobXboxController(1, 0.11, 0.11);
   
       /// Driver:
-      operatorController.rightStickButton.whenPressed(new activatePistons());
+      operatorController.rightStickButton.whenPressed(new ActivatePistons());
+      operatorController.rightStickButton.whenPressed(new DeactivatePistons());
 
-      operatorController.rightStickButton.whenPressed(new spoolsForward());
-      operatorController.rightStickButton.whenPressed(new spoolsBackward());
-      operatorController.rightStickButton.whenReleased(new spoolsStop());
+      operatorController.rightStickButton.whenPressed(new ActivatePistonBreak());
+      operatorController.rightStickButton.whenPressed(new DeactivatePistonBreak());
 
-      operatorController.rightStickButton.whenPressed(new flimseyArmForward());
-      operatorController.rightStickButton.whenPressed(new flimseyArmBackward());
-      operatorController.rightStickButton.whenReleased(new flimseyArmStop());
+      operatorController.rightStickButton.whenPressed(new SpoolsForward());
+      operatorController.rightStickButton.whenPressed(new SpoolsBackward());
+      operatorController.rightStickButton.whenReleased(new SpoolsStop());
 
-      operatorController.rightStickButton.whenPressed(new deactivatePistons());
-      operatorController.rightStickButton.whenPressed(new activatePistons());
-      operatorController.rightStickButton.whenPressed(new deactivatePistonBreak());
+      operatorController.rightStickButton.whenPressed(new FlimseyArmForward());
+      operatorController.rightStickButton.whenPressed(new FlimseyArmBackward());
+      operatorController.rightStickButton.whenReleased(new FlimseyArmStop());
 
       /// Operator:z
 

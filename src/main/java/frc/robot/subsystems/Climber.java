@@ -36,6 +36,8 @@ public class Climber extends SubsystemBase{
         flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushed, Constants.MotorMap.Climber.FlIMSEYARM_REVERSED, 30);
         spoolLeft = new Motor(Constants.MotorMap.Climber.SPOOLLEFT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLLEFT_REVERSED, 30);
         spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed, Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
+
+        
     }
 
     public void Levitate(){
