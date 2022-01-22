@@ -2,9 +2,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxRelativeEncoder;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.utility.Motor;
@@ -25,6 +26,11 @@ public class Climber extends SubsystemBase {
     public Motor spoolRight;
     // nicknamed Alberta
 
+    // Encoder
+    RelativeEncoder spoolLeftEncoder;
+    RelativeEncoder spoolRightEncoder;
+    RelativeEncoder flimseyArmEncoder;
+
     public Climber() {
         // pistons
         pistonRaiserLeft = new Solenoid(PneumaticsModuleType.CTREPCM,
@@ -41,6 +47,11 @@ public class Climber extends SubsystemBase {
                 Constants.MotorMap.Climber.SPOOLLEFT_REVERSED, 30);
         spoolRight = new Motor(Constants.MotorMap.Climber.SPOOLRIGHT, MotorType.kBrushed,
                 Constants.MotorMap.Climber.SPOOLRIGHT_REVERSED, 30);
+
+        // Encoders
+        flimseyArmEncoder = flimsyArm.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+        spoolRightEncoder = spoolRight.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+        spoolLeftEncoder = spoolLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     }
 
     public void Levitate() {
@@ -78,5 +89,43 @@ public class Climber extends SubsystemBase {
     public void turnOffFlimseyArm(double value) {
         spoolRight.set(0);
         spoolLeft.set(0);
+    }
+
+    // Encoder Commands
+    public double getPositionLeftEncoder() {
+        return spoolLeftEncoder.getPosition();
+    }
+
+    public double getPositionRightEncoder() {
+        return spoolRightEncoder.getPosition();
+    }
+
+    public double getPositionFlimseyEncoder() {
+        return flimseyArmEncoder.getPosition();
+    }
+
+    public void resetFlimseyEncoder() {
+        flimseyArmEncoder.setPosition(0.0);
+    }
+
+    public void resetSpoolLeftEncoder() {
+        spoolLeftEncoder.setPosition(0.0);
+    }
+
+    public void resetSpoolRightEncoder() {
+        spoolRightEncoder.setPosition(0.0);
+    }
+
+    // Might not use these get velocity but they are here just incase
+    public double getVelocityFlimseyEncoder() {
+        return flimseyArmEncoder.getVelocity();
+    }
+
+    public double getVelocitySpoolLeftEncoder() {
+        return spoolLeftEncoder.getVelocity();
+    }
+
+    public double getVelocitySpoolRightEncoder() {
+        return spoolRightEncoder.getVelocity();
     }
 }

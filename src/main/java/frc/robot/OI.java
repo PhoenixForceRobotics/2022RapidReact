@@ -26,7 +26,7 @@ public class OI {
       driverController = new BobXboxController(0, 0.11, 0.11);
       operatorController = new BobXboxController(1, 0.11, 0.11);
   
-      /// Driver:
+      //
       operatorController.rightStickButton.whenPressed(new ActivatePistons());
       operatorController.rightStickButton.whenPressed(new DeactivatePistons());
 
@@ -40,8 +40,6 @@ public class OI {
       operatorController.rightStickButton.whenPressed(new FlimseyArmForward());
       operatorController.rightStickButton.whenPressed(new FlimseyArmBackward());
       operatorController.rightStickButton.whenReleased(new FlimseyArmStop());
-
-      /// Operator:z
 
   }
 }
