@@ -94,7 +94,7 @@ spotless {
             include '**/*.java'
             exclude '**/manualTests/**', '**/build*/**'
         }
-        googleJavaFormat().aosp()
+        googleJavaFormat()
         removeUnusedImports()
         trimTrailingWhitespace()
         endWithNewline()
