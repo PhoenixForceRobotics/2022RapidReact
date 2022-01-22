@@ -10,10 +10,10 @@ public class Constants {
             public static int FLIMSEYARM = 4;
             public static boolean FlIMSEYARM_REVERSED = false;
 
-            public static int SPOOLLEFT = 4;
+            public static int SPOOLLEFT = 5;
             public static boolean SPOOLLEFT_REVERSED = false;
 
-            public static int SPOOLRIGHT = 4;
+            public static int SPOOLRIGHT = 6;
             public static boolean SPOOLRIGHT_REVERSED = false;
         }
     }
