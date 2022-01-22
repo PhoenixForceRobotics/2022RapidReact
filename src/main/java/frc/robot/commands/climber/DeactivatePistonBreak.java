@@ -1,32 +1,30 @@
 package frc.robot.commands.climber;
 
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class DeactivatePistonBreak extends CommandBase{
+public class DeactivatePistonBreak extends CommandBase {
 
-    private Climber climber;
+  private Climber climber;
 
-    public DeactivatePistonBreak() {
-        // Use requires() here to declare subsystem dependencies
-        this.climber = Robot.climber;
-      }
+  public DeactivatePistonBreak() {
+    // Use requires() here to declare subsystem dependencies
+    this.climber = Robot.climber;
+  }
 
-
-    @Override
-    public void initialize() {
-        climber.deactivatePistonBreak();
+  @Override
+  public void initialize() {
+    climber.deactivatePistonBreak();
   }
 
   @Override
   public void execute() {
-      
+
   }
 
-    @Override
+  @Override
   public boolean isFinished() {
     return false;
   }
