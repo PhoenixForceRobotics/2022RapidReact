@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
-
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -14,6 +14,9 @@ import frc.robot.utility.Motor;
 //import com.revrobotics.CANSparkMaxLowLevel;
 
 public class Climber extends SubsystemBase {
+
+    boolean levitateStatus;
+    boolean pistonBreakStatus;
 
     public Solenoid pistonRaiserLeft;
     public Solenoid pistonRaiserRight;
@@ -57,11 +60,21 @@ public class Climber extends SubsystemBase {
     public void Levitate() {
         pistonRaiserLeft.set(true);
         pistonRaiserRight.set(true);
+        levitateStatus = true;
     }
 
     public void stopLevitate() {
         pistonRaiserLeft.set(false);
         pistonRaiserRight.set(false);
+        levitateStatus = false;
+    }
+
+    public boolean getLevitateStatus(){
+        return levitateStatus;
+    }
+
+    public void setLevitateStatus(boolean value){
+        levitateStatus = value;
     }
 
     public void activatePistonBreak() {
@@ -70,6 +83,14 @@ public class Climber extends SubsystemBase {
 
     public void deactivatePistonBreak() {
         pistonGearBreak.set(false);
+    }
+
+    public boolean getPistonBreak(){
+        return pistonBreakStatus;
+    }
+
+    public void setPistonBreak(boolean value){
+        pistonBreakStatus = value;
     }
 
     public void setFlimseyArm(double value) {
@@ -91,6 +112,16 @@ public class Climber extends SubsystemBase {
         spoolLeft.set(0);
     }
 
+    public void spoolCoast(double value) {
+        spoolRight.setIdleMode(IdleMode.kCoast);
+        spoolLeft.setIdleMode(IdleMode.kCoast);
+    }
+
+    public void spoolBreak(double value) {
+        spoolRight.setIdleMode(IdleMode.kBrake);
+        spoolLeft.setIdleMode(IdleMode.kBrake);
+    }
+    
     // Encoder Commands
     public double getPositionLeftEncoder() {
         return spoolLeftEncoder.getPosition();

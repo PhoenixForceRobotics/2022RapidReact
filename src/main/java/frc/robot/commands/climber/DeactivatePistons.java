@@ -1,31 +1,34 @@
-package frc.robot.commands.climber;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.subsystems.Climber;
+//This button class is replaced with making the activatePistons into a toggle.
 
-public class DeactivatePistons extends CommandBase {
+// package frc.robot.commands.climber;
 
-  private Climber climber;
+// import edu.wpi.first.wpilibj2.command.CommandBase;
+// import frc.robot.Constants;
+// import frc.robot.Robot;
+// import frc.robot.subsystems.Climber;
 
-  public DeactivatePistons() {
-    // Use requires() here to declare subsystem dependencies
-    this.climber = Robot.climber;
-  }
+// public class DeactivatePistons extends CommandBase {
 
-  @Override
-  public void initialize() {
-    climber.stopLevitate();
-  }
+//   private Climber climber;
 
-  @Override
-  public void execute() {
+//   public DeactivatePistons() {
+//     // Use requires() here to declare subsystem dependencies
+//     this.climber = Robot.climber;
+//   }
 
-  }
+//   @Override
+//   public void initialize() {
+//     climber.stopLevitate();
+//   }
 
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
-}
+//   @Override
+//   public void execute() {
+
+//   }
+
+//   @Override
+//   public boolean isFinished() {
+//     return false;
+//   }
+// }

@@ -16,7 +16,13 @@ public class ActivatePistons extends CommandBase {
 
   @Override
   public void initialize() {
-    climber.Levitate();
+    boolean statusOfLevation = climber.getLevitateStatus();
+    if (statusOfLevation == true){
+      climber.stopLevitate();
+    }
+    else{
+      climber.Levitate();
+    }
   }
 
   @Override

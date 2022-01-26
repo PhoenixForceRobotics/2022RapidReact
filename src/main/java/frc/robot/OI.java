@@ -10,8 +10,8 @@ package frc.robot;
 import frc.controllers.BobXboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
-import frc.robot.commands.climber.*;
 import frc.robot.subsystems.*;
+import frc.robot.commands.climber.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -26,12 +26,11 @@ public class OI {
       driverController = new BobXboxController(0, 0.11, 0.11);
       operatorController = new BobXboxController(1, 0.11, 0.11);
   
-      //
       operatorController.rightStickButton.whenPressed(new ActivatePistons());
-      operatorController.rightStickButton.whenPressed(new DeactivatePistons());
+      //operatorController.rightStickButton.whenPressed(new DeactivatePistons());
 
       operatorController.rightStickButton.whenPressed(new ActivatePistonBreak());
-      operatorController.rightStickButton.whenPressed(new DeactivatePistonBreak());
+      //operatorController.rightStickButton.whenPressed(new DeactivatePistonBreak());
 
       operatorController.rightStickButton.whenPressed(new SpoolsForward());
       operatorController.rightStickButton.whenPressed(new SpoolsBackward());
@@ -40,7 +39,6 @@ public class OI {
       operatorController.rightStickButton.whenPressed(new FlimseyArmForward());
       operatorController.rightStickButton.whenPressed(new FlimseyArmBackward());
       operatorController.rightStickButton.whenReleased(new FlimseyArmStop());
-
   }
 }
 
