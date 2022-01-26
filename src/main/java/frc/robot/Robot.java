@@ -3,10 +3,13 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.visionTesting;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -17,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
+  public static visionTesting vision;
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
@@ -29,6 +33,19 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+    vision = new visionTesting();
+    //bellow here is experamental.
+    NetworkTableEntry xEntry;
+    NetworkTableEntry yEntry;
+    int x = 1;
+    int y = 1;
+      NetworkTableInstance inst = NetworkTableInstance.getDefault();
+      NetworkTable table = inst.getTable("arbitraryNumber");
+      xEntry = table.getEntry("X");
+      yEntry = table.getEntry("Y");
+      xEntry.setDouble(x);
+      yEntry.setDouble(y);
+      SmartDashboard.putNumber("TestX",x);
   }
 
   /**
@@ -74,7 +91,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+
+
+  }
 
   /** This function is called periodically during operator control. */
   @Override

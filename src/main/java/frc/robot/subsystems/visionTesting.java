@@ -5,8 +5,14 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class visionTesting {
-    NetworkTableEntry xEntry;
+   NetworkTableEntry xEntry;
    NetworkTableEntry yEntry;
+   
+   
+   public void main(String[] args){
+      robotInit();
+      teleopPeriodic(); 
+   }
 
    public void robotInit() {
       //Get the default instance of NetworkTables that was created automatically
@@ -22,20 +28,18 @@ public class visionTesting {
       //for some operation in your program.
       xEntry = table.getEntry("X");
       yEntry = table.getEntry("Y");
+      
    }
 
-   double x = 1;
-   double y = 1;
+   
 
    public void teleopPeriodic() {
+      double x = 1;
+      double y = 1;
       //Using the entry objects, set the value to a double that is constantly
       //increasing. The keys are actually "/datatable/X" and "/datatable/Y".
       //If they don't already exist, the key/value pair is added.
-      xEntry.setDouble(x);
-      yEntry.setDouble(y);
-      x += 0.05;
-      y += 1.0;
-      SmartDashboard.putNumber("TestX",x);
+                          
    }
    
 }
