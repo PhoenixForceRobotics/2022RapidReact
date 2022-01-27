@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   SendableChooser<CommandBase> chooser = new SendableChooser<>();
  
   /**
-   * This function is run when thZe robot is first started up and should be
+   * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override

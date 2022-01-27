@@ -9,7 +9,6 @@ public class Reverse extends CommandBase{
 
     public Reverse(Drivebase m_drivebase)
     {
-        //everybody clap your hands
         drivebase = m_drivebase;
         addRequirements(m_drivebase);
     }

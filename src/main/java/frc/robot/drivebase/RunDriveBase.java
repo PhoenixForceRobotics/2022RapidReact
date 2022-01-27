@@ -2,7 +2,6 @@ package frc.robot.drivebase;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
-import frc.robot.Robot;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.util.Constants;
 import frc.robot.util.CustomMath;
@@ -12,14 +11,11 @@ public class RunDriveBase extends CommandBase {
 
 	private OI oi;
 	private CustomMath customMath;
-	private double multiplier;
-	private int reverser;
 
 	public RunDriveBase(Drivebase drivebase, OI oi)
 	{
-    addRequirements(drivebase);
+    	addRequirements(drivebase);
 		customMath = new CustomMath();
-
 		this.oi = oi;
 	}
 
@@ -39,14 +35,14 @@ public class RunDriveBase extends CommandBase {
 			drivebase.left_motorSpeed(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			drivebase.right_motorSpeed(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// Set the motor speeds
-			// Use these as the left and right speeds respectively
+			
 			//(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			//(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 		} else {
 			drivebase.left_motorSpeed(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			drivebase.right_motorSpeed(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// Set the motor speeds
-			// Use these as the left and right speeds respectively
+
 			// setLeft(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier * Math.pow(oi.driverController.rightStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 			// setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier * Math.pow(oi.driverController.leftStick.getY(), Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 		}
