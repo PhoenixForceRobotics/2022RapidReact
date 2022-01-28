@@ -8,18 +8,14 @@
 package frc.robot.util;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
+ * This provides flexibility changing wiring, makes checking the wiring easier and significantly
+ * reduces the number of magic numbers floating around.
  */
-public class Constants
-{
-  public static class MotorMap
-  {
+public class Constants {
+  public static class MotorMap {
     // Map your subsystem motor ports here
-    public static class Drivebase
-    {
+    public static class Drivebase {
       public static int LEFT_1 = 13;
       public static int LEFT_2 = 14;
       public static int LEFT_3 = 15;
@@ -36,22 +32,16 @@ public class Constants
       public static final boolean RIGHT2_REVERSED = true;
       public static final boolean RIGHT3_REVERSED = true;
     }
-
   }
 
-  public static class SubsystemSpeeds
-  {
-    public static class DrivebaseSpeed
-    {
+  public static class SubsystemSpeeds {
+    public static class DrivebaseSpeed {
       public static double MotorSpeed = .2;
       public static double MotorSpeed2 = .1;
     }
 
-    public static class DrivebaseValues
-    {
+    public static class DrivebaseValues {
       public static double StickPower = 3;
     }
-
   }
-
 }

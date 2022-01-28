@@ -6,24 +6,22 @@ forums.  The repo this was extracted from is https://github.com/team2097/BobBuil
 There is no obvious license file but want to retain pointers to them.
 
  */
-import frc.controllers.BobXboxController.XboxButton;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.controllers.BobXboxController.XboxButton;
 
 public class BobButton extends JoystickButton {
 
-	public BobButton(GenericHID joystick, int buttonNumber) {
-		super(joystick, buttonNumber);
-	}
+  public BobButton(GenericHID joystick, int buttonNumber) {
+    super(joystick, buttonNumber);
+  }
 
-	public BobButton(XboxController joystick, XboxButton button) {
-		super(joystick, button.value);
-	}
+  public BobButton(XboxController joystick, XboxButton button) {
+    super(joystick, button.value);
+  }
 
-	public BobButton(BobXboxController joystick, XboxButton button) {
-		super(joystick, button.value);
-	}
-
-
+  public BobButton(BobXboxController joystick, XboxButton button) {
+    super(joystick, button.value);
+  }
 }
