@@ -5,18 +5,18 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class RunPistonExtend extends CommandBase {
+public class RunPistonDetract extends CommandBase {
 
     private Climber climber;
     private boolean done;
 
-    public RunPistonExtend() {
+    public RunPistonDetract() {
         this.climber = Robot.climber;
     }
 
     @Override
     public void initialize() {
-        climber.Levitate();
+        climber.stopLevitate();
         climber.resetTimer();
         climber.startTimer();
         done = false;
@@ -35,3 +35,4 @@ public class RunPistonExtend extends CommandBase {
         return done;
     }
 }
+

@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.utility.Motor;
+import edu.wpi.first.wpilibj.Timer;
 
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 //import com.revrobotics.CANSparkMaxLowLevel;
@@ -30,6 +31,9 @@ public class Climber extends SubsystemBase {
     // nicknamed Jose
     public Motor spoolRight;
     // nicknamed Alberta
+    //Jose and Alberta are married and do everthing together.
+
+    public Timer delay;
 
     // Encoder
     RelativeEncoder spoolLeftEncoder;
@@ -57,6 +61,9 @@ public class Climber extends SubsystemBase {
         flimseyArmEncoder = flimsyArm.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
         spoolRightEncoder = spoolRight.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
         spoolLeftEncoder = spoolLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+
+        //Wait command
+        delay = new Timer();
     }
 
     public void Levitate() {
@@ -168,5 +175,22 @@ public class Climber extends SubsystemBase {
 
     public void setActivateNextSequence(boolean value){
         levitateStatus = value;
+    }
+
+    //Delay Commands
+    public void startTimer(){
+        delay.start();
+    }
+
+    public void stopTimer(){
+        delay.stop();
+    }
+
+    public void resetTimer(){
+        delay.reset();
+    }
+
+    public boolean timeElapsed(double seconds){
+        return delay.hasElapsed(seconds);
     }
 }

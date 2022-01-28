@@ -5,28 +5,24 @@ import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class RunPistonExtend extends CommandBase {
+public class RunButtonNextSequence extends CommandBase {
 
     private Climber climber;
     private boolean done;
 
-    public RunPistonExtend() {
+    public RunButtonNextSequence() {
         this.climber = Robot.climber;
     }
 
     @Override
     public void initialize() {
-        climber.Levitate();
-        climber.resetTimer();
-        climber.startTimer();
         done = false;
     }
 
     @Override
     public void execute() {
-        if (climber.timeElapsed(1)){
+        if (climber.activateNextSequence()){
             done = true;
-            climber.stopTimer();
         }
     }
 
