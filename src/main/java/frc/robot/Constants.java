@@ -28,4 +28,13 @@ public class Constants {
             public static int SOLENOID3 = 3;
         }
     }
+
+    public static class Motorspeed{
+
+        public static class Climber{
+
+            public static double SPOOL_SPEED = .1;
+            public static double FLIMSEY_SPEED = .1;
+        }
+    }
 }

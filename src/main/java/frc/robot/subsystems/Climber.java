@@ -18,6 +18,8 @@ public class Climber extends SubsystemBase {
     boolean levitateStatus;
     boolean pistonBreakStatus;
 
+    boolean activateNextSequence = false;
+
     public Solenoid pistonRaiserLeft;
     public Solenoid pistonRaiserRight;
     public Solenoid pistonGearBreak;
@@ -112,12 +114,12 @@ public class Climber extends SubsystemBase {
         spoolLeft.set(0);
     }
 
-    public void spoolCoast(double value) {
+    public void spoolCoast() {
         spoolRight.setIdleMode(IdleMode.kCoast);
         spoolLeft.setIdleMode(IdleMode.kCoast);
     }
 
-    public void spoolBreak(double value) {
+    public void spoolBreak() {
         spoolRight.setIdleMode(IdleMode.kBrake);
         spoolLeft.setIdleMode(IdleMode.kBrake);
     }
@@ -158,5 +160,13 @@ public class Climber extends SubsystemBase {
 
     public double getVelocitySpoolRightEncoder() {
         return spoolRightEncoder.getVelocity();
+    }
+
+    public boolean activateNextSequence(){
+        return levitateStatus;
+    }
+
+    public void setActivateNextSequence(boolean value){
+        levitateStatus = value;
     }
 }

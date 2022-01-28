@@ -1,22 +1,28 @@
-package frc.robot.commands.climber;
+package frc.robot.commands.climbermanual;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
-public class SpoolsStop extends CommandBase {
+public class ActivatePistons extends CommandBase {
 
   private Climber climber;
 
-  public SpoolsStop() {
+  public ActivatePistons() {
     // Use requires() here to declare subsystem dependencies
     this.climber = Robot.climber;
   }
 
   @Override
   public void initialize() {
-    climber.setSpools(0);
+    boolean statusOfLevation = climber.getLevitateStatus();
+    if (statusOfLevation == true){
+      climber.stopLevitate();
+    }
+    else{
+      climber.Levitate();
+    }
   }
 
   @Override

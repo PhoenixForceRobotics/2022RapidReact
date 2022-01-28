@@ -11,7 +11,9 @@ import frc.controllers.BobXboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
-import frc.robot.commands.climber.*;
+import frc.robot.commands.climberautomated.ActivateNextSequence;
+import frc.robot.commands.climberautomated.DeactivateNextSequence;
+import frc.robot.commands.climbermanual.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -39,6 +41,9 @@ public class OI {
       operatorController.rightStickButton.whenPressed(new FlimseyArmForward());
       operatorController.rightStickButton.whenPressed(new FlimseyArmBackward());
       operatorController.rightStickButton.whenReleased(new FlimseyArmStop());
+
+      operatorController.rightStickButton.whenPressed(new ActivateNextSequence());
+      operatorController.rightStickButton.whenReleased(new DeactivateNextSequence());
   }
 }
 
