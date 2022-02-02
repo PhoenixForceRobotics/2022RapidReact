@@ -1,6 +1,9 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -12,7 +15,57 @@ public class Flywheel extends SubsystemBase{
     public Motor flywheelLeft, flywheelRight; // Falcons
     public Motor flywheelHood; // Neo 550
 
+    public RelativeEncoder fwRotateEncoder; // Neo
+    public RelativeEncoder fwLeftEncoder, fwRightEncoder; // Falcons
+    public RelativeEncoder fwHoodEncoder; // Neo 550
+
     public Flywheel() {
-        flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless, Constants.MotorMap.Flywheel.ROTATE_REVERSED, 40);
+        flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless, Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
+        flywheelLeft = new Motor(Constants.MotorMap.Flywheel.SHOOT_LEFT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED, 40);
+        flywheelRight = new Motor(Constants.MotorMap.Flywheel.SHOOT_RIGHT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED, 40);
+        flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
+
+        fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+        fwLeftEncoder = flywheelLeft.getEncoder();
+        fwRightEncoder = flywheelRight.getEncoder();
+        fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+
+        flywheelRotate.setIdleMode(IdleMode.kBrake);
+        flywheelLeft.setIdleMode(IdleMode.kCoast);
+        flywheelRight.setIdleMode(IdleMode.kCoast);
+        flywheelHood.setIdleMode(IdleMode.kBrake);
+    }
+    
+    public void setFlywheelRotate(double speed) {
+        flywheelRotate.set(speed);
+    }
+
+    public void setFlywheel(double speed) {
+        flywheelLeft.set(speed);
+        flywheelRight.set(speed);
+    }
+
+    public void setFlywheelHood(double speed) {
+        flywheelHood.set(speed);
+    }
+
+    public RelativeEncoder getFWRotateEncoder() {
+        return fwRotateEncoder;
+    }
+
+    public RelativeEncoder getFWLeftEncoder() {
+        return fwLeftEncoder;
+    }
+
+    public RelativeEncoder getFWRightEncoder() {
+        return fwRightEncoder;
+    }
+
+    public RelativeEncoder getFWHoodEncoder() {
+        return fwHoodEncoder;
+    }
+
+    public void resetDBEncoder(RelativeEncoder encoder) {
+        encoder.setPosition(0);
     }
 }
