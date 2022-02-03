@@ -35,7 +35,7 @@ public class Flywheel extends SubsystemBase{
         flywheelRight.setIdleMode(IdleMode.kCoast);
         flywheelHood.setIdleMode(IdleMode.kBrake);
     }
-    
+   
     public void setFlywheelRotate(double speed) {
         flywheelRotate.set(speed);
     }
