@@ -5,20 +5,24 @@ import frc.robot.OI;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.util.Constants;
 import frc.robot.util.CustomMath;
+import java.lang.Math;
 
 public class RunDriveBase extends CommandBase {
-  Drivebase drivebase = new Drivebase();
+  private Drivebase drivebase;
 
   private OI oi;
   private CustomMath customMath;
-  private double multiplier;
-  private int reverser;
+
+  private int gear_select;
 
   public RunDriveBase(Drivebase drivebase, OI oi) {
+    this.oi = oi;
+    this.drivebase = drivebase;
+
     addRequirements(drivebase);
     customMath = new CustomMath();
 
-    this.oi = oi;
+    // Adds values to the list of gear speeds according to their gear positions.
   }
 
   @Override
@@ -29,8 +33,10 @@ public class RunDriveBase extends CommandBase {
   @Override
   public void execute() {
     // set the variables multiplier and reverser using the getter methods in the drivebase class
+    
     int reverser = drivebase.getReverser();
     double multiplier = drivebase.getMultiplier();
+
     if (reverser == 1) {
       drivebase.left_motorSpeed(
           reverser
@@ -78,6 +84,7 @@ public class RunDriveBase extends CommandBase {
       // setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
       // Math.pow(oi.driverController.leftStick.getY(),
       // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
+	  System.out.println("Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
     }
   }
 

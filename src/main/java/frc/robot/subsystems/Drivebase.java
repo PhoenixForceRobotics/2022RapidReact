@@ -2,14 +2,21 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.RelativeEncoder;
+import com.revrobotics.SparkMaxRelativeEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.util.Constants;
 import frc.robot.util.Motor;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class Drivebase extends SubsystemBase {
   // Create Motor Data Fields
   public Motor left_motor1, left_motor2, left_motor3;
   public Motor right_motor1, right_motor2, right_motor3;
+  RelativeEncoder left_motor1Encoder, left_motor2Encoder, left_motor3Encoder;
+  RelativeEncoder right_motor1Encoder, right_motor2Encoder, right_motor3Encoder;
 
   double Multiplier = 1;
   private int Reverser = 1;
@@ -59,6 +66,12 @@ public class Drivebase extends SubsystemBase {
             Constants.MotorMap.Drivebase.RIGHT3_REVERSED,
             40);
 
+    left_motor1Encoder = left_motor1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+    left_motor2Encoder = left_motor2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+    left_motor3Encoder = left_motor3.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+    right_motor1Encoder = right_motor1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+    right_motor2Encoder = right_motor2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+    right_motor3Encoder = right_motor3.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     motor_coast();
   }
 
@@ -72,6 +85,18 @@ public class Drivebase extends SubsystemBase {
     right_motor1.set(speed);
     right_motor2.set(speed);
     right_motor3.set(speed);
+  }
+
+  public Double get_motorSpeed() {
+    return Collections.max(
+        new ArrayList<Double>(
+            Arrays.asList(
+                left_motor1.get(),
+                left_motor2.get(),
+                left_motor3.get(),
+                right_motor1.get(),
+                right_motor2.get(),
+                right_motor3.get())));
   }
   // Create a method that sets the motors speeds based on an input
   // All the ones on the left should have the same speed
@@ -96,7 +121,7 @@ public class Drivebase extends SubsystemBase {
     right_motor3.setIdleMode(IdleMode.kBrake);
   }
 
-  public void reverser() {
+  public void reverser(){
     if (Reverser == 1) {
       Reverser = -1;
     } else {
@@ -105,10 +130,10 @@ public class Drivebase extends SubsystemBase {
   }
 
   public void shift() {
-    if (Multiplier == 1) {
-      Multiplier = .5;
+    if (Multiplier == Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed) {
+      Multiplier = Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed2;
     } else {
-      Multiplier = 1;
+      Multiplier = Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed;
     }
   }
 

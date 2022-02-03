@@ -16,28 +16,28 @@ public class Constants {
   public static class MotorMap {
     // Map your subsystem motor ports here
     public static class Drivebase {
-      public static int LEFT_1 = 13;
-      public static int LEFT_2 = 14;
-      public static int LEFT_3 = 15;
+      public static int LEFT_1 = 1;
+      public static int LEFT_2 = 2;
+      public static int LEFT_3 = 3;
 
-      public static int RIGHT_1 = 16;
-      public static int RIGHT_2 = 1;
-      public static int RIGHT_3 = 2;
+      public static int RIGHT_1 = 12;
+      public static int RIGHT_2 = 13;
+      public static int RIGHT_3 = 14;
 
-      public static final boolean LEFT1_REVERSED = false;
-      public static final boolean LEFT2_REVERSED = false;
-      public static final boolean LEFT3_REVERSED = false;
+      public static final boolean LEFT1_REVERSED = true;
+      public static final boolean LEFT2_REVERSED = true;
+      public static final boolean LEFT3_REVERSED = true;
 
-      public static final boolean RIGHT1_REVERSED = true;
-      public static final boolean RIGHT2_REVERSED = true;
-      public static final boolean RIGHT3_REVERSED = true;
+      public static final boolean RIGHT1_REVERSED = false;
+      public static final boolean RIGHT2_REVERSED = false;
+      public static final boolean RIGHT3_REVERSED = false;
     }
   }
 
   public static class SubsystemSpeeds {
     public static class DrivebaseSpeed {
-      public static double MotorSpeed = .2;
-      public static double MotorSpeed2 = .1;
+      public static double MotorSpeed = .5;
+      public static double MotorSpeed2 = .25;
     }
 
     public static class DrivebaseValues {
