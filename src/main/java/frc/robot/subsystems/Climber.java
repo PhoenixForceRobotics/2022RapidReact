@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.utility.Motor;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.math.controller.PIDController;
 
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 //import com.revrobotics.CANSparkMaxLowLevel;
@@ -46,8 +47,8 @@ public class Climber extends SubsystemBase {
                 Constants.PneumaticsMap.Climber.SOLENOID1);
         pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM,
                 Constants.PneumaticsMap.Climber.SOLENOID2);
-        pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM,
-                Constants.PneumaticsMap.Climber.SOLENOID3);
+        // pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM,
+        //         Constants.PneumaticsMap.Climber.SOLENOID3);
 
         // Motors, motor class is not set up.
         flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushless,
@@ -86,17 +87,17 @@ public class Climber extends SubsystemBase {
         levitateStatus = value;
     }
 
-    public void activatePistonBreak() {
-        pistonGearBreak.set(true);
-    }
+    // public void activatePistonBreak() {
+    //     pistonGearBreak.set(true);
+    // }
 
-    public void deactivatePistonBreak() {
-        pistonGearBreak.set(false);
-    }
+    // public void deactivatePistonBreak() {
+    //     pistonGearBreak.set(false);
+    // }
 
-    public boolean getPistonBreak(){
-        return pistonBreakStatus;
-    }
+    // public boolean getPistonBreak(){
+    //     return pistonBreakStatus;
+    // }
 
     public void setPistonBreak(boolean value){
         pistonBreakStatus = value;

@@ -14,8 +14,8 @@ public class ClimberSequence extends SequentialCommandGroup
                 new RunButtonNextSequence(),
                 new RunPistonDetract(),
                 new RunButtonNextSequence(),
-                new RunFlimseyArm(0.6),
-                new RunSpools(3),
+                new RunFlimseyArm(0.6, 0.005),
+                new RunSpools(3, 0.005),
                 new RunPistonExtend()
                 );
     }
