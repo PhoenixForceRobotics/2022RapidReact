@@ -5,7 +5,6 @@ import frc.robot.OI;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.util.Constants;
 import frc.robot.util.CustomMath;
-import java.lang.Math;
 
 public class RunDriveBase extends CommandBase {
   private Drivebase drivebase;
@@ -33,7 +32,7 @@ public class RunDriveBase extends CommandBase {
   @Override
   public void execute() {
     // set the variables multiplier and reverser using the getter methods in the drivebase class
-    
+
     int reverser = drivebase.getReverser();
     double multiplier = drivebase.getMultiplier();
 
@@ -84,7 +83,8 @@ public class RunDriveBase extends CommandBase {
       // setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
       // Math.pow(oi.driverController.leftStick.getY(),
       // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-	  System.out.println("Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
+      System.out.println(
+          "Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
     }
   }
 

@@ -121,7 +121,7 @@ public class Drivebase extends SubsystemBase {
     right_motor3.setIdleMode(IdleMode.kBrake);
   }
 
-  public void reverser(){
+  public void reverser() {
     if (Reverser == 1) {
       Reverser = -1;
     } else {
