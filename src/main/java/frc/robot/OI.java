@@ -11,9 +11,8 @@ import frc.controllers.BobXboxController;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.Robot;
 import frc.robot.subsystems.*;
-import frc.robot.commands.climberautomated.ActivateNextSequence;
-import frc.robot.commands.climberautomated.DeactivateNextSequence;
 import frc.robot.commands.climbermanual.*;
+import frc.robot.commands.climberautomated.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,12 +37,18 @@ public class OI {
       operatorController.rightStickButton.whenPressed(new SpoolsBackward());
       operatorController.rightStickButton.whenReleased(new SpoolsStop());
 
-      operatorController.rightStickButton.whenPressed(new FlimseyArmForward());
+      driverController.bButton.whenPressed(new FlimseyArmForward());
       operatorController.rightStickButton.whenPressed(new FlimseyArmBackward());
-      operatorController.rightStickButton.whenReleased(new FlimseyArmStop());
+      driverController.bButton.whenReleased(new FlimseyArmStop());
 
-      operatorController.rightStickButton.whenPressed(new ActivateNextSequence());
-      operatorController.rightStickButton.whenReleased(new DeactivateNextSequence());
+      operatorController.selectButton.whenPressed(new ActivateNextSequence());
+      operatorController.selectButton.whenReleased(new DeactivateNextSequence());
+
+      //Activates the automated climber sequence
+      operatorController.Dpad.Up.whenPressed(new ClimberSequence());
+
+      driverController.aButton.whenPressed(new RunFlimseyArm(Robot.climber, Robot.pid, 0.25, 0.005));
+      //^^^ For testing remove later   
   }
 }
 

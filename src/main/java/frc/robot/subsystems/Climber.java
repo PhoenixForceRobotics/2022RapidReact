@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.utility.Motor;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.math.controller.PIDController;
 
 //import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 //import com.revrobotics.CANSparkMaxLowLevel;
@@ -29,10 +28,10 @@ public class Climber extends SubsystemBase {
     public Motor flimsyArm;
     // nicknamed Francis
     public Motor spoolLeft;
-    // nicknamed Jose
+    // // nicknamed Jose
     public Motor spoolRight;
     // nicknamed Alberta
-    //Jose and Alberta are married and do everthing together.
+    // Jose and Alberta are married and do everthing together.
 
     public Timer delay;
 
@@ -48,7 +47,7 @@ public class Climber extends SubsystemBase {
         pistonRaiserRight = new Solenoid(PneumaticsModuleType.CTREPCM,
                 Constants.PneumaticsMap.Climber.SOLENOID2);
         // pistonGearBreak = new Solenoid(PneumaticsModuleType.CTREPCM,
-        //         Constants.PneumaticsMap.Climber.SOLENOID3);
+        // Constants.PneumaticsMap.Climber.SOLENOID3);
 
         // Motors, motor class is not set up.
         flimsyArm = new Motor(Constants.MotorMap.Climber.FLIMSEYARM, MotorType.kBrushless,
@@ -63,7 +62,7 @@ public class Climber extends SubsystemBase {
         spoolRightEncoder = spoolRight.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
         spoolLeftEncoder = spoolLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
-        //Wait command
+        // Wait command
         delay = new Timer();
     }
 
@@ -79,27 +78,27 @@ public class Climber extends SubsystemBase {
         levitateStatus = false;
     }
 
-    public boolean getLevitateStatus(){
+    public boolean getLevitateStatus() {
         return levitateStatus;
     }
 
-    public void setLevitateStatus(boolean value){
+    public void setLevitateStatus(boolean value) {
         levitateStatus = value;
     }
 
     // public void activatePistonBreak() {
-    //     pistonGearBreak.set(true);
+    // pistonGearBreak.set(true);
     // }
 
     // public void deactivatePistonBreak() {
-    //     pistonGearBreak.set(false);
+    // pistonGearBreak.set(false);
     // }
 
     // public boolean getPistonBreak(){
-    //     return pistonBreakStatus;
+    // return pistonBreakStatus;
     // }
 
-    public void setPistonBreak(boolean value){
+    public void setPistonBreak(boolean value) {
         pistonBreakStatus = value;
     }
 
@@ -112,14 +111,13 @@ public class Climber extends SubsystemBase {
         spoolLeft.set(value);
     }
 
-    public void turnOffSpools(double value) {
+    public void turnOffSpools() {
         spoolRight.set(0);
         spoolLeft.set(0);
     }
 
-    public void turnOffFlimseyArm(double value) {
-        spoolRight.set(0);
-        spoolLeft.set(0);
+    public void turnOffFlimseyArm() {
+        flimsyArm.set(0);
     }
 
     public void spoolCoast() {
@@ -131,7 +129,7 @@ public class Climber extends SubsystemBase {
         spoolRight.setIdleMode(IdleMode.kBrake);
         spoolLeft.setIdleMode(IdleMode.kBrake);
     }
-    
+
     // Encoder Commands
     public double getPositionLeftEncoder() {
         return spoolLeftEncoder.getPosition();
@@ -170,28 +168,28 @@ public class Climber extends SubsystemBase {
         return spoolRightEncoder.getVelocity();
     }
 
-    public boolean activateNextSequence(){
+    public boolean activateNextSequence() {
         return levitateStatus;
     }
 
-    public void setActivateNextSequence(boolean value){
+    public void setActivateNextSequence(boolean value) {
         levitateStatus = value;
     }
 
-    //Delay Commands
-    public void startTimer(){
+    // Delay Commands
+    public void startTimer() {
         delay.start();
     }
 
-    public void stopTimer(){
+    public void stopTimer() {
         delay.stop();
     }
 
-    public void resetTimer(){
+    public void resetTimer() {
         delay.reset();
     }
 
-    public boolean timeElapsed(double seconds){
+    public boolean timeElapsed(double seconds) {
         return delay.hasElapsed(seconds);
     }
 }

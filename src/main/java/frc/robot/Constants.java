@@ -7,13 +7,13 @@ public class Constants {
         public static class Climber{
 
             //change these values to ports later
-            public static int FLIMSEYARM = 4;
+            public static int FLIMSEYARM = 2;
             public static boolean FlIMSEYARM_REVERSED = false;
 
-            public static int SPOOLLEFT = 5;
+            public static int SPOOLLEFT = 1;
             public static boolean SPOOLLEFT_REVERSED = false;
 
-            public static int SPOOLRIGHT = 6;
+            public static int SPOOLRIGHT = 3;
             public static boolean SPOOLRIGHT_REVERSED = false;
         }
     }
@@ -23,9 +23,9 @@ public class Constants {
         public static class Climber{
 
             //change these values to ports later
-            public static int SOLENOID1 = 1;
-            public static int SOLENOID2 = 2;
-            public static int SOLENOID3 = 3;
+            public static int SOLENOID1 = 4;
+            public static int SOLENOID2 = 5;
+            public static int SOLENOID3 = 6;
         }
     }
 

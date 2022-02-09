@@ -37,16 +37,9 @@ public class RunSpools extends CommandBase {
 
     @Override
     public void execute() {
-        if (pid.spoolAtSetPoint()){
-            climber.setSpools(0);
-            pid.spoolReset();
-            done = true;
-        }
-        else {
             motorSpeed = pid.spoolCalculate(climber.getPositionLeftEncoder());
             climber.setSpools(motorSpeed);
-        }
-
+            
         // double tolerance = 0.005;
         // if (climber.getPositionLeftEncoder() >= rotationValue - tolerance &&  rotationValue + tolerance >= climber.getPositionLeftEncoder()) {
         //     climber.setSpools(0);
@@ -60,6 +53,11 @@ public class RunSpools extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        if (pid.spoolAtSetPoint()){
+            climber.setSpools(0);
+            pid.spoolReset();
+            done = true;
+        }
         return done;
     }
 }

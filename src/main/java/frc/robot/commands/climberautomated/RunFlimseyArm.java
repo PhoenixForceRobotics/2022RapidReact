@@ -16,11 +16,9 @@ public class RunFlimseyArm extends CommandBase {
     private boolean done;
     private double motorSpeed;
 
-    public RunFlimseyArm(double amountOfRotation, double toleranceValue) {
-        this.climber = Robot.climber;
-
-        this.pid = Robot.pid;
-
+    public RunFlimseyArm(Climber climber, PID pid, double amountOfRotation, double toleranceValue) {
+        this.climber = climber;
+        this.pid = pid;
         rotationValue = amountOfRotation;
         tolerance = toleranceValue;
 
@@ -29,11 +27,12 @@ public class RunFlimseyArm extends CommandBase {
 
     @Override
     public void initialize() {
-        climber.spoolCoast();
+        // climber.spoolCoast();
         climber.resetFlimseyEncoder();
         pid.flimseyReset();
         pid.flimseySetSetPoint(rotationValue);
         pid.flimseySetTolerance(tolerance);
+        System.out.println("Button got pressed");
 
         done = false;
         
@@ -41,17 +40,9 @@ public class RunFlimseyArm extends CommandBase {
 
     @Override
     public void execute() {
-        
-        if (pid.flimseyAtSetPoint()){
-            climber.setFlimseyArm(0);
-            pid.flimseyReset();
-            done = true;
-        }
-        else {
-            motorSpeed = pid.flimseyCalculate(climber.getPositionFlimseyEncoder());
-            climber.setFlimseyArm(motorSpeed);
-        }
-     
+        motorSpeed = pid.flimseyCalculate(climber.getPositionFlimseyEncoder());
+        climber.setFlimseyArm(motorSpeed);
+
 
         // double tolerance = 0.005;
         // if (climber.getPositionFlimseyEncoder() >= rotationValue - tolerance &&  rotationValue + tolerance >= climber.getPositionFlimseyEncoder()) {
@@ -67,6 +58,11 @@ public class RunFlimseyArm extends CommandBase {
 
     @Override
     public boolean isFinished() {
+        if (pid.flimseyAtSetPoint()){
+            climber.setFlimseyArm(0);
+            pid.flimseyReset();
+            done = true;
+        }
         return done;
     }
 }

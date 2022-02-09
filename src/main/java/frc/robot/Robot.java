@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.climberautomated.RunFlimseyArm;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.PID;
 
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   public static Climber climber;
 
   public static PID pid;
+  public static OI oi;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -36,6 +38,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     climber = new Climber();
+    pid = new PID();
+    oi = new OI();
   }
 
   /**
