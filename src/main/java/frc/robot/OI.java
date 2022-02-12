@@ -7,6 +7,8 @@ package frc.robot;
 /*----------------------------------------------------------------------------*/
 
 import frc.controllers.BobXboxController;
+import frc.robot.commands.FlyWheelPID;
+import frc.robot.commands.*;
 
 public class OI {
 
@@ -20,7 +22,7 @@ public class OI {
     
         /// Driver:
         //drivebase commands 
-
+        driverController.aButton.whileHeld(new FlyWheelPID(Robot.flywheel, 60));
         /// Operator:
   
     }

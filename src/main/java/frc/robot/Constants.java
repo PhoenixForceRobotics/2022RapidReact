@@ -18,7 +18,7 @@ public class Constants {
     public static class MotorMap {
         public static class Flywheel {
             public static int HOOD = 4;
-            public static int SHOOT_LEFT = 5;
+            public static int SHOOT_LEFT = 2;
             public static int SHOOT_RIGHT = 6;
             public static int ROTATE = 7;
 
@@ -30,9 +30,14 @@ public class Constants {
     }
     public static class SubsystemMath {
         public static class FlywheelMath {
+            public static double FLYWHEEL_P = 1;
+            public static double FLYWHEEL_D = 0;
+
             public static double HOOP_HEIGHT = 2.64; // Meters
             public static double FLYWHEEL_HEIGHT = 0;
             public static double TOTAL_HEIGHT = HOOP_HEIGHT - FLYWHEEL_HEIGHT;
+
+            public static double HOOD_MAX_ROTATE = 5;
 
             public static double ZONE3 = 16.4; // Length of the total play field in Meters
             public static double ZONE2 = ZONE3 * 2 / 3;
