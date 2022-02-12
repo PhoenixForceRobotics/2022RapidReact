@@ -30,7 +30,7 @@ public class Constants {
     }
     public static class SubsystemMath {
         public static class FlywheelMath {
-            public static double FLYWHEEL_P = 1;
+            public static double FLYWHEEL_P = .1;
             public static double FLYWHEEL_D = 0;
 
             public static double HOOP_HEIGHT = 2.64; // Meters

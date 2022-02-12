@@ -22,7 +22,7 @@ public class OI {
     
         /// Driver:
         //drivebase commands 
-        driverController.aButton.whileHeld(new FlyWheelPID(Robot.flywheel, 60));
+        driverController.aButton.whileHeld(new FlyWheelPID(Robot.flywheel,580));
         /// Operator:
   
     }

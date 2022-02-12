@@ -25,9 +25,11 @@ public class FlyWheelPID extends CommandBase{
     }
 
     public boolean PID() {
+        System.out.println(flywheel.getFWLeftEncoderVel());
         error = setVelocity - flywheel.getFWLeftEncoderVel();
         derivative = (error - this.previous_error) / .02;
-        PIDSpeed = P*error + D*derivative;
+        PIDSpeed += (P*error + D*derivative) / 5800;
+        this.previous_error = error;
         return (error <= .5 && error >= .5);
     }
 
@@ -40,11 +42,14 @@ public class FlyWheelPID extends CommandBase{
     @Override
     public void execute() {
         done = PID();
-        flywheel.setFlywheel(PIDSpeed*.5);
+        flywheel.setFlywheel(PIDSpeed);
     }
 
     @Override
     public boolean isFinished() {
+        if(done) {
+            flywheel.setFlywheel(0);
+        }
         return done;
     }
 }
