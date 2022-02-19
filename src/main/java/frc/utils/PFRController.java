@@ -48,8 +48,4 @@ public class PFRController extends XboxController{
     public JoystickButton rJoystickButton() {
         return new JoystickButton(this, Button.kLeftStick.value);
     }
-
-
-
-
 }
