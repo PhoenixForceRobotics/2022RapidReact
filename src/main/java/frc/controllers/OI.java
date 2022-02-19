@@ -1,8 +1,8 @@
-package frc.controllers;
+package frc.robot.Services;
 
-import frc.commands.DisableSolenoid;
-import frc.commands.ForwardSolenoid;
-import frc.commands.ReverseSolenoid;
+import frc.robot.Commands.DisableSolenoid;
+import frc.robot.Commands.ForwardSolenoid;
+import frc.robot.Commands.ReverseSolenoid;
 import frc.robot.Robot;
 
 public class OI {

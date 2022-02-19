@@ -31,22 +31,22 @@ public class PFRController extends XboxController{
 
     
     public JoystickButton lBumper() {
-        return new JoystickButton(this, Button.kLeftBumper.value);
+        return new JoystickButton(this, Button.kBumperLeft.value);
     }
 
     
     public JoystickButton rBumper() {
-        return new JoystickButton(this, Button.kRightBumper.value);
+        return new JoystickButton(this, Button.kBumperRight.value);
     }
 
     
     public JoystickButton lJoystickButton() {
-        return new JoystickButton(this, Button.kLeftStick.value);
+        return new JoystickButton(this, Button.kStickLeft.value);
     }
 
     
     public JoystickButton rJoystickButton() {
-        return new JoystickButton(this, Button.kLeftStick.value);
+        return new JoystickButton(this, Button.kStickLeft.value);
     }
 
 

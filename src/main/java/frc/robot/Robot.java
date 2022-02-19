@@ -4,15 +4,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.PneumaticsControlModule;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.controllers.OI;
-import frc.subsystems.Climb;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,11 +20,6 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  public static Climb climb;
-  public static OI oi;
-  public static PneumaticsControlModule pneumaticsControlModule;
-  public static Compressor compressor;
-  public static PowerDistribution powerDistribution;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -40,15 +29,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-    
-    climb = new Climb();
-    oi = new OI();
-    pneumaticsControlModule = new PneumaticsControlModule(4);
-    compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    powerDistribution = new PowerDistribution();
-
-    pneumaticsControlModule.clearAllStickyFaults();
-    powerDistribution.clearStickyFaults();
   }
 
   /**
