@@ -62,4 +62,7 @@ public class Constants {
 
         }
     }
+    public static class TurretConstants {
+        public static double GRAVITY = 386.0892; //force of earth's gravity at sea level in inches/second/second; it's in inches to stay consistent with everything else
+    }
 }
