@@ -1,8 +1,7 @@
 package frc.commands;
 
-import frc.robot.Subsystems.Climb;
-
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.subsystems.Climb;
 
 public class ReverseSolenoid extends InstantCommand{
     private Climb climb;
