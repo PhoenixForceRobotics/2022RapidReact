@@ -1,4 +1,4 @@
-package frc.controllers;
+package frc.utils;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -31,22 +31,22 @@ public class PFRController extends XboxController{
 
     
     public JoystickButton lBumper() {
-        return new JoystickButton(this, Button.kBumperLeft.value);
+        return new JoystickButton(this, Button.kLeftBumper.value);
     }
 
     
     public JoystickButton rBumper() {
-        return new JoystickButton(this, Button.kBumperRight.value);
+        return new JoystickButton(this, Button.kRightBumper.value);
     }
 
     
     public JoystickButton lJoystickButton() {
-        return new JoystickButton(this, Button.kStickLeft.value);
+        return new JoystickButton(this, Button.kLeftStick.value);
     }
 
     
     public JoystickButton rJoystickButton() {
-        return new JoystickButton(this, Button.kStickLeft.value);
+        return new JoystickButton(this, Button.kLeftStick.value);
     }
 
 
