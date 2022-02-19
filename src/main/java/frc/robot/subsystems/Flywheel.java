@@ -21,39 +21,47 @@ public class Flywheel extends SubsystemBase{
 
     public Flywheel() {
   //      flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless, Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
-          flywheelLeft = new Motor(Constants.MotorMap.Flywheel.SHOOT_LEFT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED, 40);
+  //      flywheelLeft = new Motor(Constants.MotorMap.Flywheel.SHOOT_LEFT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED, 40);
   //      flywheelRight = new Motor(Constants.MotorMap.Flywheel.SHOOT_RIGHT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED, 40);
-  //      flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
+          flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
 
  //       fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-          fwLeftEncoder = flywheelLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-  //      fwRightEncoder = flywheelRight.getEncoder();
-  //      fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+  //      fwLeftEncoder = flywheelLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+  //      fwRightEncoder = flywheelRight.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+        fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
  //       flywheelRotate.setIdleMode(IdleMode.kBrake);
-          flywheelLeft.setIdleMode(IdleMode.kCoast);
+ //       flywheelLeft.setIdleMode(IdleMode.kCoast);
  //       flywheelRight.setIdleMode(IdleMode.kCoast);
- //       flywheelHood.setIdleMode(IdleMode.kBrake);
+        flywheelHood.setIdleMode(IdleMode.kBrake);
     }
     
     // public void setFlywheelRotate(double speed) {
     //     flywheelRotate.set(speed);
     // }
 
-    public void setFlywheel(double speed) {
-        flywheelLeft.set(speed);
+    //public void setFlywheel(double speed) {
+    //    flywheelLeft.set(speed);
     //    flywheelRight.set(speed);
-    }
+    //}
 
-    // public void setFlywheelHood(double speed) {
-    //     flywheelHood.set(speed);
-    // // }
+    public void setFlywheelHood(double speed) {
+        flywheelHood.set(speed);
+    }
     
-    public double getFWLeftEncoderVel() {
-        return fwLeftEncoder.getVelocity();
+    // public double getFWLeftEncoderVel() {
+    //     return fwLeftEncoder.getVelocity();
+    // }
+
+    public double getFWHoodEncoderVel() {
+        return fwHoodEncoder.getVelocity();
     }
 
-    public void resetFWEncoder() {
-        fwLeftEncoder.setPosition(0);
+    // public void resetFWLeftEncoder() {
+    //     fwLeftEncoder.setPosition(0);
+    // }
+
+    public void resetFWHoodEncoder() {
+        fwHoodEncoder.setPosition(0);
     }
 }
