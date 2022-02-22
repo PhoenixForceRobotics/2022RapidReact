@@ -10,13 +10,13 @@ import com.revrobotics.SparkMaxPIDController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.SparkMaxRelativeEncoder.Type;
 
-public class sparkMotorGroup extends MotorControllerGroup {
+public class SparkMotorGroup extends MotorControllerGroup {
 
     private CANSparkMax leader;
     private CANSparkMax[] followers;
     private RelativeEncoder encoder;
 
-    public sparkMotorGroup(boolean isInverted, CANSparkMax leader, CANSparkMax... followers) {
+    public SparkMotorGroup(boolean isInverted, CANSparkMax leader, CANSparkMax... followers) {
         super(leader, followers);
         this.leader = leader;
         this.followers = followers;
