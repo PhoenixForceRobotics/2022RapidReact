@@ -17,7 +17,7 @@ public class Constants {
     // Map your subsystem motor ports here
     public static class Drivebase {
       public static int LEFT_1 = 1;
-      public static int LEFT_2 = 2;
+      public static int LEFT_2 = 999;
       public static int LEFT_3 = 3;
 
       public static int RIGHT_1 = 12;
@@ -31,6 +31,23 @@ public class Constants {
       public static final boolean RIGHT1_REVERSED = false;
       public static final boolean RIGHT2_REVERSED = false;
       public static final boolean RIGHT3_REVERSED = false;
+    }
+
+    public static class Climber {
+      public static int FLIMSEYARM = 2;
+      public static final boolean FlimseyArm_Reversed = false;
+
+      public static int ROTATEINTAKE = 1;
+      public static boolean ROTATEINTAKE_REVERSED = false;
+    }
+  }
+
+  public static class PneumaticsMap {
+    public static class Climber {
+
+      // change these values to ports later
+      public static int SOLENOID1 = 4;
+      public static int SOLENOID2 = 5;
     }
   }
 

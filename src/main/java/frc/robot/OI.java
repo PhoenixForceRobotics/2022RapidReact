@@ -8,7 +8,12 @@
 package frc.robot;
 
 import frc.controllers.BobXboxController;
-import frc.robot.drivebase.*;
+import frc.robot.commands.climberautomated.ActivateNextSequence;
+import frc.robot.commands.climberautomated.ClimberSequence;
+import frc.robot.commands.climberautomated.DeactivateNextSequence;
+import frc.robot.commands.climberautomated.RunFlimseyArm;
+import frc.robot.commands.climbermanual.FlimseyForward;
+import frc.robot.commands.climbermanual.FlimseyStop;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -23,13 +28,20 @@ public class OI {
     driverController = new BobXboxController(0, 0.11, 0.11);
     operatorController = new BobXboxController(1, 0.11, 0.11);
 
-    /// Driver:
-    // drivebase commands
+    // Climber Manual
+    driverController.xButton.whenPressed(new FlimseyForward(Robot.climber));
+    driverController.xButton.whenReleased(new FlimseyStop(Robot.climber));
 
-    driverController.aButton.whenPressed(new Shifter(Robot.drivebase));
-    driverController.bButton.whenPressed(new Reverse(Robot.drivebase));
+    // Climber Automatic
+    // Main
+    driverController.bButton.whenPressed(new ClimberSequence());
+    // Activate next sequence
+    driverController.rightTriggerButton.whenPressed(new ActivateNextSequence());
+    driverController.rightTriggerButton.whenReleased(new DeactivateNextSequence());
 
-    /// Operator:
+    // Climber testing
+    driverController.aButton.whenPressed(
+        new RunFlimseyArm(Robot.climber, Robot.pid, 0.5, 0.005, 0.1));
   }
 }
 
