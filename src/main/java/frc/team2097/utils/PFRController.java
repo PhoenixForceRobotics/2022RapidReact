@@ -1,4 +1,4 @@
-package frc.utils;
+package frc.team2097.utils;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
