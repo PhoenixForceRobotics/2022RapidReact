@@ -1,14 +1,22 @@
-package frc.robot.utility;
+package frc.team2097.utility;
 
 import java.lang.Math;
-
-import frc.robot.Constants;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.team2097.utility.Constants;
 
 public class FlywheelMath {
     private double theta, distance;
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("PiVisionData");
+    NetworkTableEntry distanceEntry = table.getEntry("Distance");
+    NetworkTableEntry thetaEntry = table.getEntry("Pitch");
 
     public double getTheta() {
-        if(distance <= Constants.SubsystemMath.FlywheelMath.ZONE1) {
+        distance = distanceEntry.getDouble(-1);
+        if(distance == -1) {
+            return 50;
+        } else if(distance <= Constants.SubsystemMath.FlywheelMath.ZONE1) {
             return getThetaZone1();
         } else if (distance <= Constants.SubsystemMath.FlywheelMath.ZONE2) {
             return getThetaZone2();
