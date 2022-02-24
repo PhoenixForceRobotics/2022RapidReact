@@ -48,6 +48,14 @@ public class Flywheel extends SubsystemBase{
     public void setFlywheelHood(double speed) {
         flywheelHood.set(speed);
     }
+
+    public void setFlywheelHoodBrake() {
+        flywheelHood.setIdleMode(IdleMode.kBrake);
+    }
+
+    public void setFlywheelHoodCoast() {
+        flywheelHood.setIdleMode(IdleMode.kCoast);
+    }
     
     // public double getFWLeftEncoderVel() {
     //     return fwLeftEncoder.getVelocity();
