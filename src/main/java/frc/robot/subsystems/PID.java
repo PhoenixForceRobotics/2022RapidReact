@@ -13,7 +13,7 @@ public class PID extends SubsystemBase {
   public PIDController intakeRotatorPID;
   public PIDController flimseyPID;
 
-  double intakeRotatorKp = 0.5;
+  double intakeRotatorKp = 0.2;
   double intakeRotatorKi = 0;
   double intakeRotatorKd = 0;
 
@@ -26,13 +26,18 @@ public class PID extends SubsystemBase {
   private NetworkTableEntry intakeRotatorKpEntry =
       tab.add("intakeRotatorKp", intakeRotatorKp)
           .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties here
+          .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
           .getEntry();
-
   private NetworkTableEntry intakeRotatorKiEntry =
-      tab.add("intakeRotatorKi", intakeRotatorKi).getEntry();
+      tab.add("intakeRotatorKp", intakeRotatorKp)
+          .withWidget(BuiltInWidgets.kNumberSlider)
+          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
+          .getEntry();
   private NetworkTableEntry intakeRotatorKdEntry =
-      tab.add("intakeRotatorKd", intakeRotatorKd).getEntry();
+      tab.add("intakeRotatorKp", intakeRotatorKp)
+          .withWidget(BuiltInWidgets.kNumberSlider)
+          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
+          .getEntry();
 
   private NetworkTableEntry flimseyKpEntry =
       tab.add("flimseyKp", flimseyKp)
@@ -42,19 +47,20 @@ public class PID extends SubsystemBase {
   private NetworkTableEntry flimseyKiEntry =
       tab.add("flimseyKi", flimseyKi)
           .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
+          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
           .getEntry();
   private NetworkTableEntry flimseyKdEntry =
       tab.add("flimseyKd", flimseyKd)
           .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
+          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
           .getEntry();
 
   public PID() {
     System.out.println("PID has been called");
     // change values, need to test to find the right values.
     flimseyPID = new PIDController(flimseyKp, flimseyKi, flimseyKd);
-    // intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi, intakeRotatorKd);
+    // intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi,
+    // intakeRotatorKd);
   }
 
   public double flimseyCalculate(double measurement) {

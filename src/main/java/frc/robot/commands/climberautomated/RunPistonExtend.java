@@ -1,7 +1,6 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
 public class RunPistonExtend extends CommandBase {
@@ -9,8 +8,8 @@ public class RunPistonExtend extends CommandBase {
   private Climber climber;
   private boolean done;
 
-  public RunPistonExtend() {
-    this.climber = Robot.climber;
+  public RunPistonExtend(Climber m_climber) {
+    climber = m_climber;
   }
 
   @Override

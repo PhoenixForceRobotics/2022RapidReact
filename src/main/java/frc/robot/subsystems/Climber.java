@@ -30,7 +30,8 @@ public class Climber extends SubsystemBase {
   // nicknamed Jose
   // Motor spoolRight;
   // nicknamed Alberta
-  // Jose and Alberta used to live happily then they were murdered by a redesign from Lars
+  // Jose and Alberta used to live happily then they were murdered by a redesign
+  // from Lars
 
   Timer delay;
 

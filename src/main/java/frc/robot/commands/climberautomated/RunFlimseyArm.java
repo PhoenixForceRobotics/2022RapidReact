@@ -33,7 +33,6 @@ public class RunFlimseyArm extends CommandBase {
 
   @Override
   public void initialize() {
-    System.out.println("Button of Automated thing got pressed");
 
     climber.setFlimseyArmEncoder(0);
     pid.printThing();
@@ -54,7 +53,6 @@ public class RunFlimseyArm extends CommandBase {
     }
     climber.setFlimseyMotorSpeed(motorSpeed);
 
-    // Prints
     System.out.println(climber.getFlimseyArmPosition());
   }
 

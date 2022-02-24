@@ -14,7 +14,6 @@ public class FlimseyForward extends CommandBase {
   @Override
   public void initialize() {
     climber.setFlimseyMotorSpeed(0.1);
-    System.out.println("vroom");
   }
 
   @Override

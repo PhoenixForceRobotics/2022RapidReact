@@ -1,7 +1,6 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.subsystems.Climber;
 
 public class Delay extends CommandBase {
@@ -10,8 +9,8 @@ public class Delay extends CommandBase {
   private double delay;
   private boolean done;
 
-  public Delay(double delayTime) {
-    this.climber = Robot.climber;
+  public Delay(Climber m_climber, double delayTime) {
+    climber = m_climber;
     delay = delayTime;
   }
 
