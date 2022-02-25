@@ -44,9 +44,10 @@ public class Robot extends TimedRobot {
     drivebase = new Drivebase();
     turnOnDrivebase = new TurnOnDrivebase(drivebase);
     
-    leftTalonFX = new TalonFX(0);
+    leftTalonFX = new TalonFX(2);
     rightTalonFX = new TalonFX(1);
     runFlywheel = new RunFlywheel(leftTalonFX, rightTalonFX, oi);
+    
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
     // compressor = new Compressor(PneumaticsModuleType.CTREPCM);

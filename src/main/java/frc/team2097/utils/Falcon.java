@@ -1,6 +1,7 @@
 package frc.team2097.utils;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 /*
     Created this class in order to clarify the code
 */

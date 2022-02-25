@@ -10,6 +10,7 @@ public class RunFlywheel extends CommandBase {
     private TalonFX left;
     private TalonFX right;
     private OI oi;
+    
     public RunFlywheel(TalonFX left, TalonFX right, OI oi)
     {
         this.left = left;
@@ -19,7 +20,7 @@ public class RunFlywheel extends CommandBase {
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        double output = oi.driverController.getLeftX();
+        double output = oi.driverController.getLeftTriggerAxis();
         left.set(TalonFXControlMode.PercentOutput, output);
         right.set(TalonFXControlMode.PercentOutput, -output);
     }
