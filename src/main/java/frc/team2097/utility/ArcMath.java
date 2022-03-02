@@ -1,7 +1,6 @@
-package frc.robot.utility;
+package frc.team2097.utility;
 
 import java.lang.Math;
-import frc.robot.Constants;
 
 //All this math was done by Emily and I don't feel like proofreading it myself
 

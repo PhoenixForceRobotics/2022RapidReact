@@ -1,4 +1,4 @@
-package frc.robot;
+package frc.team2097.utility;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
@@ -28,6 +28,17 @@ public class Constants {
             public static boolean ROTATE_REVERSED = false;
         }
     }
+
+    public static class MotorSpeeds {
+        public static class Flywheel {
+
+            public static double ROTATE_SPEED = .1;
+
+            public static double HOOD_SPEED = .1;
+
+        }
+    }
+
     public static class SubsystemMath {
         public static class FlywheelMath {
             public static double FLYWHEEL_P = .1;
@@ -46,19 +57,21 @@ public class Constants {
             //lower speeds for more accuracy
             public static double VELOCITY_ZONE1 = ZONE1 / 
             (Math.cos((50.0/180.0) * Math.PI) * 
-            Math.sqrt((ZONE1 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / 4.9)); 
+            Math.sqrt((ZONE1 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / (TurretConstants.GRAVITY / 2))); 
             // Meters per second, can reach ZONE1 horizontally max, 
             // TOTAL_HEIGHT height at 50 degrees ~9.56m/s (for now)
             public static double VELOCITY_ZONE2 = ZONE2 / 
             (Math.cos((50.0/180.0) * Math.PI) * 
-            Math.sqrt((ZONE2 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / 4.9)); ;
+            Math.sqrt((ZONE2 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / (TurretConstants.GRAVITY / 2))); ;
             // Meters per second, can reach ZONE2 horizontally, 
             // TOTAL_HEIGHT height at 50 degrees ~11.7m/s (for now)
             public static double VELOCITY_ZONE3 = ZONE3 / 
             (Math.cos((50.0/180.0) * Math.PI) * 
-            Math.sqrt((ZONE3 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / 4.9)); ; 
+            Math.sqrt((ZONE3 * Math.tan((50.0/180.0) * Math.PI) - TOTAL_HEIGHT) / (TurretConstants.GRAVITY / 2))); ; 
             // Meters per second, can reach ZONE3 horizontally, 
             // TOTAL_HEIGHT height at 50 degrees ~13.7m/s (for now)
+
+            public static double ROTATE_BUFFER = 0.05;
 
         }
     }

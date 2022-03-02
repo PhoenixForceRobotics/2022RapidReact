@@ -1,46 +1,58 @@
-// package frc.robot.commands;
+package frc.team2097.commands;
 
-// import com.revrobotics.RelativeEncoder;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.team2097.subsystems.Flywheel;
+import frc.team2097.utility.Constants;
+import frc.team2097.utility.FlywheelMath;
+import frc.team2097.utility.NetworkTableManager;
 
-// import edu.wpi.first.wpilibj2.command.CommandBase;
-// import frc.robot.utility.FlywheelMath;
-// import frc.robot.subsystems.Flywheel;
+public class FlyWheelHood extends CommandBase {
+    NetworkTableManager networkTableManager;
 
-// public class FlyWheelHood extends CommandBase{
-//     private Flywheel flywheel;
-//     private double targetangle;
-//     private double maxrange;
-//     private RelativeEncoder hoodEncoder;
-//     private FlywheelMath flywheelMath;
-
-
+    private double pitchAngle;
+    private Flywheel flywheel;
+    private double maxDegree, minDegree;
+    private double degreeRange;
+    private double buffer;
+    private double hoodRotations, relativeRotation;
     
-//     public FlyWheelHood(Flywheel flywheel) {
-//         this.flywheel = flywheel;
-//         maxrange = .5;
-//         targetangle = 50 / 2 / Math.PI;
-//     }
+    //45*-75*
 
-//     @Override
-//     public void initialize() {
-//         hoodEncoder = flywheel.fwHoodEncoder;
-//         flywheel.resetFWEncoder(hoodEncoder);
-//     }
+    public FlyWheelHood(Flywheel flywheel) {
+        this.flywheel = flywheel;
+        // shoot angle
+        maxDegree = 75;
+        minDegree = 45;
+        degreeRange = maxDegree - minDegree;
+        // motor rotations to big roation
+        // 90* big robation/motor roations = how much it spins every small motor spin
+        buffer = 2;
+        hoodRotations = 0;
+        relativeRotation = /* degrees */ degreeRange * /* bigroations / */hoodRotations;
+    }
 
-//     @Override
-//     public void execute() {
-//         targetangle = flywheelMath.getTheta() / 2 / Math.PI;
-//         if(hoodEncoder.getPosition() < targetangle && hoodEncoder.getPosition() < maxrange) {
-//             flywheel.setFlywheelHood(.1);
-//         } else if (hoodEncoder.getPosition() > targetangle && hoodEncoder.getPosition() > 0) {
-//             flywheel.setFlywheelHood(-.1);
-//         } else {
-//             flywheel.setFlywheelHood(0);
-//         }
-//     }
+    @Override
+    public void initialize() {
+        pitchAngle = FlywheelMath.getTheta();
+    }
 
-//     @Override
-//     public boolean isFinished() {
-//         return false;
-//     }
-// }
+    @Override
+    public void execute() {
+        pitchAngle = FlywheelMath.getTheta();
+        hoodRotations = flywheel.getFWHoodPos();
+        relativeRotation = /* degrees 90 * bigroations / */hoodRotations;
+        if(relativeRotation + minDegree >= pitchAngle - buffer && relativeRotation + minDegree <= pitchAngle + buffer) {
+            flywheel.setFlywheelHood(0);
+        } else if (relativeRotation > pitchAngle + buffer){
+            flywheel.setFlywheelHood(Constants.MotorSpeeds.Flywheel.HOOD_SPEED * -1);
+        } else {
+            flywheel.setFlywheelHood(Constants.MotorSpeeds.Flywheel.HOOD_SPEED);   
+        }
+        
+    }
+
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
+}
