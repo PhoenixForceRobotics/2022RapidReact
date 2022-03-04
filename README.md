@@ -19,7 +19,7 @@ Some important gradle commands:
   - REVLib releases: https://github.com/REVrobotics/REV-Software-Binaries/releases
   - Spark MAX general docs: https://docs.revrobotics.com/sparkmax/
 
-### XBOX ELITE CONTROLLER MAP
+### XBox Elite Controller Map
 
 ```
 
