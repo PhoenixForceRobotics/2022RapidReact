@@ -1,4 +1,4 @@
-package frc.controllers;
+package frc.robot.controllers;
 
 /*
 This code is sourced from Team 319.  They offered up use of code in Chief Delphi
@@ -9,7 +9,7 @@ There is no obvious license file but want to retain pointers to them.
  */
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.controllers.BobAxisButton.ThresholdType;
+import frc.robot.controllers.BobAxisButton.ThresholdType;
 
 public class BobXboxController extends Joystick {
 
