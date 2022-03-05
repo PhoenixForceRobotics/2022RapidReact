@@ -49,12 +49,11 @@ public class OI {
 
     // Climber testing
     driverController.aButton.whenPressed(
-        new RunFlimseyArm(Robot.climber, Robot.pid, 0.5, 0.005, 0.1));
+        new RunFlimseyArm(Robot.climber, Robot.pid, 0.25, 0.005, 0.1));
   }
 }
 
 // XBOX ELITE CONTROLLER MAP
-//
 //
 // [ LT ] [ RT ] Left Trigger, Right Trigger
 // [ LB ] [ RB ] Left Bumper, Right Bumper

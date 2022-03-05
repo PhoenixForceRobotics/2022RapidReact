@@ -36,7 +36,6 @@ public class RunIntakeRotator extends CommandBase {
     System.out.println("Button of Automated Intake thing got pressed");
     // climber.spoolCoast();
     intakeSystem.setRotatorEncoder(0);
-    pid.printThing();
     pid.intakeRotatorReset();
     pid.intakeRotatorSetSetPoint(rotationValue);
     pid.intakeRotatorSetTolerance(tolerance);

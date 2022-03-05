@@ -35,7 +35,6 @@ public class RunFlimseyArm extends CommandBase {
   public void initialize() {
 
     climber.setFlimseyArmEncoder(0);
-    pid.printThing();
     pid.flimseyReset();
     pid.flimseySetSetPoint(rotationValue);
     pid.flimseySetTolerance(tolerance);

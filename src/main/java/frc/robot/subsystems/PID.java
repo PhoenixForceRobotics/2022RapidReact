@@ -26,15 +26,15 @@ public class PID extends SubsystemBase {
   private NetworkTableEntry intakeRotatorKpEntry =
       tab.add("intakeRotatorKp", intakeRotatorKp)
           .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
+          .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties here
           .getEntry();
   private NetworkTableEntry intakeRotatorKiEntry =
-      tab.add("intakeRotatorKp", intakeRotatorKp)
+      tab.add("intakeRotatorKi", intakeRotatorKi)
           .withWidget(BuiltInWidgets.kNumberSlider)
           .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
           .getEntry();
   private NetworkTableEntry intakeRotatorKdEntry =
-      tab.add("intakeRotatorKp", intakeRotatorKp)
+      tab.add("intakeRotatorKd", intakeRotatorKd)
           .withWidget(BuiltInWidgets.kNumberSlider)
           .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
           .getEntry();
@@ -59,8 +59,7 @@ public class PID extends SubsystemBase {
     System.out.println("PID has been called");
     // change values, need to test to find the right values.
     flimseyPID = new PIDController(flimseyKp, flimseyKi, flimseyKd);
-    // intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi,
-    // intakeRotatorKd);
+    intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi, intakeRotatorKd);
   }
 
   public double flimseyCalculate(double measurement) {
@@ -91,14 +90,10 @@ public class PID extends SubsystemBase {
     flimseyPID.reset();
   }
 
-  public void printThing() {
-    System.out.println("Print thing");
-  }
-
   public double intakeRotatorCalculate(double measurement) {
     intakeRotatorKp = intakeRotatorKpEntry.getDouble(1.0);
-    intakeRotatorKi = intakeRotatorKiEntry.getDouble(1.0);
-    intakeRotatorKd = intakeRotatorKdEntry.getDouble(1.0);
+    intakeRotatorKi = intakeRotatorKiEntry.getDouble(0);
+    intakeRotatorKd = intakeRotatorKdEntry.getDouble(0);
 
     intakeRotatorPID.setP(intakeRotatorKp);
     intakeRotatorPID.setI(intakeRotatorKi);

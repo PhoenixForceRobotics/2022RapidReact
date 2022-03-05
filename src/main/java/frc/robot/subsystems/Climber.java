@@ -43,9 +43,9 @@ public class Climber extends SubsystemBase {
     // Motors
     flimseyArm =
         new Motor(
-            Constants.MotorMap.Climber.ROTATEINTAKE,
+            Constants.MotorMap.Climber.FLIMSEYARM,
             MotorType.kBrushless,
-            Constants.MotorMap.Climber.ROTATEINTAKE_REVERSED,
+            Constants.MotorMap.Climber.FlimseyArm_Reversed,
             40);
 
     // Solenoids
