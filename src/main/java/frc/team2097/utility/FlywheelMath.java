@@ -7,12 +7,12 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.team2097.utility.Constants;
 
 public class FlywheelMath {
-    private double theta, distance;
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("PiVisionData");
-    NetworkTableEntry distanceEntry = table.getEntry("Distance");
-    NetworkTableEntry thetaEntry = table.getEntry("Pitch");
+    private static double theta, distance;
+    static NetworkTable table = NetworkTableInstance.getDefault().getTable("PiVisionData");
+    static NetworkTableEntry distanceEntry = table.getEntry("distance");
+    static NetworkTableEntry thetaEntry = table.getEntry("pitch");
 
-    public double getTheta() {
+    public static double getTheta() {
         distance = distanceEntry.getDouble(-1);
         if(distance == -1) {
             return 50;
@@ -26,17 +26,17 @@ public class FlywheelMath {
     }
 
     // Math from the spreadsheet
-    public double getThetaZone1() {
+    public static double getThetaZone1() {
         theta = -.679 * Math.pow(distance, 2) - 1.06 * distance + 88.4;
         return theta;
     }
 
-    public double getThetaZone2() {
+    public static double getThetaZone2() {
         theta = -.207 * Math.pow(distance, 2) - .757 * distance + 88.2;
         return theta;
     }
 
-    public double getThetaZone3() {
+    public static double getThetaZone3() {
         theta = -.088 * Math.pow(distance, 2) - 0.67 * distance + 88.4;
         return theta;
     }

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.team2097.subsystems.Flywheel;
+import frc.team2097.utility.PID;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +26,9 @@ public class Robot extends TimedRobot {
   public static Flywheel flywheel;
   public static OI oi;
 
+  //Alex PID edition
+  public static PID pid;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -35,6 +39,9 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
     flywheel = new Flywheel();
+
+    //Alex PID edition
+    pid = new PID();
     oi = new OI();
    
   }

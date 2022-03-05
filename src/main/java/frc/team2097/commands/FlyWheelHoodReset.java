@@ -2,7 +2,6 @@ package frc.team2097.commands;
 import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.team2097.utility.FlywheelMath;
 import frc.team2097.subsystems.Flywheel;
 
 public class FlyWheelHoodReset extends CommandBase{

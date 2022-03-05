@@ -15,6 +15,8 @@ public class FlywheelTurn extends CommandBase {
     private boolean turnAround;
 
     private double threeFourths;
+
+
     
 
     public FlywheelTurn(Flywheel flywheel) {
@@ -23,6 +25,8 @@ public class FlywheelTurn extends CommandBase {
         reverse = 1;
         turnAround = false;
         threeFourths = 120;
+
+        
     }
 
     @Override
@@ -53,6 +57,8 @@ public class FlywheelTurn extends CommandBase {
                 turnAround = true;
             }
         }
+
+
    }
 
     @Override

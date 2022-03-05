@@ -23,7 +23,7 @@ public class NetworkTableManager {
    }
 
    public static double getACSXCoordinate() {
-       return ACSXCoordinate.getDouble(0);
+       return ACSXCoordinate.getDouble(5);
    }
    public static double getACSYCoordinate() {
        return ACSYCoordinate.getDouble(0);
