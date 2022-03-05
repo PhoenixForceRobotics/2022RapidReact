@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.drivebase.RunDriveBase;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Ringlight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   public static Drivebase drivebase;
   public static RunDriveBase runDriveBase;
   public static OI oi;
+  public static Ringlight ringlight;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -35,8 +37,11 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
+
     drivebase = new Drivebase();
     oi = new OI();
+    ringlight = new Ringlight(0);
+
     runDriveBase = new RunDriveBase(drivebase, oi);
   }
 

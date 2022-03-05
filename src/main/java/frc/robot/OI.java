@@ -8,7 +8,9 @@
 package frc.robot;
 
 import frc.controllers.BobXboxController;
-import frc.robot.drivebase.*;
+import frc.robot.commands.Ringlight.ToggleRinglight;
+import frc.robot.commands.Ringlight.TurnOffRinglight;
+import frc.robot.commands.Ringlight.TurnOnRinglight;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -26,8 +28,9 @@ public class OI {
     /// Driver:
     // drivebase commands
 
-    driverController.aButton.whenPressed(new Shifter(Robot.drivebase));
-    driverController.bButton.whenPressed(new Reverse(Robot.drivebase));
+    driverController.aButton.whenPressed(new ToggleRinglight(Robot.ringlight));
+    driverController.bButton.whenPressed(new TurnOnRinglight(Robot.ringlight));
+    driverController.xButton.whenPressed(new TurnOffRinglight(Robot.ringlight));
 
     /// Operator:
   }
