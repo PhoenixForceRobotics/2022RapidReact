@@ -34,7 +34,7 @@ public class Constants {
 
             public static double ROTATE_SPEED = .4;
 
-            public static double HOOD_SPEED = .1;
+            public static double HOOD_SPEED = .4;
 
         }
     }

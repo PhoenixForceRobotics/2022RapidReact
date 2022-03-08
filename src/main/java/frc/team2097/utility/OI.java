@@ -1,5 +1,8 @@
 package frc.team2097.utility;
 
+import frc.team2097.Robot;
+import frc.team2097.commands.FlyWheelHood;
+
 public class OI {
     public PFRController driverController;
     public PFRController operatorController;
@@ -9,7 +12,7 @@ public class OI {
         operatorController = new PFRController(1);
  
         // Initialize Button Bindings
-        
+        operatorController.aButton().whenPressed(new FlyWheelHood(Robot.flywheel));
         /*
         * Example:
         * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase)); 

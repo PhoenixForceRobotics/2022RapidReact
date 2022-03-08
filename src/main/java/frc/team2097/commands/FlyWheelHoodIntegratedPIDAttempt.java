@@ -28,7 +28,7 @@ public class FlyWheelHoodIntegratedPIDAttempt extends CommandBase {
         this.flywheel = flywheel;
         this.pid = pid;
         // shoot angle
-        maxDegree = 75;
+        maxDegree = 85;
         minDegree = 45;
         degreeRange = maxDegree - minDegree;
         // motor rotations to big roation

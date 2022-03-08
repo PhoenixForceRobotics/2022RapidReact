@@ -1,6 +1,7 @@
 package frc.team2097.utility;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 /*
     Created this class in order to clarify the code
 */
@@ -41,6 +42,14 @@ public class Falcon extends TalonFX {
         }
     }
 
+    public void setCoast(){
+        setNeutralMode(NeutralMode.Coast);
+    }
+
+    public void setBrake(){
+        setNeutralMode(NeutralMode.Brake);
+    }
+
     public void setPercentage(double percentage)
     {
         set(ControlMode.PercentOutput, percentage);
@@ -53,11 +62,15 @@ public class Falcon extends TalonFX {
 
     public void setVelocity(double velocity)
     {
+        // converts rpm to ticks/100ms
+        velocity = velocity * 2048 / 10;
         set(ControlMode.Velocity, velocity);
     }
 
     public double getVelocity() {
-        return getSelectedSensorVelocity();
+        // converts ticks/100ms to rpm
+        double velocity = getSelectedSensorVelocity() / 2048 * 10;
+        return velocity;
     }
 
     public void setPosition(double position)

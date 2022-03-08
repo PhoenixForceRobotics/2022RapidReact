@@ -17,7 +17,6 @@ public class Flywheel extends SubsystemBase{
     public Motor flywheelHood; // Neo 550
 
     public RelativeEncoder fwRotateEncoder; // Neo
-    public RelativeEncoder fwLeftEncoder, fwRightEncoder; // Falcons
     public RelativeEncoder fwHoodEncoder; // Neo 550
 
     public Flywheel() {
@@ -27,13 +26,11 @@ public class Flywheel extends SubsystemBase{
         flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
 
         fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-        fwLeftEncoder = flywheelLeft.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-        fwRightEncoder = flywheelRight.getEncoder();
         fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
         flywheelRotate.setIdleMode(IdleMode.kBrake);
-        flywheelLeft.setIdleMode(IdleMode.kCoast);
-        flywheelRight.setIdleMode(IdleMode.kCoast);
+        flywheelLeft.setCoast();
+        flywheelRight.setCoast();
         flywheelHood.setIdleMode(IdleMode.kBrake);
     }
     
@@ -41,9 +38,9 @@ public class Flywheel extends SubsystemBase{
         flywheelRotate.set(speed);
     }
 
-    public void setFlywheel(double speed) {
-        flywheelLeft.set(speed);
-        flywheelRight.set(speed);
+    public void setFlywheel(double velocity) {
+        flywheelLeft.setVelocity(velocity);
+        flywheelRight.setVelocity(velocity);
     }
 
     public void setFlywheelHood(double speed) {
@@ -67,11 +64,11 @@ public class Flywheel extends SubsystemBase{
     }
 
     public double getFWLeftEncoderVel() {
-        return fwLeftEncoder.getVelocity();
+        return flywheelLeft.getVelocity();
     }
 
     public void resetFWEncoder() {
-        fwLeftEncoder.setPosition(0);
+        flywheelLeft.setSelectedSensorPosition(0);
     }
 
     public double getFWRotateEncoderPosition() {

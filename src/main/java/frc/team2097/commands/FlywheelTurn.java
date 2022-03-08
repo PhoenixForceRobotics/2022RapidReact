@@ -24,7 +24,7 @@ public class FlywheelTurn extends CommandBase {
         buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
         reverse = 1;
         turnAround = false;
-        threeFourths = 120;
+        threeFourths = 3/4 * 65;
 
         
     }
