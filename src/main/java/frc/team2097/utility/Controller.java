@@ -1,4 +1,4 @@
-package frc.team2097.utils;
+package frc.team2097.utility;
 
 import edu.wpi.first.wpilibj.XboxController;
 

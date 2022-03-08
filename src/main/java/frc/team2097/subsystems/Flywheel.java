@@ -7,12 +7,13 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.team2097.utility.Constants;
+import frc.team2097.utility.Falcon;
 import frc.team2097.utility.Motor;
 
 public class Flywheel extends SubsystemBase{
 
     public Motor flywheelRotate; // Neo
-    public Motor flywheelLeft, flywheelRight; // Falcons
+    public Falcon flywheelLeft, flywheelRight; // Falcons
     public Motor flywheelHood; // Neo 550
 
     public RelativeEncoder fwRotateEncoder; // Neo
@@ -21,8 +22,8 @@ public class Flywheel extends SubsystemBase{
 
     public Flywheel() {
         flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless, Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
-        flywheelLeft = new Motor(Constants.MotorMap.Flywheel.SHOOT_LEFT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED, 40);
-        flywheelRight = new Motor(Constants.MotorMap.Flywheel.SHOOT_RIGHT, MotorType.kBrushless, Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED, 40);
+        flywheelLeft = new Falcon(Constants.MotorMap.Flywheel.SHOOT_LEFT, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED);
+        flywheelRight = new Falcon(Constants.MotorMap.Flywheel.SHOOT_RIGHT, Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED);
         flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
 
         fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);

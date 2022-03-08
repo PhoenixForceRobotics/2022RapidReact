@@ -1,4 +1,4 @@
-package frc.robot.utils;
+package frc.team2097.utility;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -16,7 +16,7 @@ public class PFRController extends XboxController{
     }
 
     public JoystickButton bButton() {
-        return new Jo9ystickButton(this, Button.kB.value);
+        return new JoystickButton(this, Button.kB.value);
     }
 
     

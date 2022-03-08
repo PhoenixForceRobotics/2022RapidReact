@@ -4,7 +4,6 @@ import java.lang.Math;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import frc.team2097.utility.Constants;
 
 public class FlywheelMath {
     private static double theta, distance;

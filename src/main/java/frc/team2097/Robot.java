@@ -8,12 +8,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-<<<<<<< HEAD:src/main/java/frc/team2097/Robot.java
 import frc.team2097.subsystems.Flywheel;
+import frc.team2097.utility.OI;
 import frc.team2097.utility.PID;
-=======
->>>>>>> origin/util_updates:src/main/java/frc/robot/Robot.java
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -102,19 +99,13 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-<<<<<<< HEAD:src/main/java/frc/team2097/Robot.java
     CommandScheduler.getInstance().registerSubsystem(flywheel);
-=======
->>>>>>> origin/util_updates:src/main/java/frc/robot/Robot.java
   }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-<<<<<<< HEAD:src/main/java/frc/team2097/Robot.java
     CommandScheduler.getInstance().run();
-=======
->>>>>>> origin/util_updates:src/main/java/frc/robot/Robot.java
   }
 
   /** This function is called once when the robot is disabled. */

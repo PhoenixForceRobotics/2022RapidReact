@@ -158,11 +158,8 @@ gradle-app.setting
 .settings/
 bin/
 
-<<<<<<< HEAD
 .vscode/settings.json
 .wpilib/wpilib_preferences.json
 
-=======
->>>>>>> origin/util_updates
 # Simulation GUI and other tools window save file
 *-window.json

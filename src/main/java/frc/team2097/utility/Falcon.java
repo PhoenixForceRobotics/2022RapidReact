@@ -1,4 +1,4 @@
-package frc.utils;
+package frc.team2097.utility;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 /*
@@ -54,6 +54,10 @@ public class Falcon extends TalonFX {
     public void setVelocity(double velocity)
     {
         set(ControlMode.Velocity, velocity);
+    }
+
+    public double getVelocity() {
+        return getSelectedSensorVelocity();
     }
 
     public void setPosition(double position)
