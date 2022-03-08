@@ -38,9 +38,10 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    drivebase = new Drivebase();
-    oi = new OI();
     ringlight = new Ringlight(0);
+    drivebase = new Drivebase();
+    
+    oi = new OI();
 
     runDriveBase = new RunDriveBase(drivebase, oi);
   }
