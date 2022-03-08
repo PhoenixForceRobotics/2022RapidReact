@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
 
     ringlight = new Ringlight(0);
     drivebase = new Drivebase();
-    
+
     oi = new OI();
 
     runDriveBase = new RunDriveBase(drivebase, oi);
