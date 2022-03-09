@@ -7,7 +7,7 @@
 
 package frc.robot.utils;
 
-import frc.controllers.BobXboxController;
+import frc.robot.utils.controllers.BobXboxController;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands

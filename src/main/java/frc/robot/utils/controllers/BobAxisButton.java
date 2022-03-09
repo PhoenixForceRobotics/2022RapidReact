@@ -1,4 +1,4 @@
-package frc.controllers;
+package frc.robot.utils.controllers;
 /*
 This code is sourced from Team 319.  They offered up use of code in Chief Delphi
 forums.  The repo this was extracted from is https://github.com/team2097/BobBuilder.
@@ -8,7 +8,7 @@ There is no obvious license file but want to retain pointers to them.
  */
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
-import frc.controllers.BobXboxController.XboxAxis;
+import frc.robot.utils.controllers.BobXboxController.XboxAxis;
 
 public class BobAxisButton extends Button {
   private final Joystick joy;
