@@ -1,4 +1,4 @@
-package frc.robot.util;
+package frc.robot.utils;
 
 public class CustomMath {
   // tells us if the input is positive or negative
