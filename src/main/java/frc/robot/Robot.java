@@ -5,11 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.drivebase.RunDriveBase;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.utils.OI;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,26 +16,33 @@ import frc.robot.subsystems.Drivebase;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // private static final String kDefaultAuto = "Default";
+  // private static final String kCustomAuto = "My Auto";
+  // private String m_autoSelected;
+  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // public static Climb climb;
+  // public static PneumaticsControlModule pneumaticsControlModule;
+  // public static Compressor compressor;
+  // public static PowerDistribution powerDistribution;
   public static Drivebase drivebase;
-  public static RunDriveBase runDriveBase;
   public static OI oi;
-
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    drivebase = new Drivebase();
     oi = new OI();
-    runDriveBase = new RunDriveBase(drivebase, oi);
+    drivebase = new Drivebase();
+    
+    // climb = new Climb();
+    // pneumaticsControlModule = new PneumaticsControlModule(0);
+    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    // powerDistribution = new PowerDistribution();
+
+    // pneumaticsControlModule.clearAllStickyFaults();
+    // powerDistribution.clearStickyFaults();
   }
 
   /**
@@ -47,16 +52,11 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
    */
-  public static void clearScheduler() {
-    CommandScheduler.getInstance().cancelAll();
-  }
-
-  public static void addDriveBase() {
-    runDriveBase.schedule();
-  }
-
+  
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -70,37 +70,22 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().registerSubsystem(drivebase);
-    addDriveBase();
   }
 
   /** This function is called periodically during operator control. */
   @Override
+
   public void teleopPeriodic() {
-    CommandScheduler.getInstance().run();
   }
 
   /** This function is called once when the robot is disabled. */
@@ -110,7 +95,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {
-    CommandScheduler.getInstance().run();
   }
   /** This function is called once when test mode is enabled. */
   @Override

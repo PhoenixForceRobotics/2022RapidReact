@@ -8,7 +8,6 @@
 package frc.robot;
 
 import frc.controllers.BobXboxController;
-import frc.robot.drivebase.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -25,9 +24,6 @@ public class OI {
 
     /// Driver:
     // drivebase commands
-
-    driverController.aButton.whenPressed(new Shifter(Robot.drivebase));
-    driverController.bButton.whenPressed(new Reverse(Robot.drivebase));
 
     /// Operator:
   }

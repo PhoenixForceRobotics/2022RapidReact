@@ -1,13 +1,12 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2022.2.1"
-    id 'com.diffplug.gradle.spotless' version '4.5.0'
+    id "edu.wpi.first.GradleRIO" version "2022.4.1"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
-def ROBOT_MAIN_CLASS = "frc.robot.Main"
+def ROBOT_MAIN_CLASS = "frc.team2097.Main"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project DeployUtils.
@@ -18,7 +17,7 @@ deploy {
             // or from command line. If not found an exception will be thrown.
             // You can use getTeamOrDefault(team) instead of getTeamNumber if you
             // want to store a team number in this file.
-            team = 2097
+            team = project.frc.getTeamNumber()
             debug = project.frc.getDebugOrDefault(false)
 
             artifacts {
@@ -66,7 +65,7 @@ dependencies {
     nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
     simulationRelease wpi.sim.enableRelease()
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
 }
 
 // Simulation configuration (e.g. environment variables).
@@ -86,21 +85,3 @@ jar {
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
-
-// Spotless code formatting
-spotless {
-    java {
-        target fileTree('.') {
-            include '**/*.java'
-            exclude '**/manualTests/**', '**/build*/**'
-        }
-        googleJavaFormat()
-        removeUnusedImports()
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
-}
-
-afterEvaluate {
-    tasks.getByName('spotlessCheck').dependsOn(tasks.getByName('spotlessApply'))
-}
