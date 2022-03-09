@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.util;
+package frc.robot.utils;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.

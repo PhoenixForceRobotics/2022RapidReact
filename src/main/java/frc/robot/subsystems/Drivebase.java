@@ -4,9 +4,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.util.Constants;
-import frc.robot.util.Motor;
+import frc.robot.utils.Constants;
+import frc.robot.utils.Motor;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
