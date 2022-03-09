@@ -1,7 +1,8 @@
 package frc.team2097.utility;
 
 import frc.team2097.Robot;
-import frc.team2097.commands.FlyWheelHood;
+import frc.team2097.commands.FlywheelHood;
+import frc.team2097.commands.ToggleFlywheelPID;
 
 public class OI {
     public PFRController driverController;
@@ -10,13 +11,15 @@ public class OI {
     public OI() {
         driverController = new PFRController(0);
         operatorController = new PFRController(1);
- 
+
         // Initialize Button Bindings
-        operatorController.aButton().whenPressed(new FlyWheelHood(Robot.flywheel));
+        operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
+
+        operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
         /*
-        * Example:
-        * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase)); 
-        */
+         * Example:
+         * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));
+         */
 
             //                        XBOX ELITE CONTROLLER MAP
     // 

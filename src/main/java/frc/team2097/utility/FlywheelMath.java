@@ -12,10 +12,11 @@ public class FlywheelMath {
     static NetworkTableEntry thetaEntry = table.getEntry("pitch");
 
     public static double getTheta() {
-        distance = distanceEntry.getDouble(-1);
-        if(distance == -1) {
+        distance = distanceEntry.getDouble(-1) + 24;
+
+        if (distance == 23) {
             return 50;
-        } else if(distance <= Constants.SubsystemMath.FlywheelMath.ZONE1) {
+        } else if (distance <= Constants.SubsystemMath.FlywheelMath.ZONE1) {
             return getThetaZone1();
         } else if (distance <= Constants.SubsystemMath.FlywheelMath.ZONE2) {
             return getThetaZone2();
@@ -39,5 +40,18 @@ public class FlywheelMath {
         theta = -.088 * Math.pow(distance, 2) - 0.67 * distance + 88.4;
         return theta;
     }
-    
+
+    public static double getVelocity() {
+        distance = distanceEntry.getDouble(-1);
+        if (distance == -1) {
+            return 0;
+        } else if (distance <= Constants.SubsystemMath.FlywheelMath.ZONE1) {
+            return Constants.SubsystemMath.FlywheelMath.VELOCITY_ZONE1;
+        } else if (distance <= Constants.SubsystemMath.FlywheelMath.ZONE2) {
+            return Constants.SubsystemMath.FlywheelMath.VELOCITY_ZONE2;
+        } else {
+            return Constants.SubsystemMath.FlywheelMath.VELOCITY_ZONE3;
+        }
+
+    }
 }

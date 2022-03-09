@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team2097.commands.FlyWheelHood;
+import frc.team2097.commands.FlywheelTurn;
 import frc.team2097.subsystems.Flywheel;
 import frc.team2097.utility.OI;
 import frc.team2097.utility.PID;
@@ -43,7 +45,6 @@ public class Robot extends TimedRobot {
     //Alex PID edition
     pid = new PID();
     oi = new OI();
-   
   }
 
   /**
