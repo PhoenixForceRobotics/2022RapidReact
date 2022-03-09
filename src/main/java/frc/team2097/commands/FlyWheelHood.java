@@ -6,7 +6,7 @@ import frc.team2097.utility.Constants;
 import frc.team2097.utility.FlywheelMath;
 import frc.team2097.utility.NetworkTableManager;
 
-public class FlyWheelHood extends CommandBase {
+public class FlywheelHood extends CommandBase {
     NetworkTableManager networkTableManager;
 
     private double pitchAngle;
@@ -16,10 +16,10 @@ public class FlyWheelHood extends CommandBase {
     private double buffer;
     private double hoodRotations, relativeRotation;
     private double error;
-    
-    //45*-75*
 
-    public FlyWheelHood(Flywheel flywheel) {
+    // 45*-75*
+
+    public FlywheelHood(Flywheel flywheel) {
         this.flywheel = flywheel;
         // shoot angle
         maxDegree = 85;
@@ -42,14 +42,15 @@ public class FlyWheelHood extends CommandBase {
     public void execute() {
         pitchAngle = FlywheelMath.getTheta();
         hoodRotations = flywheel.getFWHoodPos();
-        error = pitchAngle - relativeRotation; 
+        error = pitchAngle - relativeRotation;
         relativeRotation = degreeRange * .02039 * hoodRotations;
-        if(relativeRotation + minDegree >= pitchAngle - buffer && relativeRotation + minDegree <= pitchAngle + buffer) {
+        if (relativeRotation + minDegree >= pitchAngle - buffer
+                && relativeRotation + minDegree <= pitchAngle + buffer) {
             flywheel.setFlywheelHood(0);
         } else {
-            flywheel.setFlywheelHood(Constants.MotorSpeeds.Flywheel.HOOD_SPEED * error/50);   
+            flywheel.setFlywheelHood(Constants.MotorSpeeds.Flywheel.HOOD_SPEED * error / 50);
         }
-        
+
     }
 
     @Override

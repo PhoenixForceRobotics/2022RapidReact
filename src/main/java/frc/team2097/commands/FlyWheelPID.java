@@ -1,19 +1,18 @@
 package frc.team2097.commands;
 
-import com.revrobotics.RelativeEncoder;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.team2097.utility.Constants;
 import frc.team2097.subsystems.Flywheel;
 
-public class FlyWheelPID extends CommandBase{
+public class FlywheelPID extends CommandBase {
     private double P, D;
     private double previous_error, setVelocity, error, derivative;
     private Flywheel flywheel;
     private double PIDSpeed;
     private boolean done;
+    private boolean PIDstatus;
 
-    public FlyWheelPID(Flywheel flywheel, double setVelocity) {
+    public FlywheelPID(Flywheel flywheel, double setVelocity) {
         this.flywheel = flywheel;
         P = Constants.SubsystemMath.FlywheelMath.FLYWHEEL_P;
         D = Constants.SubsystemMath.FlywheelMath.FLYWHEEL_D;
@@ -27,7 +26,7 @@ public class FlyWheelPID extends CommandBase{
     public boolean PID() {
         error = setVelocity - flywheel.getFWLeftEncoderVel();
         derivative = (error - this.previous_error) / .02;
-        PIDSpeed += (P*error + D*derivative);
+        PIDSpeed += (P * error + D * derivative);
         this.previous_error = error;
         return (error <= .5 && error >= .5);
     }
@@ -40,15 +39,16 @@ public class FlyWheelPID extends CommandBase{
 
     @Override
     public void execute() {
-        done = PID();
-        flywheel.setFlywheel(PIDSpeed);
+        PIDstatus = PID();
+        if (flywheel.getToggleFlyWheel() && PIDstatus == false) {
+            flywheel.setFlywheel(PIDSpeed);
+        } else {
+            // Keeps at previous speed
+        }
     }
 
     @Override
     public boolean isFinished() {
-        if(done) {
-            flywheel.setFlywheel(0);
-        }
         return done;
     }
 }

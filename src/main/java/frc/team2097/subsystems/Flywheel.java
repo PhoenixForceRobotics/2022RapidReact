@@ -10,7 +10,7 @@ import frc.team2097.utility.Constants;
 import frc.team2097.utility.Falcon;
 import frc.team2097.utility.Motor;
 
-public class Flywheel extends SubsystemBase{
+public class Flywheel extends SubsystemBase {
 
     public Motor flywheelRotate; // Neo
     public Falcon flywheelLeft, flywheelRight; // Falcons
@@ -19,11 +19,17 @@ public class Flywheel extends SubsystemBase{
     public RelativeEncoder fwRotateEncoder; // Neo
     public RelativeEncoder fwHoodEncoder; // Neo 550
 
+    public boolean toggleFlyWheel;
+
     public Flywheel() {
-        flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless, Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
-        flywheelLeft = new Falcon(Constants.MotorMap.Flywheel.SHOOT_LEFT, Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED);
-        flywheelRight = new Falcon(Constants.MotorMap.Flywheel.SHOOT_RIGHT, Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED);
-        flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless, Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
+        flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless,
+                Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
+        flywheelLeft = new Falcon(Constants.MotorMap.Flywheel.SHOOT_LEFT,
+                Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED);
+        flywheelRight = new Falcon(Constants.MotorMap.Flywheel.SHOOT_RIGHT,
+                Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED);
+        flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless,
+                Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
 
         fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
         fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
@@ -33,7 +39,7 @@ public class Flywheel extends SubsystemBase{
         flywheelRight.setCoast();
         flywheelHood.setIdleMode(IdleMode.kBrake);
     }
-    
+
     public void setFlywheelRotate(double speed) {
         flywheelRotate.set(speed);
     }
@@ -58,7 +64,7 @@ public class Flywheel extends SubsystemBase{
     public void setFlywheelHoodCoast() {
         flywheelHood.setIdleMode(IdleMode.kCoast);
     }
-    
+
     public void resetFWHoodEncoder() {
         fwHoodEncoder.setPosition(0);
     }
@@ -77,5 +83,13 @@ public class Flywheel extends SubsystemBase{
 
     public void resetFWRotateEncoder() {
         fwRotateEncoder.setPosition(0);
+    }
+
+    public boolean getToggleFlyWheel() {
+        return toggleFlyWheel;
+    }
+
+    public void setToggleFlyWheel(boolean value) {
+        toggleFlyWheel = value;
     }
 }

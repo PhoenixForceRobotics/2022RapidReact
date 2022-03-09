@@ -5,9 +5,8 @@ import frc.team2097.utility.Constants;
 import frc.team2097.utility.NetworkTableManager;
 import frc.team2097.subsystems.Flywheel;
 
-
 public class FlywheelTurn extends CommandBase {
-    
+
     private Flywheel flywheel;
     private double buffer;
     private double xCoordinate;
@@ -16,17 +15,13 @@ public class FlywheelTurn extends CommandBase {
 
     private double threeFourths;
 
-
-    
-
     public FlywheelTurn(Flywheel flywheel) {
         this.flywheel = flywheel;
         buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
         reverse = 1;
         turnAround = false;
-        threeFourths = 3/4 * 65;
+        threeFourths = 3 / 4 * 65;
 
-        
     }
 
     @Override
@@ -38,28 +33,27 @@ public class FlywheelTurn extends CommandBase {
     @Override
     public void execute() {
         xCoordinate = NetworkTableManager.getACSXCoordinate();
-        if(xCoordinate == 5){
+        if (xCoordinate == 5) {
             flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * reverse);
-        } else if(xCoordinate >= buffer && xCoordinate <= -1 * buffer) {
+        } else if (xCoordinate >= buffer && xCoordinate <= -1 * buffer) {
             flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * xCoordinate * .75 * reverse);
         } else {
             flywheel.setFlywheelRotate(0);
         }
 
-        if(turnAround) {
-            if(flywheel.getFWRotateEncoderPosition() <= -threeFourths) {
+        if (turnAround) {
+            if (flywheel.getFWRotateEncoderPosition() <= -threeFourths) {
                 reverse = 1;
                 turnAround = false;
             }
         } else {
-            if(flywheel.getFWRotateEncoderPosition() >= threeFourths) {
+            if (flywheel.getFWRotateEncoderPosition() >= threeFourths) {
                 reverse = -1;
                 turnAround = true;
             }
         }
 
-
-   }
+    }
 
     @Override
     public boolean isFinished() {
