@@ -8,8 +8,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team2097.commands.Rotate;
 import frc.team2097.commands.RunFlywheel;
-import frc.team2097.commands.TurnOnDrivebase;
+import frc.team2097.subsystems.Turret;
 import frc.team2097.utils.OI;
 
 /**
@@ -28,26 +29,26 @@ public class Robot extends TimedRobot {
   // public static Compressor compressor;
   // public static PowerDistribution powerDistribution;
   public static Drivebase drivebase;
-  public static TurnOnDrivebase turnOnDrivebase;
-  public static RunFlywheel runFlywheel;
-  public static TalonFX leftTalonFX;
-  public static TalonFX rightTalonFX;
   public static OI oi;
-  
+  public static Turret turret;
+  public static Rotate rotate;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    oi = new OI();
     drivebase = new Drivebase();
-    turnOnDrivebase = new TurnOnDrivebase(drivebase);
+    turret = new Turret();
     
-    leftTalonFX = new TalonFX(2);
-    rightTalonFX = new TalonFX(1);
-    runFlywheel = new RunFlywheel(leftTalonFX, rightTalonFX, oi);
+    // leftTalonFX = new TalonFX(2);
+    // rightTalonFX = new TalonFX(1);
+    // runFlywheel = new RunFlywheel(leftTalonFX, rightTalonFX, oi);
     
+    oi = new OI();
+    
+    rotate = new Rotate(turret, oi);
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
     // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
@@ -82,7 +83,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-     turnOnDrivebase.schedule();
+     CommandScheduler.getInstance().run();
   }
 
   /** This function is called periodically during autonomous. */
@@ -93,13 +94,14 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    runFlywheel.schedule(); 
+    rotate.schedule();
   }
 
   /** This function is called periodically during operator control. */
   @Override
 
   public void teleopPeriodic() {
+    
   }
 
   /** This function is called once when the robot is disabled. */
