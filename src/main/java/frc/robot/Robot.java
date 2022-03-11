@@ -4,10 +4,15 @@
 
 package frc.robot;
 
+import com.revrobotics.CANEncoder;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.Drivebase;
-import frc.robot.utils.OI;
+import frc.robot.commands.drivebase.RunDriveBase;
+import frc.robot.subsystems.Intakesystem;
+import frc.robot.subsystems.PID;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -16,33 +21,30 @@ import frc.robot.utils.OI;
  * project.
  */
 public class Robot extends TimedRobot {
-  // private static final String kDefaultAuto = "Default";
-  // private static final String kCustomAuto = "My Auto";
-  // private String m_autoSelected;
-  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  // public static Climb climb;
-  // public static PneumaticsControlModule pneumaticsControlModule;
-  // public static Compressor compressor;
-  // public static PowerDistribution powerDistribution;
-  public static Drivebase drivebase;
+  private static final String kDefaultAuto = "Default";
+  private static final String kCustomAuto = "My Auto";
+  private String m_autoSelected;
+  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  public static Intakesystem drivebase;
+  public static RunDriveBase runDriveBase;
   public static OI oi;
-  
+  public static PID pid;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
+    System.out.println("robot did a thing");
+    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
+    m_chooser.addOption("My Auto", kCustomAuto);
+    SmartDashboard.putData("Auto choices", m_chooser);
+    drivebase = new Intakesystem();
+    pid = new PID();
     oi = new OI();
-    drivebase = new Drivebase();
     
-    // climb = new Climb();
-    // pneumaticsControlModule = new PneumaticsControlModule(0);
-    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    // powerDistribution = new PowerDistribution();
-
-    // pneumaticsControlModule.clearAllStickyFaults();
-    // powerDistribution.clearStickyFaults();
+    runDriveBase = new RunDriveBase(drivebase, oi);
   }
 
   /**
@@ -52,11 +54,15 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
    */
-  
-  @Override
-  public void robotPeriodic() {
-    CommandScheduler.getInstance().run();
+  public static void clearScheduler(){
+    CommandScheduler.getInstance().cancelAll();
   }
+
+  public static void addDriveBase(){
+    runDriveBase.schedule();
+  }
+  @Override
+  public void robotPeriodic() {}
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -70,35 +76,54 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    m_autoSelected = m_chooser.getSelected();
+    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
+    System.out.println("Auto selected: " + m_autoSelected);
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+    switch (m_autoSelected) {
+      case kCustomAuto:
+        // Put custom auto code here
+        break;
+      case kDefaultAuto:
+      default:
+        // Put default auto code here
+        break;
+    }
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    CommandScheduler.getInstance().registerSubsystem(drivebase);
+    addDriveBase();
   }
 
   /** This function is called periodically during operator control. */
   @Override
-
   public void teleopPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   /** This function is called once when the robot is disabled. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() {
+  
+  }
 
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {
+    CommandScheduler.getInstance().run();
   }
   /** This function is called once when test mode is enabled. */
   @Override
-  public void testInit() {}
+  public void testInit() {
+  }
 
   /** This function is called periodically during test mode. */
   @Override

@@ -1,95 +1,50 @@
 package frc.robot.commands.drivebase;
 
+import com.revrobotics.RelativeEncoder;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Drivebase;
-import frc.robot.utils.Constants;
-import frc.robot.utils.CustomMath;
-import frc.robot.utils.OI;
+import frc.robot.OI;
+import frc.robot.subsystems.Intakesystem;
 
 public class RunDriveBase extends CommandBase {
-  private Drivebase drivebase;
+    public Intakesystem drivebase;
+	public double speed, reversespeed;//, belt1Encoder;
+	private OI oi;
 
-  private OI oi;
-  private CustomMath customMath;
+	public RunDriveBase(Intakesystem drivebase, OI oi)
+	{
+		addRequirements(drivebase);
+		this.oi = oi;
+		this.drivebase = drivebase;
+		//belt1Encoder = drivebase.getBelt1Encoder();
+		
+	}
 
-  private int gear_select;
+	@Override
+	public void initialize()
+	{
+		drivebase.setRotator2Encoder(0);
+		drivebase.rotatorMotorBrake();
+		drivebase.rotatorMotor2Brake();
+	}
 
-  public RunDriveBase(Drivebase drivebase, OI oi) {
-    this.oi = oi;
-    this.drivebase = drivebase;
+	@Override
+	public void execute()
+	{
+		if (oi.driverController.triggers.getLeft() > 0.0){
+			drivebase.setRotatormotor2Speed((oi.driverController.triggers.getLeft()/10));
+		}
+		if (oi.driverController.triggers.getRight() * -1 < 0.0){
+			drivebase.setRotatormotor2Speed((oi.driverController.triggers.getLeft()/10));
+		}
+		
+		
 
-    addRequirements(drivebase);
-    customMath = new CustomMath();
+	}
 
-    // Adds values to the list of gear speeds according to their gear positions.
-  }
-
-  @Override
-  public void initialize() {
-    drivebase.motor_coast();
-  }
-
-  @Override
-  public void execute() {
-    // set the variables multiplier and reverser using the getter methods in the drivebase class
-
-    int reverser = drivebase.getReverser();
-    double multiplier = drivebase.getMultiplier();
-
-    if (reverser == 1) {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // (reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // (reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-    } else {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // setLeft(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      System.out.println(
-          "Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
-    }
-  }
-
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+	@Override
+	public boolean isFinished()
+	{
+		return false;
+	}
 }

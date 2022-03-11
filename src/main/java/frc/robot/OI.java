@@ -5,50 +5,65 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.utils;
+package frc.robot;
 
-import frc.robot.utils.controllers.BobXboxController;
-
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.controllers.BobXboxController;
+import frc.robot.commands.drivebase.down90;
+import frc.robot.commands.drivebase.up90;
+import frc.robot.subsystems.*;
+import frc.robot.commands.drivebase.beltmove;
 /**
- * This class is the glue that binds the controls on the physical operator interface to the commands
- * and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
 
   public BobXboxController driverController;
   public BobXboxController operatorController;
+  
 
   public OI() {
-    driverController = new BobXboxController(0, 0.11, 0.11);
-    operatorController = new BobXboxController(1, 0.11, 0.11);
+      driverController = new BobXboxController(0, 0.11, 0.11);
+      operatorController = new BobXboxController(1, 0.11, 0.11);
+      driverController.aButton.whenPressed(new down90(Robot.drivebase, Robot.pid));
+      driverController.bButton.whenPressed(new up90(Robot.drivebase, Robot.pid));
+      driverController.yButton.whenPressed(new SequentialCommandGroup(new up90(Robot.drivebase, Robot.pid)));
+      /// Driver:
+      //drivebase commands 
 
-    /// Driver:
-    // drivebase commands
+      
 
-    /// Operator:
+
+
+      /// Operator:
+
   }
 }
 
+
   //                        XBOX ELITE CONTROLLER MAP
-  //
-  //
+  // 
+  // 
   //               [ LT ]                        [ RT ]                  Left Trigger, Right Trigger
   //            [    LB    ]                  [    RB    ]               Left Bumper, Right Bumper
   //            ------------                  ------------
-  //          /              \--------------/              \
-  //         /      ----                             Y      \             Left Stick, Home Button
-  //        /     /      \         \ /            X     B    \
-  //       /      \      /         / \               A        \           Y Button, X Button, B
-  // Button, A Button
+  //          /              \--------------/              \              
+  //         /      ----                             Y      \             Left Stick, Home Button   
+  //        /     /      \         \ /            X     B    \            
+  //       /      \      /         / \               A        \           Y Button, X Button, B Button, A Button
   //      /         ----                                       \
-  //     /                    []         []                     \         Select Button, Start
-  // Button
+  //     /                    []         []                     \         Select Button, Start Button
   //    /                                                        \
   //   /      ||        --------------------------       ----     \
   //   \   ========    /                          \    /      \   /       DPad, Right Stick
   //    \     ||      /                            \   \      /  /
   //     \           /                              \    ----   /
   //      -----------                                -----------
+
+
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
