@@ -14,22 +14,20 @@ public class RunDrivebase extends CommandBase {
 
   private BobXboxController driver;
   private boolean isSpinningOut;
-  private MedianFilter spinoutFilter;
 
   public RunDrivebase(Drivebase drivebase, OI oi)
   {
     this.drivebase = drivebase;
-
     driver = oi.driverController;
     addRequirements(drivebase);
   }
 
   @Override
-  public void execute() {
-
+  public void execute() 
+  {
     drivebase.set(driver.leftStick.getY(), driver.leftStick.getY());
 
-    isSpinningOut = drivebase.getAccelerometerAcceleration().magnitude() + 5< drivebase.getPoseAcceleration().magnitude();
+    isSpinningOut = drivebase.getAccelerometerAcceleration().magnitude() + 5 < drivebase.getPoseAcceleration().magnitude();
     // TODO: Add reasonable constant that allows for some slack?
     // TODO: put out visible error for the driver
 

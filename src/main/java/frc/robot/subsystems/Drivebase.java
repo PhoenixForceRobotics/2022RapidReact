@@ -90,8 +90,8 @@ public class Drivebase extends SubsystemBase {
         curVelocity = new Vector2d(vX, vY);
 
         //get acceleration vector
-        double aX = curVelocity.x - prevVelocity.x;
-        double aY = curVelocity.y - prevVelocity.y;
+        double aX = (curVelocity.x - prevVelocity.x) / 0.02;
+        double aY = (curVelocity.y - prevVelocity.y) / 0.02;
         
         poseAcceleration = new Vector2d(aX, aY);
         
