@@ -1,95 +1,40 @@
 package frc.robot.commands.drivebase;
 
+import edu.wpi.first.math.filter.MedianFilter;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.utils.Constants;
-import frc.robot.utils.CustomMath;
 import frc.robot.utils.OI;
+import frc.robot.utils.controllers.BobXboxController;
 
-public class RunDriveBase extends CommandBase {
+public class RunDrivebase extends CommandBase {
   private Drivebase drivebase;
+  private BuiltInAccelerometer accelerometer;
 
-  private OI oi;
-  private CustomMath customMath;
+  private BobXboxController driver;
+  private boolean isSpinningOut;
+  private MedianFilter spinoutFilter;
 
-  private int gear_select;
-
-  public RunDriveBase(Drivebase drivebase, OI oi) {
-    this.oi = oi;
+  public RunDrivebase(Drivebase drivebase, OI oi)
+  {
     this.drivebase = drivebase;
 
+    driver = oi.driverController;
     addRequirements(drivebase);
-    customMath = new CustomMath();
-
-    // Adds values to the list of gear speeds according to their gear positions.
-  }
-
-  @Override
-  public void initialize() {
-    drivebase.motor_coast();
   }
 
   @Override
   public void execute() {
-    // set the variables multiplier and reverser using the getter methods in the drivebase class
 
-    int reverser = drivebase.getReverser();
-    double multiplier = drivebase.getMultiplier();
+    drivebase.set(driver.leftStick.getY(), driver.leftStick.getY());
 
-    if (reverser == 1) {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // (reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // (reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-    } else {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // setLeft(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      System.out.println(
-          "Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
-    }
+    isSpinningOut = drivebase.getAccelerometerAcceleration().magnitude() + 5< drivebase.getPoseAcceleration().magnitude();
+    // TODO: Add reasonable constant that allows for some slack?
+    // TODO: put out visible error for the driver
+
   }
 
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+
+    
 }
