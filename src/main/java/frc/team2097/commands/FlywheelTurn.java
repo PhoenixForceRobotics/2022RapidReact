@@ -13,14 +13,14 @@ public class FlywheelTurn extends CommandBase {
     private int reverse;
     private boolean turnAround;
 
-    private double threeFourths;
+    private double maxRotate;
 
     public FlywheelTurn(Flywheel flywheel) {
         this.flywheel = flywheel;
         buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
         reverse = 1;
         turnAround = false;
-        threeFourths = 3 / 4 * 65;
+        maxRotate = 2.0 / 3 * 65;
 
     }
 
@@ -42,12 +42,12 @@ public class FlywheelTurn extends CommandBase {
         }
 
         if (turnAround) {
-            if (flywheel.getFWRotateEncoderPosition() <= -threeFourths) {
+            if (flywheel.getFWRotateEncoderPosition() <= -maxRotate) {
                 reverse = 1;
                 turnAround = false;
             }
         } else {
-            if (flywheel.getFWRotateEncoderPosition() >= threeFourths) {
+            if (flywheel.getFWRotateEncoderPosition() > maxRotate) {
                 reverse = -1;
                 turnAround = true;
             }

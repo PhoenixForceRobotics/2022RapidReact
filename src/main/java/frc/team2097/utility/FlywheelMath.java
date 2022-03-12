@@ -27,17 +27,17 @@ public class FlywheelMath {
 
     // Math from the spreadsheet
     public static double getThetaZone1() {
-        theta = -.679 * Math.pow(distance, 2) - 1.06 * distance + 88.4;
+        theta = -.0915 * Math.pow(distance, 2) + 6.71 * distance + 133;
         return theta;
     }
 
     public static double getThetaZone2() {
-        theta = -.207 * Math.pow(distance, 2) - .757 * distance + 88.2;
+        theta = -.204 * Math.pow(10, -4)* Math.pow(distance, 2) - .0486 * distance + 88.7;
         return theta;
     }
 
     public static double getThetaZone3() {
-        theta = -.088 * Math.pow(distance, 2) - 0.67 * distance + 88.4;
+        theta = -1.11 * Math.pow(10, -4) * Math.pow(distance, 2) - 0.036 * distance + 88.7;
         return theta;
     }
 
