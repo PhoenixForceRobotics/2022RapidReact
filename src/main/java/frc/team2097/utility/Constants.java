@@ -20,7 +20,7 @@ public class Constants {
             public static int HOOD = 4;
             public static int SHOOT_LEFT = 2;
             public static int SHOOT_RIGHT = 6;
-            public static int ROTATE = 7;
+            public static int ROTATE = 8;
 
             public static boolean HOOD_REVERSED = false;
             public static boolean SHOOT_LEFT_REVERSED = false;
@@ -32,7 +32,7 @@ public class Constants {
     public static class MotorSpeeds {
         public static class Flywheel {
 
-            public static double ROTATE_SPEED = .4;
+            public static double ROTATE_SPEED = .1;
 
             public static double HOOD_SPEED = .4;
 

@@ -1,7 +1,7 @@
 package frc.team2097.utility;
 
 import frc.team2097.Robot;
-import frc.team2097.commands.FlywheelHood;
+// import frc.team2097.commands.FlywheelHood;
 import frc.team2097.commands.ToggleFlywheelPID;
 
 public class OI {
@@ -13,7 +13,7 @@ public class OI {
         operatorController = new PFRController(1);
 
         // Initialize Button Bindings
-        operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
+        // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
 
         operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
         /*
@@ -21,26 +21,24 @@ public class OI {
          * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));
          */
 
-            //                        XBOX ELITE CONTROLLER MAP
-    // 
-    // 
-    //               [ LT ]                        [ RT ]                  Left Trigger, Right Trigger
-    //            [    LB    ]                  [    RB    ]               Left Bumper, Right Bumper
-    //            ------------                  ------------
-    //          /              \--------------/              \              
-    //         /      ----                             Y      \             Left Stick, Home Button   
-    //        /     /      \         \ /            X     B    \            
-    //       /      \      /         / \               A        \           Y Button, X Button, B Button, A Button
-    //      /         ----                                       \
-    //     /                    []         []                     \         Select Button, Start Button
-    //    /                                                        \
-    //   /      ||        --------------------------       ----     \
-    //   \   ========    /                          \    /      \   /       DPad, Right Stick
-    //    \     ||      /                            \   \      /  /
-    //     \           /                              \    ----   /
-    //      -----------                                -----------
-  
-  
+        // XBOX ELITE CONTROLLER MAP
+        //
+        //
+        // [ LT ] [ RT ] Left Trigger, Right Trigger
+        // [ LB ] [ RB ] Left Bumper, Right Bumper
+        // ------------ ------------
+        // / \--------------/ \
+        // / ---- Y \ Left Stick, Home Button
+        // / / \ \ / X B \
+        // / \ / / \ A \ Y Button, X Button, B Button, A Button
+        // / ---- \
+        // / [] [] \ Select Button, Start Button
+        // / \
+        // / || -------------------------- ---- \
+        // \ ======== / \ / \ / DPad, Right Stick
+        // \ || / \ \ / /
+        // \ / \ ---- /
+        // ----------- -----------
 
         //// CREATING BUTTONS
         // One type of button is a joystick button which is any button on a
