@@ -13,69 +13,71 @@ import frc.team2097.utility.Motor;
 public class Flywheel extends SubsystemBase {
 
     public Motor flywheelRotate; // Neo
-    public Falcon flywheelLeft, flywheelRight; // Falcons
-    public Motor flywheelHood; // Neo 550
+    // public Falcon flywheelLeft, flywheelRight; // Falcons
+    // public Motor flywheelHood; // Neo 550
 
     public RelativeEncoder fwRotateEncoder; // Neo
-    public RelativeEncoder fwHoodEncoder; // Neo 550
+    // public RelativeEncoder fwHoodEncoder; // Neo 550
 
     public boolean toggleFlyWheel;
 
     public Flywheel() {
         flywheelRotate = new Motor(Constants.MotorMap.Flywheel.ROTATE, MotorType.kBrushless,
                 Constants.MotorMap.Flywheel.ROTATE_REVERSED, 30);
-        flywheelLeft = new Falcon(Constants.MotorMap.Flywheel.SHOOT_LEFT,
-                Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED);
-        flywheelRight = new Falcon(Constants.MotorMap.Flywheel.SHOOT_RIGHT,
-                Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED);
-        flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD, MotorType.kBrushless,
-                Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
+        // flywheelLeft = new Falcon(Constants.MotorMap.Flywheel.SHOOT_LEFT,
+        // Constants.MotorMap.Flywheel.SHOOT_LEFT_REVERSED);
+        // flywheelRight = new Falcon(Constants.MotorMap.Flywheel.SHOOT_RIGHT,
+        // Constants.MotorMap.Flywheel.SHOOT_RIGHT_REVERSED);
+        // flywheelHood = new Motor(Constants.MotorMap.Flywheel.HOOD,
+        // MotorType.kBrushless,
+        // Constants.MotorMap.Flywheel.HOOD_REVERSED, 30);
 
         fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-        fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
+        // fwHoodEncoder =
+        // flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
         flywheelRotate.setIdleMode(IdleMode.kBrake);
-        flywheelLeft.setCoast();
-        flywheelRight.setCoast();
-        flywheelHood.setIdleMode(IdleMode.kBrake);
+        // flywheelLeft.setCoast();
+        // flywheelRight.setCoast();
+        // flywheelHood.setIdleMode(IdleMode.kBrake);
     }
 
     public void setFlywheelRotate(double speed) {
         flywheelRotate.set(speed);
     }
 
-    public void setFlywheel(double velocity) {
-        flywheelLeft.setVelocity(velocity);
-        flywheelRight.setVelocity(velocity);
-    }
+    // public void setFlywheel(double velocity) {
+    // flywheelLeft.setVelocity(velocity);
+    // flywheelRight.setVelocity(velocity);
+    // }
 
-    public void setFlywheelHood(double speed) {
-        flywheelHood.set(speed);
-    }
+    // public void setFlywheelHood(double speed) {
+    // flywheelHood.set(speed);
+    // }
 
-    public double getFWHoodPos() {
-        return fwHoodEncoder.getPosition();
-    }
+    // public double getFWHoodPos() {
+    // return fwHoodEncoder.getPosition();
+    // }
 
-    public void setFlywheelHoodBrake() {
-        flywheelHood.setIdleMode(IdleMode.kBrake);
-    }
+    // public void setFlywheelHoodBrake() {
+    // flywheelHood.setIdleMode(IdleMode.kBrake);
+    // }
 
-    public void setFlywheelHoodCoast() {
-        flywheelHood.setIdleMode(IdleMode.kCoast);
-    }
+    // public void setFlywheelHoodCoast() {
+    // flywheelHood.setIdleMode(IdleMode.kCoast);
+    // }
 
-    public void resetFWHoodEncoder() {
-        fwHoodEncoder.setPosition(0);
-    }
+    // public void resetFWHoodEncoder() {
+    // fwHoodEncoder.setPosition(0);
+    // }
 
-    public double getFWLeftEncoderVel() {
-        return flywheelLeft.getVelocity();
-    }
+    // public double getFWLeftEncoderVel() {
+    // return flywheelLeft.getVelocity();
+    // }
 
-    public void resetFWEncoder() {
-        flywheelLeft.setSelectedSensorPosition(0);
-    }
+    // public void resetFWEncoder() {
+    // flywheelLeft.setSelectedSensorPosition(0);
+    // }
 
     public double getFWRotateEncoderPosition() {
         return fwRotateEncoder.getPosition();
