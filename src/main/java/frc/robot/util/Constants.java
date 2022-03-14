@@ -8,8 +8,10 @@
 package frc.robot.util;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
- * This provides flexibility changing wiring, makes checking the wiring easier and significantly
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name.
+ * This provides flexibility changing wiring, makes checking the wiring easier
+ * and significantly
  * reduces the number of magic numbers floating around.
  */
 public class Constants {
@@ -34,11 +36,14 @@ public class Constants {
     }
 
     public static class Climber {
-      public static int FLIMSEYARM = 2;
-      public static final boolean FlimseyArm_Reversed = false;
+      public static final int RIGHT_CLIMBING_ARM = 2;
+      public static final boolean RIGHT_CLIMBING_ARM_REVERSED = false;
 
-      public static int ROTATEINTAKE = 992;
-      public static boolean ROTATEINTAKE_REVERSED = false;
+      public static final int LEFT_CLIMBING_ARM = 3;
+      public static final boolean LEFT_CLIMBING_ARM_REVERSED = false;
+
+      // public static int ROTATEINTAKE = 992;
+      // public static boolean ROTATEINTAKE_REVERSED = false;
     }
   }
 
@@ -46,8 +51,10 @@ public class Constants {
     public static class Climber {
 
       // change these values to ports later
-      public static int SOLENOID1 = 4;
-      public static int SOLENOID2 = 5;
+      public static int SOLENOID1Forward = 4;
+      public static int SOLENOID1Backward = 5;
+      public static int SOLENOID2Forward = 6;
+      public static int SOLENOID2Backward = 7;
     }
   }
 

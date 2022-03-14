@@ -1,19 +1,19 @@
 package frc.robot.commands.climbermanual;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberMotors;
 
-public class FlimseyStop extends CommandBase {
-  private Climber climber;
+public class ClimberArmBackward extends CommandBase {
+  private ClimberMotors climber;
 
-  public FlimseyStop(Climber m_climber) {
+  public ClimberArmBackward(ClimberMotors m_climber) {
     climber = m_climber;
     addRequirements(m_climber);
   }
 
   @Override
   public void initialize() {
-    climber.setFlimseyMotorSpeed(0);
+    climber.setClimberArmMotorSpeed(-0.1);
   }
 
   @Override

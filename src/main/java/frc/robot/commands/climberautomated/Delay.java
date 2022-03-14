@@ -1,15 +1,15 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberSolenoids;
 
 public class Delay extends CommandBase {
 
-  private Climber climber;
+  private ClimberSolenoids climber;
   private double delay;
   private boolean done;
 
-  public Delay(Climber m_climber, double delayTime) {
+  public Delay(ClimberSolenoids m_climber, double delayTime) {
     climber = m_climber;
     delay = delayTime;
   }
@@ -22,7 +22,8 @@ public class Delay extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
   public boolean isFinished() {

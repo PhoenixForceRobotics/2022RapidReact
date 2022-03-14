@@ -10,110 +10,110 @@ import java.util.Map;
 
 public class PID extends SubsystemBase {
 
-  public PIDController intakeRotatorPID;
-  public PIDController flimseyPID;
+  // public PIDController intakeRotatorPID;
+  public PIDController climberArmPID;
 
-  double intakeRotatorKp = 0.2;
-  double intakeRotatorKi = 0;
-  double intakeRotatorKd = 0;
+  // double intakeRotatorKp = 0.2;
+  // double intakeRotatorKi = 0;
+  // double intakeRotatorKd = 0;
 
-  double flimseyKp = 0.2;
-  double flimseyKi = 0;
-  double flimseyKd = 0;
+  double climberArmKp = 0.2;
+  double climberArmKi = 0;
+  double climberArmKd = 0;
 
   private ShuffleboardTab tab = Shuffleboard.getTab("Climber PID");
 
-  private NetworkTableEntry intakeRotatorKpEntry =
-      tab.add("intakeRotatorKp", intakeRotatorKp)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry intakeRotatorKiEntry =
-      tab.add("intakeRotatorKi", intakeRotatorKi)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry intakeRotatorKdEntry =
-      tab.add("intakeRotatorKd", intakeRotatorKd)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
+  // private NetworkTableEntry intakeRotatorKpEntry =
+  // tab.add("intakeRotatorKp", intakeRotatorKp)
+  // .withWidget(BuiltInWidgets.kNumberSlider)
+  // .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties here
+  // .getEntry();
+  // private NetworkTableEntry intakeRotatorKiEntry =
+  // tab.add("intakeRotatorKi", intakeRotatorKi)
+  // .withWidget(BuiltInWidgets.kNumberSlider)
+  // .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties
+  // here
+  // .getEntry();
+  // private NetworkTableEntry intakeRotatorKdEntry =
+  // tab.add("intakeRotatorKd", intakeRotatorKd)
+  // .withWidget(BuiltInWidgets.kNumberSlider)
+  // .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties
+  // here
+  // .getEntry();
 
-  private NetworkTableEntry flimseyKpEntry =
-      tab.add("flimseyKp", flimseyKp)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry flimseyKiEntry =
-      tab.add("flimseyKi", flimseyKi)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry flimseyKdEntry =
-      tab.add("flimseyKd", flimseyKd)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
+  private NetworkTableEntry climberArmKpEntry = tab.add("climberArmKp", climberArmKp)
+      .withWidget(BuiltInWidgets.kNumberSlider)
+      .withProperties(Map.of("min", 0, "max", 0.2)) // specify widget properties here
+      .getEntry();
+  private NetworkTableEntry climberArmKiEntry = tab.add("climberArmKi", climberArmKi)
+      .withWidget(BuiltInWidgets.kNumberSlider)
+      .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
+      .getEntry();
+  private NetworkTableEntry climberArmKdEntry = tab.add("climberArmKd", climberArmKd)
+      .withWidget(BuiltInWidgets.kNumberSlider)
+      .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
+      .getEntry();
 
   public PID() {
     System.out.println("PID has been called");
     // change values, need to test to find the right values.
-    flimseyPID = new PIDController(flimseyKp, flimseyKi, flimseyKd);
-    intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi, intakeRotatorKd);
+    climberArmPID = new PIDController(climberArmKp, climberArmKi, climberArmKd);
+    // intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi,
+    // intakeRotatorKd);
   }
 
-  public double flimseyCalculate(double measurement) {
-    flimseyKp = flimseyKpEntry.getDouble(1.0);
-    flimseyKi = flimseyKiEntry.getDouble(1.0);
-    flimseyKd = flimseyKdEntry.getDouble(1.0);
+  public double climberArmCalculate(double measurement) {
+    climberArmKp = climberArmKpEntry.getDouble(1.0);
+    climberArmKi = climberArmKiEntry.getDouble(1.0);
+    climberArmKd = climberArmKdEntry.getDouble(1.0);
 
-    flimseyPID.setP(flimseyKp);
-    flimseyPID.setI(flimseyKi);
-    flimseyPID.setD(flimseyKd);
+    climberArmPID.setP(climberArmKp);
+    climberArmPID.setI(climberArmKi);
+    climberArmPID.setD(climberArmKd);
 
-    return flimseyPID.calculate(measurement);
+    return climberArmPID.calculate(measurement);
   }
 
-  public boolean flimseyAtSetPoint() {
-    return flimseyPID.atSetpoint();
+  public boolean climberArmAtSetPoint() {
+    return climberArmPID.atSetpoint();
   }
 
-  public void flimseySetSetPoint(double setPoint) {
-    flimseyPID.setSetpoint(setPoint);
+  public void climberArmSetSetPoint(double setPoint) {
+    climberArmPID.setSetpoint(setPoint);
   }
 
-  public void flimseySetTolerance(double tolerance) {
-    flimseyPID.setTolerance(tolerance);
+  public void climberArmSetTolerance(double tolerance) {
+    climberArmPID.setTolerance(tolerance);
   }
 
-  public void flimseyReset() {
-    flimseyPID.reset();
+  public void climberArmReset() {
+    climberArmPID.reset();
   }
 
-  public double intakeRotatorCalculate(double measurement) {
-    intakeRotatorKp = intakeRotatorKpEntry.getDouble(1.0);
-    intakeRotatorKi = intakeRotatorKiEntry.getDouble(0);
-    intakeRotatorKd = intakeRotatorKdEntry.getDouble(0);
+  // public double intakeRotatorCalculate(double measurement) {
+  // intakeRotatorKp = intakeRotatorKpEntry.getDouble(1.0);
+  // intakeRotatorKi = intakeRotatorKiEntry.getDouble(0);
+  // intakeRotatorKd = intakeRotatorKdEntry.getDouble(0);
 
-    intakeRotatorPID.setP(intakeRotatorKp);
-    intakeRotatorPID.setI(intakeRotatorKi);
-    intakeRotatorPID.setD(intakeRotatorKd);
-    return intakeRotatorPID.calculate(measurement);
-  }
+  // intakeRotatorPID.setP(intakeRotatorKp);
+  // intakeRotatorPID.setI(intakeRotatorKi);
+  // intakeRotatorPID.setD(intakeRotatorKd);
+  // return intakeRotatorPID.calculate(measurement);
+  // }
 
-  public boolean intakeRotatorAtSetPoint() {
-    return intakeRotatorPID.atSetpoint();
-  }
+  // public boolean intakeRotatorAtSetPoint() {
+  // return intakeRotatorPID.atSetpoint();
+  // }
 
-  public void intakeRotatorSetSetPoint(double setPoint) {
-    intakeRotatorPID.setSetpoint(setPoint);
-  }
+  // public void intakeRotatorSetSetPoint(double setPoint) {
+  // intakeRotatorPID.setSetpoint(setPoint);
+  // }
 
-  public void intakeRotatorSetTolerance(double tolerance) {
-    intakeRotatorPID.setTolerance(tolerance);
-  }
+  // public void intakeRotatorSetTolerance(double tolerance) {
+  // intakeRotatorPID.setTolerance(tolerance);
+  // }
 
-  public void intakeRotatorReset() {
-    intakeRotatorPID.reset();
-  }
+  // public void intakeRotatorReset() {
+  // intakeRotatorPID.reset();
+  // }
 }

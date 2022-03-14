@@ -1,12 +1,12 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberMotors;
 import frc.robot.subsystems.PID;
 
-public class RunFlimseyArm extends CommandBase {
+public class RunClimberArm extends CommandBase {
 
-  private Climber climber;
+  private ClimberMotors climber;
   private PID pid;
 
   private double rotationValue;
@@ -16,8 +16,8 @@ public class RunFlimseyArm extends CommandBase {
   private double motorSpeed;
   private double maxSpeed;
 
-  public RunFlimseyArm(
-      Climber m_climber,
+  public RunClimberArm(
+      ClimberMotors m_climber,
       PID m_pid,
       double amountOfRotation,
       double toleranceValue,
@@ -34,32 +34,32 @@ public class RunFlimseyArm extends CommandBase {
   @Override
   public void initialize() {
 
-    climber.setFlimseyArmEncoder(0);
-    pid.flimseyReset();
-    pid.flimseySetSetPoint(rotationValue);
-    pid.flimseySetTolerance(tolerance);
+    climber.setRightClimberArmEncoder(0);
+    // pid.climberArmReset();
+    pid.climberArmSetSetPoint(rotationValue);
+    pid.climberArmSetTolerance(tolerance);
 
     done = false;
   }
 
   @Override
   public void execute() {
-    pidSpeed = pid.flimseyCalculate(climber.getFlimseyArmPosition());
+    pidSpeed = pid.climberArmCalculate(climber.getRightClimberArmPosition());
     if (pidSpeed > 0) {
       motorSpeed = Math.min(pidSpeed, maxSpeed);
     } else {
       motorSpeed = Math.max(pidSpeed, maxSpeed * -1);
     }
-    climber.setFlimseyMotorSpeed(motorSpeed);
+    climber.setClimberArmMotorSpeed(motorSpeed);
 
-    System.out.println(climber.getFlimseyArmPosition());
+    System.out.println(climber.getRightClimberArmPosition());
   }
 
   @Override
   public boolean isFinished() {
-    if (pid.flimseyAtSetPoint()) {
-      climber.setFlimseyArmEncoder(0);
-      pid.flimseyReset();
+    if (pid.climberArmAtSetPoint()) {
+      climber.setRightClimberArmEncoder(0);
+      pid.climberArmReset();
       System.out.println("Finished PID thing");
       done = true;
     }

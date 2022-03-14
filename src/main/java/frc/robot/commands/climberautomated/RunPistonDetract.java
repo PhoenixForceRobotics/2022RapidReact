@@ -1,15 +1,18 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberSolenoids;
 
 public class RunPistonDetract extends CommandBase {
 
-  private Climber climber;
+  private ClimberSolenoids climber;
   private boolean done;
+  private double time;
 
-  public RunPistonDetract(Climber m_climber) {
+  public RunPistonDetract(ClimberSolenoids m_climber, double m_time) {
     climber = m_climber;
+    time = m_time;
+
   }
 
   @Override
@@ -22,14 +25,16 @@ public class RunPistonDetract extends CommandBase {
 
   @Override
   public void execute() {
-    if (climber.timeElapsed(1)) {
-      done = true;
-      climber.stopTimer();
-    }
+
   }
 
   @Override
   public boolean isFinished() {
+    if (climber.timeElapsed(time)) {
+      done = true;
+      climber.stopTimer();
+    }
+
     return done;
   }
 }

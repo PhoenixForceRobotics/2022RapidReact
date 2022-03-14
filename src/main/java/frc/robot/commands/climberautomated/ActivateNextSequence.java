@@ -1,13 +1,13 @@
 package frc.robot.commands.climberautomated;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberMotors;
 
 public class ActivateNextSequence extends CommandBase {
 
-  private Climber climber;
+  private ClimberMotors climber;
 
-  public ActivateNextSequence(Climber m_climber) {
+  public ActivateNextSequence(ClimberMotors m_climber) {
     climber = m_climber;
   }
 
@@ -17,7 +17,8 @@ public class ActivateNextSequence extends CommandBase {
   }
 
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   @Override
   public boolean isFinished() {
