@@ -18,8 +18,8 @@ public class NetworkTableManager {
    private static NetworkTableEntry pitchEntry = table.getEntry("pitch");
    private static NetworkTableEntry distanceEntry = table.getEntry("distance");
 
-   public static double getHasTarget() {
-       return hasTarget.getDouble(0);
+   public static boolean getHasTarget() {
+       return hasTarget.getBoolean(false);
    }
 
    public static double getACSXCoordinate() {

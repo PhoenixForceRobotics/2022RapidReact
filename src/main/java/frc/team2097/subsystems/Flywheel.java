@@ -46,6 +46,10 @@ public class Flywheel extends SubsystemBase {
         flywheelRotate.set(speed);
     }
 
+    public double getFWRotateVel() {
+        return fwRotateEncoder.getVelocity();
+    }
+
     // public void setFlywheel(double velocity) {
     // flywheelLeft.setVelocity(velocity);
     // flywheelRight.setVelocity(velocity);

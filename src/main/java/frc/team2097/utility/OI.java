@@ -3,6 +3,7 @@ package frc.team2097.utility;
 import frc.team2097.Robot;
 // import frc.team2097.commands.FlywheelHood;
 import frc.team2097.commands.ToggleFlywheelPID;
+import frc.team2097.commands.Turn.FlywheelTurnManual;
 
 public class OI {
     public PFRController driverController;
@@ -14,7 +15,7 @@ public class OI {
 
         // Initialize Button Bindings
         // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-
+        operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, Robot.oi));
         operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
         /*
          * Example:

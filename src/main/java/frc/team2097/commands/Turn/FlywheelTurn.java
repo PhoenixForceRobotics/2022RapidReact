@@ -1,4 +1,4 @@
-package frc.team2097.commands;
+package frc.team2097.commands.Turn;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -14,61 +14,66 @@ public class FlywheelTurn extends CommandBase {
     private double buffer;
     private double xCoordinate;
     private int reverse;
-    private boolean turnAround;
+    private boolean turnAround, outOfBounds;
 
     private double maxRotate;
-<<<<<<< HEAD
-=======
 
     private NetworkTable table;
     private NetworkTableEntry ACSX;
->>>>>>> e9a641dd1a8f69b2bb9b63d0759dc1f386fd5587
 
     public FlywheelTurn(Flywheel flywheel) {
         this.flywheel = flywheel;
-        buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
         turnAround = false;
-<<<<<<< HEAD
-        maxRotate = 2.0 / 3 * 65;
-=======
         reverse = 1;
 
         table = NetworkTableInstance.getDefault().getTable("PiVisionData");
+        
         ACSX = table.getEntry("ACSX");
->>>>>>> e9a641dd1a8f69b2bb9b63d0759dc1f386fd5587
 
     }
 
     @Override
     public void initialize() {
-        maxRotate = (2.0 / 3) * 65 / 2;
+        buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
+        maxRotate = (1.0 / 3) * 65;
         flywheel.resetFWRotateEncoder();
+        outOfBounds = false;
 
     }
 
     @Override
     public void execute() {
         xCoordinate = ACSX.getDouble(5);
-        if (xCoordinate == 5) {
-            flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * reverse);
+        if (!(NetworkTableManager.getHasTarget()) || outOfBounds) {
+            if (Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * Math.abs( 1 / flywheel.getFWRotateEncoderPosition()) < .1)
+            {
+                flywheel.setFlywheelRotate(.1 * reverse);
+            } else if (Math.abs(flywheel.getFWRotateEncoderPosition()) > 2) {
+                flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * reverse * Math.abs( 1 / flywheel.getFWRotateEncoderPosition()));
+            } else {
+                flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * reverse * .5);
+            }
         } else if (xCoordinate >= buffer || xCoordinate <= -1 * buffer) {
-            flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * xCoordinate * .75 * reverse);
+            flywheel.setFlywheelRotate(Constants.MotorSpeeds.Flywheel.ROTATE_SPEED * xCoordinate * .75);
         } else {
             flywheel.setFlywheelRotate(0);
         }
 
+        System.out.println("Speed:" + flywheel.getFWRotateVel());
         System.out.println("rotations:" + flywheel.getFWRotateEncoderPosition());
         System.out.println("x-coordinate:" + xCoordinate);
 
+        outOfBounds = (xCoordinate > maxRotate || xCoordinate < -maxRotate);
+
         if (turnAround) {
-            if (flywheel.getFWRotateEncoderPosition() <= -maxRotate) {
-                reverse = 1;
+            if (flywheel.getFWRotateEncoderPosition() < -maxRotate) {
                 turnAround = false;
+                reverse = 1;
             }
         } else {
             if (flywheel.getFWRotateEncoderPosition() > maxRotate) {
-                reverse = -1;
                 turnAround = true;
+                reverse = -1;
             }
         }
 

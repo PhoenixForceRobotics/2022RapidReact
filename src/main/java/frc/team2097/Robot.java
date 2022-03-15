@@ -8,8 +8,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-// import frc.team2097.commands.FlywheelHood;
-import frc.team2097.commands.FlywheelTurn;
+import frc.team2097.commands.Turn.FlywheelTurn;
+import frc.team2097.commands.Turn.FlywheelTurnReset;
+import frc.team2097.commands.Turn.FlywheelTurnSequence;
 import frc.team2097.subsystems.Flywheel;
 import frc.team2097.utility.OI;
 import frc.team2097.utility.PID;
@@ -33,12 +34,14 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static Flywheel flywheel;
+
   public static OI oi;
 
   public static PID pid;
 
   // public static FlywheelPID flywheelPID;
   public static FlywheelTurn flywheelTurn;
+  public static FlywheelTurnSequence flywheelTurnSequence;
   // public static FlywheelHood flywheelHood;
   // public static FlywheelHoodReset flywheelHoodReset;
 
@@ -58,16 +61,17 @@ public class Robot extends TimedRobot {
 
     pid = new PID();
     // flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
-    flywheelTurn = new FlywheelTurn(flywheel);
+    //flywheelTurn = new FlywheelTurn(flywheel);
+    flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     // flywheelHoodReset = new FlywheelHoodReset(flywheel);
     // flywheelHood = new FlywheelHood(flywheel);
 
     oi = new OI();
-
+    
   }
 
   public static void addFlywheelTurn() {
-    flywheelTurn.schedule();
+    flywheelTurnSequence.schedule();
   }
 
   // public static void addFlywheelPID() {
@@ -97,9 +101,6 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
-  public static void addDriveBase() {
-
-  }
 
   @Override
   public void robotPeriodic() {
@@ -124,6 +125,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
+    
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);

@@ -32,7 +32,7 @@ public class Constants {
     public static class MotorSpeeds {
         public static class Flywheel {
 
-            public static double ROTATE_SPEED = .1;
+            public static double ROTATE_SPEED = .2;
 
             public static double HOOD_SPEED = .4;
 
