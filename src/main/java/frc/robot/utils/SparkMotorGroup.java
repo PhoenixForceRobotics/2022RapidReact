@@ -20,21 +20,20 @@ public class SparkMotorGroup extends MotorControllerGroup {
         this.followers = followers;
 
         // Set settings for followers
-        for(CANSparkMax motor : this.followers) {
+        for (CANSparkMax motor : this.followers) {
             motor.follow(leader);
         }
-        
+
         this.leader.setInverted(isInverted);
         encoder = this.leader.getEncoder(Type.kHallSensor, 42);
     }
-    
+
     @Override
     public void set(double percentage) {
         leader.set(percentage);
     }
 
-    public void setVoltage(double voltage)
-    {
+    public void setVoltage(double voltage) {
         leader.setVoltage(voltage);
     }
 
@@ -43,8 +42,7 @@ public class SparkMotorGroup extends MotorControllerGroup {
         leader.stopMotor();
     }
 
-    public void setPID(PIDValues pidValues, double minOutput, double maxOutput)
-    {
+    public void setPID(PIDValues pidValues, double minOutput, double maxOutput) {
         SparkMaxPIDController pidController = leader.getPIDController();
         pidController.setP(pidValues.getP());
         pidController.setI(pidValues.getI());
@@ -53,20 +51,16 @@ public class SparkMotorGroup extends MotorControllerGroup {
         pidController.setOutputRange(minOutput, maxOutput);
     }
 
-    public void setCoast()
-    {
+    public void setCoast() {
         leader.setIdleMode(IdleMode.kCoast);
-        for(CANSparkMax motor : followers)
-        {
+        for (CANSparkMax motor : followers) {
             motor.setIdleMode(IdleMode.kCoast);
         }
     }
 
-    public void setBrake()
-    {
+    public void setBrake() {
         leader.setIdleMode(IdleMode.kBrake);
-        for(CANSparkMax motor : followers)
-        {
+        for (CANSparkMax motor : followers) {
             motor.setIdleMode(IdleMode.kBrake);
         }
     }

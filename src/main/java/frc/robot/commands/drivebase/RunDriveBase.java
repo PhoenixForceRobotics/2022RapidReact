@@ -12,7 +12,11 @@ public class RunDriveBase extends CommandBase {
   private OI oi;
   private CustomMath customMath;
 
-  private int gear_select;
+  private int gearSelect;
+
+  private double leftStickPosition;
+  private double rightStickPosition;
+  private double multiplier;
 
   public RunDriveBase(Drivebase drivebase, OI oi) {
     this.oi = oi;
@@ -26,66 +30,31 @@ public class RunDriveBase extends CommandBase {
 
   @Override
   public void initialize() {
-    drivebase.motor_coast();
+    drivebase.motorCoast();
   }
 
   @Override
   public void execute() {
-    // set the variables multiplier and reverser using the getter methods in the drivebase class
+    // set the variables multiplier and reverser using the getter methods in the
+    // drivebase class
 
-    int reverser = drivebase.getReverser();
-    double multiplier = drivebase.getMultiplier();
+    multiplier = drivebase.getMultiplier();
+    leftStickPosition = oi.driverController.leftStick.getY();
+    rightStickPosition = oi.driverController.rightStick.getY();
 
-    if (reverser == 1) {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // (reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // (reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-    } else {
-      drivebase.left_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.rightStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.rightStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      drivebase.right_motorSpeed(
-          reverser
-              * (customMath.makeSign(
-                  oi.driverController.leftStick.getY(),
-                  multiplier
-                      * Math.pow(
-                          oi.driverController.leftStick.getY(),
-                          Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // Set the motor speeds
-      // setLeft(reverser * (customMath.makeSign(oi.driverController.rightStick.getY(), multiplier *
-      // Math.pow(oi.driverController.rightStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      // setRight(reverser * (customMath.makeSign(oi.driverController.leftStick.getY(), multiplier *
-      // Math.pow(oi.driverController.leftStick.getY(),
-      // Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
-      System.out.println(
-          "Speed currently at " + drivebase.get_motorSpeed() + "\nGear setting: " + gear_select);
-    }
+    // making the second input have the same sign as the first input
+    drivebase.leftMotorSpeed(
+        (customMath.makeSign(
+            leftStickPosition,
+            multiplier * Math.pow(leftStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
+
+    drivebase.rightMotorSpeed(
+        (customMath.makeSign(
+            rightStickPosition,
+            multiplier * Math.pow(rightStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
+
+    System.out.println(
+        "Speed currently at " + drivebase.getMotorSpeed() + "\nGear setting: " + gearSelect);
   }
 
   @Override
