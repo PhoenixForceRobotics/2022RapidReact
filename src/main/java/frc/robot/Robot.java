@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.ClimberMotors;
 import frc.robot.subsystems.ClimberSolenoids;
-// import frc.robot.subsystems.IntakeSystem;
 import frc.robot.subsystems.PID;
 
 /**
