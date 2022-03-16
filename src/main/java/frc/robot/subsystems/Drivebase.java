@@ -1,13 +1,12 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Constants;
 import frc.robot.utils.Motor;
+import frc.robot.utils.SparkMotorGroup;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,120 +14,81 @@ import java.util.Collections;
 
 public class Drivebase extends SubsystemBase {
   // Create Motor Data Fields
-  public Motor left_motor1, left_motor2, left_motor3;
-  public Motor right_motor1, right_motor2, right_motor3;
-  RelativeEncoder left_motor1Encoder, left_motor2Encoder, left_motor3Encoder;
-  RelativeEncoder right_motor1Encoder, right_motor2Encoder, right_motor3Encoder;
+  RelativeEncoder leftMotorEncoder;
+  RelativeEncoder rightMotorEncoder;
 
   double Multiplier = 1;
-  private int Reverser = 1;
+
+  private SparkMotorGroup leftMotors;
+  private SparkMotorGroup rightMotors;
 
   // Drivebase constructor
   public Drivebase() {
     // Set the motor instances to an object
-    // The parameters for a motor are (portNumber, MotorType, reversedOrNotBooleam, voltageInput)
+    // The parameters for a motor are (portNumber, MotorType, reversedOrNotBooleam,
+    // voltageInput)
     // MotorType for our robot is kBrushless, and the voltage input is 40)
     // Set the Motors idle mode to coast.
     // to do so, use "motorName.setIdleMode(Idlemode.kCoast);"
 
-    left_motor1 =
+    leftMotors = new SparkMotorGroup(false,
         new Motor(
             Constants.MotorMap.Drivebase.LEFT_1,
             MotorType.kBrushless,
             Constants.MotorMap.Drivebase.LEFT1_REVERSED,
-            40);
-    left_motor2 =
+            40),
         new Motor(
             Constants.MotorMap.Drivebase.LEFT_2,
             MotorType.kBrushless,
             Constants.MotorMap.Drivebase.LEFT2_REVERSED,
-            40);
-    left_motor3 =
-        new Motor(
-            Constants.MotorMap.Drivebase.LEFT_3,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.LEFT3_REVERSED,
-            40);
-    right_motor1 =
+            40));
+
+    rightMotors = new SparkMotorGroup(false,
         new Motor(
             Constants.MotorMap.Drivebase.RIGHT_1,
             MotorType.kBrushless,
             Constants.MotorMap.Drivebase.RIGHT1_REVERSED,
-            40);
-    right_motor2 =
+            40),
         new Motor(
             Constants.MotorMap.Drivebase.RIGHT_2,
             MotorType.kBrushless,
             Constants.MotorMap.Drivebase.RIGHT2_REVERSED,
-            40);
-    right_motor3 =
-        new Motor(
-            Constants.MotorMap.Drivebase.RIGHT_3,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.RIGHT3_REVERSED,
-            40);
+            40));
 
-    left_motor1Encoder = left_motor1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    left_motor2Encoder = left_motor2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    left_motor3Encoder = left_motor3.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    right_motor1Encoder = right_motor1.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    right_motor2Encoder = right_motor2.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    right_motor3Encoder = right_motor3.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
-    motor_coast();
+    leftMotorEncoder = leftMotors.getEncoder();
+    leftMotorEncoder = rightMotors.getEncoder();
+    motorCoast();
   }
 
-  public void left_motorSpeed(double speed) {
-    left_motor1.set(speed);
-    left_motor2.set(speed);
-    left_motor3.set(speed);
+  public void leftMotorSpeed(double speed) {
+    leftMotors.set(speed);
   }
 
-  public void right_motorSpeed(double speed) {
-    right_motor1.set(speed);
-    right_motor2.set(speed);
-    right_motor3.set(speed);
+  public void rightMotorSpeed(double speed) {
+    rightMotors.set(speed);
   }
 
-  public Double get_motorSpeed() {
+  public Double getMotorSpeed() {
     return Collections.max(
         new ArrayList<Double>(
             Arrays.asList(
-                left_motor1.get(),
-                left_motor2.get(),
-                left_motor3.get(),
-                right_motor1.get(),
-                right_motor2.get(),
-                right_motor3.get())));
+                leftMotors.get(),
+                rightMotors.get())));
   }
+
   // Create a method that sets the motors speeds based on an input
   // All the ones on the left should have the same speed
   // All the ones on the right should have the same speed
   // to do so, use "motorName.set(motorSpeed)"
 
-  public void motor_coast() {
-    left_motor1.setIdleMode(IdleMode.kCoast);
-    left_motor2.setIdleMode(IdleMode.kCoast);
-    left_motor3.setIdleMode(IdleMode.kCoast);
-    right_motor1.setIdleMode(IdleMode.kCoast);
-    right_motor2.setIdleMode(IdleMode.kCoast);
-    right_motor3.setIdleMode(IdleMode.kCoast);
+  public void motorCoast() {
+    leftMotors.setCoast();
+    rightMotors.setCoast();
   }
 
-  public void motor_break() {
-    left_motor1.setIdleMode(IdleMode.kBrake);
-    left_motor2.setIdleMode(IdleMode.kBrake);
-    left_motor3.setIdleMode(IdleMode.kBrake);
-    right_motor1.setIdleMode(IdleMode.kBrake);
-    right_motor2.setIdleMode(IdleMode.kBrake);
-    right_motor3.setIdleMode(IdleMode.kBrake);
-  }
-
-  public void reverser() {
-    if (Reverser == 1) {
-      Reverser = -1;
-    } else {
-      Reverser = 1;
-    }
+  public void motorBreak() {
+    leftMotors.setBrake();
+    rightMotors.setBrake();
   }
 
   public void shift() {
@@ -143,7 +103,4 @@ public class Drivebase extends SubsystemBase {
     return Multiplier;
   }
 
-  public int getReverser() {
-    return Reverser;
-  }
 }
