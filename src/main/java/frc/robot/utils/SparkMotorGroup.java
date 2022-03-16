@@ -74,4 +74,8 @@ public class SparkMotorGroup extends MotorControllerGroup {
     public CANSparkMax getLeader() {
         return leader;
     }
+
+    public RelativeEncoder getEncoder() {
+        return encoder;
+    }
 }
