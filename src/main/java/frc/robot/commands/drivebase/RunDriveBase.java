@@ -46,12 +46,16 @@ public class RunDriveBase extends CommandBase {
     drivebase.leftMotorSpeed(
         (customMath.makeSign(
             leftStickPosition,
-            multiplier * Math.pow(leftStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
+            multiplier
+                * Math.pow(
+                    leftStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 
     drivebase.rightMotorSpeed(
         (customMath.makeSign(
             rightStickPosition,
-            multiplier * Math.pow(rightStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
+            multiplier
+                * Math.pow(
+                    rightStickPosition, Constants.SubsystemSpeeds.DrivebaseValues.StickPower))));
 
     System.out.println(
         "Speed currently at " + drivebase.getMotorSpeed() + "\nGear setting: " + gearSelect);

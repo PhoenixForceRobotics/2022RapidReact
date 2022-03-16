@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   // public static PowerDistribution powerDistribution;
   public static Drivebase drivebase;
   public static OI oi;
-  
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     drivebase = new Drivebase();
-    
+
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
     // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
@@ -52,7 +52,6 @@ public class Robot extends TimedRobot {
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
    */
-  
   @Override
   public void robotPeriodic() {
     CommandScheduler.getInstance().run();
@@ -69,24 +68,19 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-  }
+  public void autonomousPeriodic() {}
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {
-  }
+  public void teleopInit() {}
 
   /** This function is called periodically during operator control. */
   @Override
-
-  public void teleopPeriodic() {
-  }
+  public void teleopPeriodic() {}
 
   /** This function is called once when the robot is disabled. */
   @Override
@@ -94,8 +88,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically when disabled. */
   @Override
-  public void disabledPeriodic() {
-  }
+  public void disabledPeriodic() {}
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {}
