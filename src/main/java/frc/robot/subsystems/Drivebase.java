@@ -2,12 +2,10 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
-
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Constants;
 import frc.robot.utils.Motor;
 import frc.robot.utils.SparkMotorGroup;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -31,29 +29,33 @@ public class Drivebase extends SubsystemBase {
     // Set the Motors idle mode to coast.
     // to do so, use "motorName.setIdleMode(Idlemode.kCoast);"
 
-    leftMotors = new SparkMotorGroup(false,
-        new Motor(
-            Constants.MotorMap.Drivebase.LEFT_1,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.LEFT1_REVERSED,
-            40),
-        new Motor(
-            Constants.MotorMap.Drivebase.LEFT_2,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.LEFT2_REVERSED,
-            40));
+    leftMotors =
+        new SparkMotorGroup(
+            false,
+            new Motor(
+                Constants.MotorMap.Drivebase.LEFT_1,
+                MotorType.kBrushless,
+                Constants.MotorMap.Drivebase.LEFT1_REVERSED,
+                40),
+            new Motor(
+                Constants.MotorMap.Drivebase.LEFT_2,
+                MotorType.kBrushless,
+                Constants.MotorMap.Drivebase.LEFT2_REVERSED,
+                40));
 
-    rightMotors = new SparkMotorGroup(false,
-        new Motor(
-            Constants.MotorMap.Drivebase.RIGHT_1,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.RIGHT1_REVERSED,
-            40),
-        new Motor(
-            Constants.MotorMap.Drivebase.RIGHT_2,
-            MotorType.kBrushless,
-            Constants.MotorMap.Drivebase.RIGHT2_REVERSED,
-            40));
+    rightMotors =
+        new SparkMotorGroup(
+            false,
+            new Motor(
+                Constants.MotorMap.Drivebase.RIGHT_1,
+                MotorType.kBrushless,
+                Constants.MotorMap.Drivebase.RIGHT1_REVERSED,
+                40),
+            new Motor(
+                Constants.MotorMap.Drivebase.RIGHT_2,
+                MotorType.kBrushless,
+                Constants.MotorMap.Drivebase.RIGHT2_REVERSED,
+                40));
 
     leftMotorEncoder = leftMotors.getEncoder();
     leftMotorEncoder = rightMotors.getEncoder();
@@ -70,10 +72,7 @@ public class Drivebase extends SubsystemBase {
 
   public Double getMotorSpeed() {
     return Collections.max(
-        new ArrayList<Double>(
-            Arrays.asList(
-                leftMotors.get(),
-                rightMotors.get())));
+        new ArrayList<Double>(Arrays.asList(leftMotors.get(), rightMotors.get())));
   }
 
   // Create a method that sets the motors speeds based on an input
@@ -102,5 +101,4 @@ public class Drivebase extends SubsystemBase {
   public double getMultiplier() {
     return Multiplier;
   }
-
 }
