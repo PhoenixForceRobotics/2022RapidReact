@@ -25,45 +25,45 @@ public class Constants {
     public static final int LEFT_1 = 1;
     public static final int LEFT_2 = 2;
     public static final boolean LEFT_REVERSE = true;
-    
+
     public static final int RIGHT_1 = 3;
     public static final int RIGHT_2 = 4;
-    public static final boolean RIGHT_REVERSE = false;    
-    
+    public static final boolean RIGHT_REVERSE = false;
+
     public static final double STICK_POWER = 3;
 
-    public static final double STATIC_VOLTS = 0.0; //Constant
-    public static final double VELOCITY_VOLTS = 0.0; //Volt seconds per meter 
+    public static final double STATIC_VOLTS = 0.0; // Constant
+    public static final double VELOCITY_VOLTS = 0.0; // Volt seconds per meter
     public static final double ACCELERATION_VOLTS = 0.0; // Volt seconds per meter ^ 2
-    
-    public static final SimpleMotorFeedforward FEED_FORWARD = new SimpleMotorFeedforward(STATIC_VOLTS, VELOCITY_VOLTS, ACCELERATION_VOLTS);
+
+    public static final SimpleMotorFeedforward FEED_FORWARD =
+        new SimpleMotorFeedforward(STATIC_VOLTS, VELOCITY_VOLTS, ACCELERATION_VOLTS);
     // TODO: !!!!SysID to gain these values!!!!!\
 
-    public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(1); // TODO: Find the actual value of the track width IN METERS
-  
-    public static final PIDController LEFT_PID = new PIDController(0.01, 0, 0);
-    public static final PIDController RIGHT_PID = new PIDController(0.01, 0, 0); //TODO: tune this PID
+    public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
+        new DifferentialDriveKinematics(
+            1); // TODO: Find the actual value of the track width IN METERS
 
-    public  static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2 
+    public static final PIDController LEFT_PID = new PIDController(0.01, 0, 0);
+    public static final PIDController RIGHT_PID =
+        new PIDController(0.01, 0, 0); // TODO: tune this PID
+
+    public static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2
   }
 
   public static final class AutoConstants {
     public static final RamseteController RAMSETE_CONTROLLER = new RamseteController();
-    
+
     public static final double MAX_SPEED = 5; // TODO: Decide reasonable speed and accel
-    public static final double MAX_ACCELERATION = 1; 
+    public static final double MAX_ACCELERATION = 1;
     public static final double MAX_VOLTAGE = 10;
 
     public static final DifferentialDriveVoltageConstraint AUTO_VOLTAGE_CONSTRAINT =
-      new DifferentialDriveVoltageConstraint(
-        DriveConstants.FEED_FORWARD,
-        DriveConstants.DRIVE_KINEMATICS,
-        MAX_VOLTAGE
-      );
-    public static final TrajectoryConfig TRAJECTORY_CONFIG = new TrajectoryConfig(
-      MAX_SPEED,
-      MAX_ACCELERATION)
-      .setKinematics(DriveConstants.DRIVE_KINEMATICS)
-      .addConstraint(AUTO_VOLTAGE_CONSTRAINT);
+        new DifferentialDriveVoltageConstraint(
+            DriveConstants.FEED_FORWARD, DriveConstants.DRIVE_KINEMATICS, MAX_VOLTAGE);
+    public static final TrajectoryConfig TRAJECTORY_CONFIG =
+        new TrajectoryConfig(MAX_SPEED, MAX_ACCELERATION)
+            .setKinematics(DriveConstants.DRIVE_KINEMATICS)
+            .addConstraint(AUTO_VOLTAGE_CONSTRAINT);
   }
 }
