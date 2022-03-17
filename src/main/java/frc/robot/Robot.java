@@ -24,7 +24,6 @@ public class Robot extends TimedRobot {
   // public static PneumaticsControlModule pneumaticsControlModule;
   // public static Compressor compressor;
   // public static PowerDistribution powerDistribution;
-  public static Drivebase drivebase;
   public static Intakesystem intakesystem;
   public static OI oi;
 
