@@ -6,7 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.RunRobot;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Outake;
 import frc.robot.utils.OI;
 
 /**
@@ -26,7 +29,9 @@ public class Robot extends TimedRobot {
   // public static PowerDistribution powerDistribution;
   public static Drivebase drivebase;
   public static OI oi;
-
+  public static Feeder feeder;
+  public static Outake outake;
+  public static RunRobot runRobot;
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -35,6 +40,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     drivebase = new Drivebase();
+    feeder = new Feeder(oi);
+    outake = new Outake(oi);
+    runRobot = new RunRobot(oi, feeder, outake);
 
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
@@ -67,6 +75,10 @@ public class Robot extends TimedRobot {
    * below with additional strings. If using the SendableChooser make sure to add them to the
    * chooser code above as well.
    */
+  public static void addRunRobot() {
+    runRobot.schedule();
+  }
+
   @Override
   public void autonomousInit() {}
 
@@ -76,7 +88,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    addRunRobot();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
