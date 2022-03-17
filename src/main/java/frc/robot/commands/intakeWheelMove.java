@@ -5,15 +5,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intakesystem;
 
 public class intakeWheelMove extends CommandBase {
-  private Intakesystem drivebase;
+  private Intakesystem intakesystem;
   private XboxController driverController;
 
   // add requirments for up 90
 
-  public intakeWheelMove(Intakesystem drivebase) {
-    addRequirements(drivebase);
-    this.drivebase = drivebase;
-    drivebase.WheelMotorBrake();
+  public intakeWheelMove(Intakesystem intakesystem) {
+    addRequirements(intakesystem);
+    this.intakesystem = intakesystem;
+    intakesystem.WheelMotorBrake();
   }
 
   // Begin up 90 command
@@ -31,11 +31,11 @@ public class intakeWheelMove extends CommandBase {
     if ((driverController.getRightTriggerAxis() > 0)
         || (driverController.getLeftTriggerAxis() > 0)) {
       if (driverController.getRightTriggerAxis() > driverController.getLeftTriggerAxis()) {
-        drivebase.setWheelmotorSpeed(driverController.getRightTriggerAxis());
-        drivebase.setRotatormotor2Speed(driverController.getRightTriggerAxis());
+        intakesystem.setWheelmotorSpeed(driverController.getRightTriggerAxis());
+        intakesystem.setRotatormotor2Speed(driverController.getRightTriggerAxis());
       } else {
-        drivebase.setWheelmotorSpeed(driverController.getLeftTriggerAxis());
-        drivebase.setRotatormotor2Speed(driverController.getLeftTriggerAxis());
+        intakesystem.setWheelmotorSpeed(driverController.getLeftTriggerAxis());
+        intakesystem.setRotatormotor2Speed(driverController.getLeftTriggerAxis());
       }
     }
   }

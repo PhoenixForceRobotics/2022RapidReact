@@ -4,27 +4,27 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intakesystem;
 
 public class pistoneMove extends CommandBase {
-  private Intakesystem drivebase;
+  private Intakesystem intakesystem;
 
   // add requirments for up 90
 
-  public pistoneMove(Intakesystem drivebase) {
-    addRequirements(drivebase);
-    this.drivebase = drivebase;
+  public pistoneMove(Intakesystem intakesystem) {
+    addRequirements(intakesystem);
+    this.intakesystem = intakesystem;
   }
 
   // Begin up 90 command
 
   @Override
   public void initialize() {
-    if (drivebase.pissonntoggle == false) {
-      drivebase.setPiston1Forward();
-      drivebase.setPiston2Forward();
-      drivebase.pissonntoggle = true;
+    if (!intakesystem.pissonntoggle) {
+      intakesystem.setPiston1Forward();
+      intakesystem.setPiston2Forward();
+      intakesystem.pissonntoggle = true;
     } else {
-      drivebase.setPiston1Reverse();
-      drivebase.setPiston2Reverse();
-      drivebase.pissonntoggle = false;
+      intakesystem.setPiston1Reverse();
+      intakesystem.setPiston2Reverse();
+      intakesystem.pissonntoggle = false;
     }
   }
 
