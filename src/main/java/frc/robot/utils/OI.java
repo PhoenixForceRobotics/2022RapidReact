@@ -7,6 +7,9 @@
 
 package frc.robot.utils;
 
+import frc.robot.Robot;
+import frc.robot.commands.intakeWheelMove;
+import frc.robot.commands.pistoneMove;
 import frc.robot.utils.controllers.BobXboxController;
 
 /**
@@ -26,6 +29,9 @@ public class OI {
     // drivebase commands
 
     /// Operator:
+    operatorController.yButton.whenPressed(new pistoneMove(Robot.intakesystem));
+    operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
+    operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
   }
 }
 
