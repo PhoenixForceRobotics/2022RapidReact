@@ -15,6 +15,7 @@ public class RunButtonNextSequence extends CommandBase {
   @Override
   public void initialize() {
     done = false;
+    System.out.println("press X button for next sequence");
   }
 
   @Override

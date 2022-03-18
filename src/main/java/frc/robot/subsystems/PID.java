@@ -10,34 +10,13 @@ import java.util.Map;
 
 public class PID extends SubsystemBase {
 
-  public PIDController intakeRotatorPID;
   public PIDController flimseyPID;
-
-  double intakeRotatorKp = 0.2;
-  double intakeRotatorKi = 0;
-  double intakeRotatorKd = 0;
 
   double flimseyKp = 0.2;
   double flimseyKi = 0;
   double flimseyKd = 0;
 
   private ShuffleboardTab tab = Shuffleboard.getTab("Climber PID");
-
-  private NetworkTableEntry intakeRotatorKpEntry =
-      tab.add("intakeRotatorKp", intakeRotatorKp)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 1)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry intakeRotatorKiEntry =
-      tab.add("intakeRotatorKi", intakeRotatorKi)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
-  private NetworkTableEntry intakeRotatorKdEntry =
-      tab.add("intakeRotatorKd", intakeRotatorKd)
-          .withWidget(BuiltInWidgets.kNumberSlider)
-          .withProperties(Map.of("min", 0, "max", 0.1)) // specify widget properties here
-          .getEntry();
 
   private NetworkTableEntry flimseyKpEntry =
       tab.add("flimseyKp", flimseyKp)
@@ -59,7 +38,6 @@ public class PID extends SubsystemBase {
     System.out.println("PID has been called");
     // change values, need to test to find the right values.
     flimseyPID = new PIDController(flimseyKp, flimseyKi, flimseyKd);
-    intakeRotatorPID = new PIDController(intakeRotatorKp, intakeRotatorKi, intakeRotatorKd);
   }
 
   public double flimseyCalculate(double measurement) {
@@ -88,32 +66,5 @@ public class PID extends SubsystemBase {
 
   public void flimseyReset() {
     flimseyPID.reset();
-  }
-
-  public double intakeRotatorCalculate(double measurement) {
-    intakeRotatorKp = intakeRotatorKpEntry.getDouble(1.0);
-    intakeRotatorKi = intakeRotatorKiEntry.getDouble(0);
-    intakeRotatorKd = intakeRotatorKdEntry.getDouble(0);
-
-    intakeRotatorPID.setP(intakeRotatorKp);
-    intakeRotatorPID.setI(intakeRotatorKi);
-    intakeRotatorPID.setD(intakeRotatorKd);
-    return intakeRotatorPID.calculate(measurement);
-  }
-
-  public boolean intakeRotatorAtSetPoint() {
-    return intakeRotatorPID.atSetpoint();
-  }
-
-  public void intakeRotatorSetSetPoint(double setPoint) {
-    intakeRotatorPID.setSetpoint(setPoint);
-  }
-
-  public void intakeRotatorSetTolerance(double tolerance) {
-    intakeRotatorPID.setTolerance(tolerance);
-  }
-
-  public void intakeRotatorReset() {
-    intakeRotatorPID.reset();
   }
 }

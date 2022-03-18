@@ -7,29 +7,32 @@ public class RunPistonExtend extends CommandBase {
 
   private Climber climber;
   private boolean done;
+  private double time;
 
-  public RunPistonExtend(Climber m_climber) {
+  public RunPistonExtend(Climber m_climber, Double m_time) {
     climber = m_climber;
+    time = m_time;
   }
 
   @Override
   public void initialize() {
-    climber.Levitate();
+    System.out.println("RunPistonExtend has been called");
+    climber.pistonForward();
     climber.resetTimer();
     climber.startTimer();
     done = false;
   }
 
   @Override
-  public void execute() {
-    if (climber.timeElapsed(1)) {
-      done = true;
-      climber.stopTimer();
-    }
-  }
+  public void execute() {}
 
   @Override
   public boolean isFinished() {
+    if (climber.timeElapsed(time)) {
+      done = true;
+      climber.stopTimer();
+    }
+
     return done;
   }
 }

@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.IntakeSystem;
 import frc.robot.subsystems.PID;
 
 /**
@@ -25,8 +24,9 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static Climber climber;
   public static OI oi;
-  public static IntakeSystem intakeSystem;
+  // public static IntakeSystem intakeSystem;
   public static PID pid;
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
     // drivebase = new Drivebase();
     climber = new Climber();
     pid = new PID();
-    intakeSystem = new IntakeSystem();
+    // intakeSystem = new IntakeSystem();
     oi = new OI();
     // runDriveBase = new RunDriveBase(drivebase, oi);
   }
@@ -109,6 +109,7 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
     CommandScheduler.getInstance().run();
   }
+
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {}

@@ -14,14 +14,7 @@ public class ActivatePistons extends CommandBase {
 
   @Override
   public void initialize() {
-    boolean statusOfLevation = climber.getLevitateStatus();
-    if (statusOfLevation == true) {
-      climber.stopLevitate();
-      climber.setLevitateStatus(false);
-    } else {
-      climber.Levitate();
-      climber.setLevitateStatus(true);
-    }
+    climber.toggle();
   }
 
   @Override
@@ -29,6 +22,6 @@ public class ActivatePistons extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

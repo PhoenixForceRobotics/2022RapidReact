@@ -7,29 +7,33 @@ public class RunPistonDetract extends CommandBase {
 
   private Climber climber;
   private boolean done;
+  private double time;
 
-  public RunPistonDetract(Climber m_climber) {
+  public RunPistonDetract(Climber m_climber, double m_time) {
     climber = m_climber;
+    time = m_time;
   }
 
   @Override
   public void initialize() {
-    climber.stopLevitate();
+    System.out.println("RunPistonDetract has been called");
+    climber.pistonReverse();
     climber.resetTimer();
     climber.startTimer();
     done = false;
   }
 
   @Override
-  public void execute() {
-    if (climber.timeElapsed(1)) {
-      done = true;
-      climber.stopTimer();
-    }
-  }
+  public void execute() {}
 
   @Override
   public boolean isFinished() {
+    if (climber.timeElapsed(time)) {
+      done = true;
+      climber.stopTimer();
+      System.out.println("You have been extended");
+    }
+
     return done;
   }
 }

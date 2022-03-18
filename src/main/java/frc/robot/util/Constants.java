@@ -34,7 +34,7 @@ public class Constants {
     }
 
     public static class Climber {
-      public static int FLIMSEYARM = 2;
+      public static int FLIMSEYARM = 4;
       public static final boolean FlimseyArm_Reversed = false;
 
       public static int ROTATEINTAKE = 992;
@@ -46,8 +46,10 @@ public class Constants {
     public static class Climber {
 
       // change these values to ports later
-      public static int SOLENOID1 = 4;
-      public static int SOLENOID2 = 5;
+      public static int SOLENOID_LEFT_FORWARD = 1;
+      public static int SOLENOID_LEFT_BACKWARD = 0;
+      public static int SOLENOID_RIGHT_FORWARD = 2;
+      public static int SOLENOID_RIGHT_BACKWARD = 3;
     }
   }
 

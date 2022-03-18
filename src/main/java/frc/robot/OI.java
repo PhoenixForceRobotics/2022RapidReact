@@ -8,16 +8,11 @@
 package frc.robot;
 
 import frc.controllers.BobXboxController;
+import frc.robot.commands.climberautomated.ActivateNextSequence;
 import frc.robot.commands.climberautomated.ClimberSequence;
-import frc.robot.commands.climberautomated.RunButtonNextSequence;
-import frc.robot.commands.climberautomated.RunFlimseyArm;
-import frc.robot.commands.climbermanual.ActivatePistons;
-import frc.robot.commands.climbermanual.FlimseyBackward;
-import frc.robot.commands.climbermanual.FlimseyForward;
-import frc.robot.commands.climbermanual.FlimseyStop;
-import frc.robot.commands.climbermanual.IntakeRotatorBackward;
-import frc.robot.commands.climbermanual.IntakeRotatorForward;
-import frc.robot.commands.climbermanual.IntakeRotatorStop;
+import frc.robot.commands.climberautomated.DeactivateNextSequence;
+import frc.robot.commands.climbermanual.ExtendPiston;
+import frc.robot.commands.climbermanual.RetractPiston;
 
 public class OI {
 
@@ -28,28 +23,13 @@ public class OI {
     driverController = new BobXboxController(0, 0.11, 0.11);
     operatorController = new BobXboxController(1, 0.11, 0.11);
 
-    // Climber Manual
-    driverController.leftBumper.whenPressed(new FlimseyForward(Robot.climber));
-    driverController.leftBumper.whenReleased(new FlimseyStop(Robot.climber));
-    driverController.leftTriggerButton.whenPressed(new FlimseyBackward(Robot.climber));
-    driverController.leftTriggerButton.whenReleased(new FlimseyStop(Robot.climber));
+    operatorController.aButton.whenPressed(new RetractPiston(Robot.climber));
+    operatorController.yButton.whenPressed(new ExtendPiston(Robot.climber));
 
-    driverController.yButton.whenPressed(new ActivatePistons(Robot.climber));
+    operatorController.startButton.whenPressed(new ClimberSequence());
 
-    driverController.rightBumper.whenPressed(new IntakeRotatorForward(Robot.intakeSystem));
-    driverController.rightBumper.whenReleased(new IntakeRotatorStop(Robot.intakeSystem));
-    driverController.rightTriggerButton.whenPressed(new IntakeRotatorBackward(Robot.intakeSystem));
-    driverController.rightTriggerButton.whenReleased(new IntakeRotatorStop(Robot.intakeSystem));
-
-    // Climber Automatic
-    // Main
-    driverController.bButton.whenPressed(new ClimberSequence());
-    // Activate next sequence
-    driverController.yButton.whenPressed(new RunButtonNextSequence(Robot.climber));
-
-    // Climber testing
-    driverController.aButton.whenPressed(
-        new RunFlimseyArm(Robot.climber, Robot.pid, 0.25, 0.005, 0.1));
+    operatorController.xButton.whenPressed(new ActivateNextSequence(Robot.climber));
+    operatorController.xButton.whenReleased(new DeactivateNextSequence(Robot.climber));
   }
 }
 
