@@ -1,4 +1,4 @@
-package frc.robot.commands.Turn;
+package frc.robot.commands.turn;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;

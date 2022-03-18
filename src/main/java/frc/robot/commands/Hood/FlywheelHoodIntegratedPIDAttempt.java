@@ -1,4 +1,4 @@
-package frc.robot.commands.Hood;
+package frc.robot.commands.hood;
 // package frc.team2097.commands;
 
 // import edu.wpi.first.wpilibj2.command.CommandBase;

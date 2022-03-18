@@ -9,7 +9,7 @@ package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.ToggleFlywheelPID;
-import frc.robot.commands.Turn.FlywheelTurnManual;
+import frc.robot.commands.turn.FlywheelTurnManual;
 import frc.robot.commands.intakeWheelMove;
 import frc.robot.commands.pistoneMove;
 

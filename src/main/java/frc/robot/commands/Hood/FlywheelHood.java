@@ -1,4 +1,4 @@
-package frc.robot.commands.Hood;
+package frc.robot.commands.hood;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;

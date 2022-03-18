@@ -1,4 +1,4 @@
-package frc.robot.commands.Turn;
+package frc.robot.commands.turn;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;

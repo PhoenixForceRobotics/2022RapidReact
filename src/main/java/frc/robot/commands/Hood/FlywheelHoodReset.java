@@ -1,4 +1,4 @@
-package frc.robot.commands.Hood;
+package frc.robot.commands.hood;
 
 import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
