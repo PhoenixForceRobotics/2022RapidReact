@@ -1,6 +1,7 @@
 package frc.robot.utils;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 public class Falcon extends TalonFX {
@@ -37,6 +38,14 @@ public class Falcon extends TalonFX {
     }
   }
 
+  public void setCoast() {
+    setNeutralMode(NeutralMode.Coast);
+  }
+
+  public void setBrake() {
+    setNeutralMode(NeutralMode.Brake);
+  }
+
   public void setPercentage(double percentage) {
     set(ControlMode.PercentOutput, percentage);
   }
@@ -51,5 +60,13 @@ public class Falcon extends TalonFX {
 
   public void setPosition(double position) {
     set(ControlMode.Position, position);
+  }
+
+  public double getPosition() {
+    return super.getSelectedSensorPosition();
+  }
+
+  public double getVelocity() {
+    return super.getSelectedSensorVelocity();
   }
 }

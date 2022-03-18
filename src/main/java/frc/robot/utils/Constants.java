@@ -15,12 +15,10 @@ import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstrai
 /*----------------------------------------------------------------------------*/
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name.
+ * This provides flexibility changing wiring, makes checking the wiring easier and significantly
+ * reduces the number of magic numbers floating around.
  */
-
 public class Constants {
   public static final class DriveConstants {
 
@@ -70,14 +68,14 @@ public class Constants {
   }
 
   public static final class TurretConstants {
-    public static int HOOD = 11;
-    public static int SHOOT_LEFT = 21;
-    public static int SHOOT_RIGHT = 20;
-    public static int ROTATE = 8;
+    public static int HOOD_PORT = 11;
+    public static int LEFT_FLYWHEEL_PORT = 21;
+    public static int RIGHT_FLYWHEEL_PORT = 20;
+    public static int ROTATE_PORT = 8;
 
     public static boolean HOOD_REVERSED = false;
-    public static boolean SHOOT_LEFT_REVERSED = false;
-    public static boolean SHOOT_RIGHT_REVERSED = true;
+    public static boolean LEFT_FLYWHEEL_REVERSED = false;
+    public static boolean RIGHT_FLYWHEEL_REVERSED = true;
     public static boolean ROTATE_REVERSED = false;
 
     public static double ROTATE_SPEED = .2;
@@ -100,28 +98,35 @@ public class Constants {
     public static double ZONE1 = ZONE3 / 3; // 120.7476667
 
     // lower speeds for more accuracy
-    public static double VELOCITY_ZONE1 = ZONE1 /
-            (Math.cos((50.0 / 180.0) * Math.PI) *
-                    Math.sqrt((ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                            / (TurretConstants.GRAVITY / 2)));
+    public static double VELOCITY_ZONE1 =
+        ZONE1
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT)
+                        / (TurretConstants.GRAVITY / 2)));
     // Meters per second, can reach ZONE1 horizontally max,
     // TOTAL_HEIGHT height at 50 degrees ~305.55 inches/second (for now)
-    public static double VELOCITY_ZONE2 = ZONE2 /
-            (Math.cos((50.0 / 180.0) * Math.PI) *
-                    Math.sqrt((ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                            / (TurretConstants.GRAVITY / 2)));;
+    public static double VELOCITY_ZONE2 =
+        ZONE2
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
+                        / (TurretConstants.GRAVITY / 2)));;
     // Meters per second, can reach ZONE2 horizontally,
     // TOTAL_HEIGHT height at 50 degrees ~354 inches/second (for now)
-    public static double VELOCITY_ZONE3 = ZONE3 /
-            (Math.cos((50.0 / 180.0) * Math.PI) *
-                    Math.sqrt((ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                            / (TurretConstants.GRAVITY / 2)));;
+    public static double VELOCITY_ZONE3 =
+        ZONE3
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
+                        / (TurretConstants.GRAVITY / 2)));;
     // inches per second, can reach ZONE3 horizontally,
     // TOTAL_HEIGHT height at 50 degrees ~412 inches/second
 
     public static double ROTATE_BUFFER = 0.05;
 
-    public static double GRAVITY = 386.0892; // force of earth's gravity at sea level in inches/second/second; it's
-                                             // in inches to stay consistent with everything else
+    public static double GRAVITY =
+        386.0892; // force of earth's gravity at sea level in inches/second/second; it's
+    // in inches to stay consistent with everything else
   }
 }

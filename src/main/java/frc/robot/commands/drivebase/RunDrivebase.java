@@ -4,12 +4,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.utils.Constants.DriveConstants;
 import frc.robot.utils.OI;
-import frc.robot.utils.controllers.BobXboxController;
+import frc.robot.utils.PFRController;
 
 public class RunDrivebase extends CommandBase {
   private Drivebase drivebase;
 
-  private BobXboxController driver;
+  private PFRController driver;
   private boolean isSpinningOut;
 
   public RunDrivebase(Drivebase drivebase, OI oi) {
@@ -21,7 +21,7 @@ public class RunDrivebase extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.set(driver.leftStick.getY(), driver.leftStick.getY());
+    drivebase.set(driver.getLeftY(), driver.getRightY());
 
     isSpinningOut =
         drivebase.getAccelerometerAcceleration().magnitude() + DriveConstants.MAX_ACCELERATION_ERROR
