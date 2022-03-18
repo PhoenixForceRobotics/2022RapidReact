@@ -14,9 +14,9 @@ import frc.robot.commands.Turn.FlywheelTurn;
 import frc.robot.commands.Turn.FlywheelTurnReset;
 import frc.robot.commands.Turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.utility.FlywheelMath;
-import frc.robot.utility.OI;
-import frc.robot.utility.PID;
+import frc.robot.utils.FlywheelMath;
+import frc.robot.utils.OI;
+import frc.robot.utils.PID;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utils;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */

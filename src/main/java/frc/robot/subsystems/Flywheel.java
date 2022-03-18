@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.utility.Constants;
-import frc.robot.utility.Falcon;
-import frc.robot.utility.Motor;
+import frc.robot.utils.Constants;
+import frc.robot.utils.Falcon;
+import frc.robot.utils.Motor;
 
 public class Flywheel extends SubsystemBase {
 

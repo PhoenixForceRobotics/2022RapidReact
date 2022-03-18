@@ -5,8 +5,8 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.utility.Constants;
-import frc.robot.utility.NetworkTableManager;
+import frc.robot.utils.Constants;
+import frc.robot.utils.NetworkTableManager;
 
 public class FlywheelTurn extends CommandBase {
 

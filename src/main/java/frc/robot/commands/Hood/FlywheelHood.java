@@ -2,9 +2,9 @@ package frc.robot.commands.Hood;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.utility.Constants;
-import frc.robot.utility.FlywheelMath;
-import frc.robot.utility.NetworkTableManager;
+import frc.robot.utils.Constants;
+import frc.robot.utils.FlywheelMath;
+import frc.robot.utils.NetworkTableManager;
 
 public class FlywheelHood extends CommandBase {
     NetworkTableManager networkTableManager;

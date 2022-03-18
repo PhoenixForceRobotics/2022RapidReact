@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utils;
 
 import java.lang.Math;
 import edu.wpi.first.networktables.NetworkTable;

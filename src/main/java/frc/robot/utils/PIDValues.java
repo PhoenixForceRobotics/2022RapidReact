@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utils;
 
 public class PIDValues {
     private double P;

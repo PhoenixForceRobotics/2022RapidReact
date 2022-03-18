@@ -2,8 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.utility.Constants;
-import frc.robot.utility.FlywheelMath;
+import frc.robot.utils.Constants;
+import frc.robot.utils.FlywheelMath;
 
 public class FlywheelPID extends CommandBase {
 private double P, D;

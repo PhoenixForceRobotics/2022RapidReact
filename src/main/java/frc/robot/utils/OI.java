@@ -1,4 +1,4 @@
-package frc.robot.utility;
+package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.ToggleFlywheelPID;

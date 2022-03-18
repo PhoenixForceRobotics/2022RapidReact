@@ -2,8 +2,8 @@ package frc.robot.commands.Turn;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.utility.Constants;
-import frc.robot.utility.OI;
+import frc.robot.utils.Constants;
+import frc.robot.utils.OI;
 
 public class FlywheelTurnManual extends CommandBase {
     private Flywheel flywheel;
