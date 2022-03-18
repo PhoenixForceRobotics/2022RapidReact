@@ -15,7 +15,7 @@ public class OI {
 
         // Initialize Button Bindings
         // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-        operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, Robot.oi));
+        operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
         operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
         /*
          * Example:

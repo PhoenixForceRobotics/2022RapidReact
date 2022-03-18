@@ -19,7 +19,7 @@ public class FlywheelTurnManual extends CommandBase {
    
     @Override
     public void execute() {
-        if (oi.operatorController.xButton().get()) {
+        if (oi.operatorController.getLeftStickButton()) {
             flywheel.resetFWRotateEncoder();
         }
         flywheel.setFlywheelRotate(oi.operatorController.getLeftX() * Constants.MotorSpeeds.Flywheel.ROTATE_SPEED);

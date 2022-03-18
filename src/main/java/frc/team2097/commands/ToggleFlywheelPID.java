@@ -5,7 +5,6 @@ import frc.team2097.subsystems.Flywheel;
 
 public class ToggleFlywheelPID extends CommandBase {
     private Flywheel flywheel;
-    private boolean done;
     private boolean flyWheelStatus;
 
     public ToggleFlywheelPID(Flywheel flywheel) {
@@ -21,7 +20,6 @@ public class ToggleFlywheelPID extends CommandBase {
         } else {
             flywheel.setToggleFlyWheel(true);
         }
-        done = true;
     }
 
     @Override
@@ -32,6 +30,6 @@ public class ToggleFlywheelPID extends CommandBase {
     @Override
     public boolean isFinished() {
 
-        return done;
+        return true;
     }
 }

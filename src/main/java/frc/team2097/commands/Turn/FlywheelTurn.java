@@ -35,7 +35,7 @@ public class FlywheelTurn extends CommandBase {
     @Override
     public void initialize() {
         buffer = Constants.SubsystemMath.FlywheelMath.ROTATE_BUFFER;
-        maxRotate = (1.0 / 3) * 65;
+        maxRotate = (1.0 / 3.5) * 65;
         flywheel.resetFWRotateEncoder();
         outOfBounds = false;
 

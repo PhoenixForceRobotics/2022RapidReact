@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team2097.commands.Hood.FlywheelHoodSequence;
 import frc.team2097.commands.Turn.FlywheelTurn;
 import frc.team2097.commands.Turn.FlywheelTurnReset;
 import frc.team2097.commands.Turn.FlywheelTurnSequence;
 import frc.team2097.subsystems.Flywheel;
 import frc.team2097.utility.OI;
 import frc.team2097.utility.PID;
-// import frc.team2097.commands.FlywheelPID;
-// import frc.team2097.commands.FlywheelHoodReset;
+import frc.team2097.commands.FlywheelPID;
 import frc.team2097.utility.FlywheelMath;
 
 /**
@@ -39,11 +39,12 @@ public class Robot extends TimedRobot {
 
   public static PID pid;
 
-  // public static FlywheelPID flywheelPID;
-  public static FlywheelTurn flywheelTurn;
+  public static FlywheelPID flywheelPID;
+  // public static FlywheelTurn flywheelTurn;
   public static FlywheelTurnSequence flywheelTurnSequence;
   // public static FlywheelHood flywheelHood;
   // public static FlywheelHoodReset flywheelHoodReset;
+  public static FlywheelHoodSequence flywheelHoodSequence;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -60,11 +61,13 @@ public class Robot extends TimedRobot {
     // Alex PID edition
 
     pid = new PID();
-    // flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
-    //flywheelTurn = new FlywheelTurn(flywheel);
+    flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
+    // flywheelTurn = new FlywheelTurn(flywheel);
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     // flywheelHoodReset = new FlywheelHoodReset(flywheel);
     // flywheelHood = new FlywheelHood(flywheel);
+    flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
+    
 
     oi = new OI();
     
@@ -74,17 +77,14 @@ public class Robot extends TimedRobot {
     flywheelTurnSequence.schedule();
   }
 
-  // public static void addFlywheelPID() {
-  // flywheelPID.schedule();
-  // }
+  public static void addFlywheelPID() {
+    flywheelPID.schedule();
+  }
 
-  // public static void addFlywheelHood() {
-  // flywheelHood.schedule();
-  // }
+  public static void addFlywheelHood() {
+    flywheelHoodSequence.schedule();
+  }
 
-  // public static void addFlywheelHoodReset() {
-  // flywheelHoodReset.schedule();
-  // }
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -150,10 +150,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().registerSubsystem(flywheel);
-    // addFlywheelHood();
-    // addFlywheelHoodReset();
+    addFlywheelHood();
     addFlywheelTurn();
-    // addFlywheelPID();
+    addFlywheelPID();
   }
 
   /** This function is called periodically during operator control. */

@@ -17,14 +17,14 @@ package frc.team2097.utility;
 public class Constants {
     public static class MotorMap {
         public static class Flywheel {
-            public static int HOOD = 4;
-            public static int SHOOT_LEFT = 2;
-            public static int SHOOT_RIGHT = 6;
+            public static int HOOD = 11;
+            public static int SHOOT_LEFT = 21;
+            public static int SHOOT_RIGHT = 20;
             public static int ROTATE = 8;
 
             public static boolean HOOD_REVERSED = false;
             public static boolean SHOOT_LEFT_REVERSED = false;
-            public static boolean SHOOT_RIGHT_REVERSED = false;
+            public static boolean SHOOT_RIGHT_REVERSED = true;
             public static boolean ROTATE_REVERSED = false;
         }
     }
@@ -36,6 +36,7 @@ public class Constants {
 
             public static double HOOD_SPEED = .4;
 
+            public static int RELAY_PORT = 0;
         }
     }
 
