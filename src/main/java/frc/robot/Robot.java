@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Intakesystem;
 import frc.robot.utils.OI;
 
@@ -24,8 +26,10 @@ public class Robot extends TimedRobot {
   // public static PneumaticsControlModule pneumaticsControlModule;
   // public static Compressor compressor;
   // public static PowerDistribution powerDistribution;
+  public static Drivebase drivebase;
   public static Intakesystem intakesystem;
   public static OI oi;
+  public static RunDrivebase runDrivebase;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,9 +37,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    oi = new OI();
+    drivebase = new Drivebase();
     intakesystem = new Intakesystem();
 
+    oi = new OI();
+
+    runDrivebase = new RunDrivebase(drivebase, oi);
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
     // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
@@ -76,7 +83,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    runDrivebase.schedule();
+  }
 
   /** This function is called periodically during operator control. */
   @Override

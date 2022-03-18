@@ -44,14 +44,14 @@ public class Drivebase extends SubsystemBase {
     left =
         new SparkMotorGroup(
             true,
-            new CANSparkMax(2, MotorType.kBrushless),
-            new CANSparkMax(14, MotorType.kBrushless));
+            new CANSparkMax(3, MotorType.kBrushless),
+            new CANSparkMax(4, MotorType.kBrushless));
 
     right =
         new SparkMotorGroup(
             false,
-            new CANSparkMax(4, MotorType.kBrushless),
-            new CANSparkMax(15, MotorType.kBrushless));
+            new CANSparkMax(2, MotorType.kBrushless),
+            new CANSparkMax(1, MotorType.kBrushless));
 
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();
@@ -60,7 +60,7 @@ public class Drivebase extends SubsystemBase {
     resetEncoders();
 
     odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
-    prevVelocity = new Vector2d();
+    curVelocity = new Vector2d();
     poseAcceleration = new Vector2d();
 
     accelerometer = new BuiltInAccelerometer();

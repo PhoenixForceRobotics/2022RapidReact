@@ -21,7 +21,7 @@ public class RunDrivebase extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.set(driver.leftStick.getY(), driver.leftStick.getY());
+    drivebase.set(driver.leftStick.getY(), driver.rightStick.getY());
 
     isSpinningOut =
         drivebase.getAccelerometerAcceleration().magnitude() + DriveConstants.MAX_ACCELERATION_ERROR
