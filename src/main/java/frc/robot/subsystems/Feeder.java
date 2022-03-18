@@ -7,28 +7,21 @@ import frc.robot.utils.OI;
 
 public class Feeder extends SubsystemBase {
 
-  public Motor belt_motor1;
+  public Motor beltMotor;
   public Motor outakeL;
   public Motor toShoot;
   public OI oi;
 
   public Feeder(OI oi) {
-    belt_motor1 = new Motor(4, MotorType.kBrushless, true, 40);
-    outakeL = new Motor(2, MotorType.kBrushless, true, 40);
+    beltMotor = new Motor(5, MotorType.kBrushless, true, 40);
+    outakeL = new Motor(4, MotorType.kBrushless, true, 40);
     toShoot = new Motor(3, MotorType.kBrushless, true, 40);
     this.oi = oi;
   }
 
-  public void RunFeeder(double beltSpeed) {
-    belt_motor1.set(beltSpeed);
+  public void runFeeder(double beltSpeed) {
+    beltMotor.set(beltSpeed);
     outakeL.set(beltSpeed);
     toShoot.set(beltSpeed);
-  }
-
-  public void SetFeeder() {
-    if (oi.driverController.triggers.getRight() > 0) {
-      RunFeeder(oi.driverController.triggers.getRight());
-    } else {
-    }
   }
 }

@@ -7,6 +7,8 @@
 
 package frc.robot.utils;
 
+import frc.robot.Robot;
+import frc.robot.commands.RunFeeder;
 import frc.robot.utils.controllers.BobXboxController;
 
 /**
@@ -26,6 +28,8 @@ public class OI {
     // drivebase commands
 
     /// Operator:
+    operatorController.rightTriggerButton.whenPressed(new RunFeeder(Robot.feeder, true));
+    operatorController.rightTriggerButton.whenReleased(new RunFeeder(Robot.feeder, false));
   }
 }
 
