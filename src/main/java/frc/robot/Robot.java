@@ -39,9 +39,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    oi = new OI();
     feeder = new Feeder();
     intakesystem = new Intakesystem();
+
+    oi = new OI();
 
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
