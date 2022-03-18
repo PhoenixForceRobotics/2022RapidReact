@@ -5,8 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.Hood.FlywheelHoodSequence;
@@ -14,6 +12,7 @@ import frc.robot.commands.Turn.FlywheelTurn;
 import frc.robot.commands.Turn.FlywheelTurnReset;
 import frc.robot.commands.Turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.Intakesystem;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
 import frc.robot.utils.PID;
@@ -28,14 +27,18 @@ import frc.robot.utils.PID;
  * project.
  */
 public class Robot extends TimedRobot {
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // private static final String kDefaultAuto = "Default";
+  // private static final String kCustomAuto = "My Auto";
+  // private String m_autoSelected;
+  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  // public static Climb climb;
+  // public static PneumaticsControlModule pneumaticsControlModule;
+  // public static Compressor compressor;
+  // public static PowerDistribution powerDistribution;
+  public static Intakesystem intakesystem;
+  public static OI oi;
 
   public static Flywheel flywheel;
-
-  public static OI oi;
 
   public static PID pid;
 
@@ -53,10 +56,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-    flywheel = new Flywheel();
 
     // Alex PID edition
 
@@ -79,6 +78,16 @@ public class Robot extends TimedRobot {
 
   public static void addFlywheelPID() {
     flywheelPID.schedule();
+    oi = new OI();
+    intakesystem = new Intakesystem();
+
+    // climb = new Climb();
+    // pneumaticsControlModule = new PneumaticsControlModule(0);
+    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    // powerDistribution = new PowerDistribution();
+
+    // pneumaticsControlModule.clearAllStickyFaults();
+    // powerDistribution.clearStickyFaults();
   }
 
   public static void addFlywheelHood() {
@@ -97,13 +106,9 @@ public class Robot extends TimedRobot {
    * and
    * SmartDashboard integrated updating.
    */
-  public static void clearScheduler() {
-    CommandScheduler.getInstance().cancelAll();
-  }
-
-
   @Override
   public void robotPeriodic() {
+    CommandScheduler.getInstance().run();
   }
 
   /**
@@ -124,42 +129,19 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {
-    
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-    CommandScheduler.getInstance().run();
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
-  }
+  public void autonomousPeriodic() {}
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {
-    CommandScheduler.getInstance().registerSubsystem(flywheel);
-    addFlywheelHood();
-    addFlywheelTurn();
-    addFlywheelPID();
-  }
+  public void teleopInit() {}
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {
-    CommandScheduler.getInstance().run();
-  }
+  public void teleopPeriodic() {}
 
   /** This function is called once when the robot is disabled. */
   @Override
@@ -168,9 +150,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically when disabled. */
   @Override
-  public void disabledPeriodic() {
-  }
-
+  public void disabledPeriodic() {}
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {

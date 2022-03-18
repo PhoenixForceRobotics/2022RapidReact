@@ -1,100 +1,74 @@
 package frc.robot.utils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
-
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.SparkMaxRelativeEncoder.Type;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class SparkMotorGroup extends MotorControllerGroup {
 
-    private CANSparkMax leader;
-    private CANSparkMax[] followers;
-    private RelativeEncoder encoder;
+  private CANSparkMax leader;
+  private CANSparkMax[] followers;
+  private RelativeEncoder encoder;
 
-    public SparkMotorGroup(boolean isInverted, CANSparkMax leader, CANSparkMax... followers) {
-        super(leader, followers);
-        this.leader = leader;
-        this.followers = followers;
+  public SparkMotorGroup(boolean isInverted, CANSparkMax leader, CANSparkMax... followers) {
+    super(leader, followers);
+    this.leader = leader;
+    this.followers = followers;
 
-        ArrayList<CANSparkMax> motorArrayList = new ArrayList<CANSparkMax>();
-        
-        motorArrayList.add(leader);
-        Collections.addAll(motorArrayList, followers);
-
-        // Set settings for followers
-        for(CANSparkMax motor : this.followers) {
-            motor.follow(leader);
-        }
-        
-        this.leader.setInverted(isInverted);
-        encoder = this.leader.getEncoder(Type.kHallSensor, 42);
-    }
-    
-    @Override
-    public void set(double percentage) {
-        leader.set(percentage);
+    // Set settings for followers
+    for (CANSparkMax motor : this.followers) {
+      motor.follow(leader);
     }
 
-    public void setVoltage(double voltage)
-    {
-        leader.setVoltage(voltage);
-    }
+    this.leader.setInverted(isInverted);
+    encoder = this.leader.getEncoder(Type.kHallSensor, 42);
+  }
 
-    @Override
-    public void stopMotor() {
-        leader.stopMotor();
-    }
+  @Override
+  public void set(double percentage) {
+    leader.set(percentage);
+  }
 
-    public void setPID(PIDValues pidValues, double minOutput, double maxOutput)
-    {
-        SparkMaxPIDController pidController = leader.getPIDController();
-        pidController.setP(pidValues.getP());
-        pidController.setI(pidValues.getI());
-        pidController.setD(pidValues.getD());
-        pidController.setFF(pidValues.getFF());
-        pidController.setOutputRange(minOutput, maxOutput);
-    }
-    
-    public void setPosition(double position)
-    {
-        encoder.setPosition(position);
-    }
+  public void setVoltage(double voltage) {
+    leader.setVoltage(voltage);
+  }
 
-    public void setRotationSetpoint(double rotations) 
-    {
-        encoder.setPosition(rotations);
-    }
+  @Override
+  public void stopMotor() {
+    leader.stopMotor();
+  }
 
-    public void setDistanceConversion(double factor)
-    {
-        encoder.setPositionConversionFactor(factor);
-    }
-    
-    public void setVelocityConversion(double factor)
-    {
-        encoder.setVelocityConversionFactor(factor);
-    }
+  public void setPID(PIDValues pidValues, double minOutput, double maxOutput) {
+    SparkMaxPIDController pidController = leader.getPIDController();
+    pidController.setP(pidValues.getP());
+    pidController.setI(pidValues.getI());
+    pidController.setD(pidValues.getD());
+    pidController.setFF(pidValues.getFF());
+    pidController.setOutputRange(minOutput, maxOutput);
+  }
 
-    public double getPosition()
-    {
-        return encoder.getPosition();
+  public void setCoast() {
+    leader.setIdleMode(IdleMode.kCoast);
+    for (CANSparkMax motor : followers) {
+      motor.setIdleMode(IdleMode.kCoast);
     }
-    
-    public double getVelocity()
-    {
-        return encoder.getVelocity();
-    }
+  }
 
-    public CANSparkMax getLeader() {
-        return leader;
+  public void setBrake() {
+    leader.setIdleMode(IdleMode.kBrake);
+    for (CANSparkMax motor : followers) {
+      motor.setIdleMode(IdleMode.kBrake);
     }
+  }
 
-    public RelativeEncoder getEncoder() {
-        return encoder;
-    }
+  public CANSparkMax getLeader() {
+    return leader;
+  }
+
+  public RelativeEncoder getEncoder() {
+    return encoder;
+  }
 }

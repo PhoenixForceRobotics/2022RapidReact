@@ -1,28 +1,9 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "SPARK MAX [7]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/LiveWindow/Flywheel": "Subsystem",
-      "/LiveWindow/PID": "Subsystem",
-      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
-      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
-      "/SmartDashboard/Auto choices": "String Chooser"
-    },
-    "windows": {
-      "/LiveWindow/PID": {
-        "window": {
-          "visible": true
-        }
-      }
+      "/LiveWindow/Drivebase": "Subsystem",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     }
   }
 }
