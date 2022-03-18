@@ -8,7 +8,12 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
+<<<<<<< HEAD
 import frc.robot.commands.RunFeeder;
+=======
+import frc.robot.commands.intakeWheelMove;
+import frc.robot.commands.pistoneMove;
+>>>>>>> ea50b33f93a89edae35db9b8b7f83edaf5822da5
 import frc.robot.utils.controllers.BobXboxController;
 
 /**
@@ -30,6 +35,9 @@ public class OI {
     /// Operator:
     operatorController.rightTriggerButton.whenPressed(new RunFeeder(Robot.feeder, true));
     operatorController.rightTriggerButton.whenReleased(new RunFeeder(Robot.feeder, false));
+    operatorController.yButton.whenPressed(new pistoneMove(Robot.intakesystem));
+    operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
+    operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
   }
 }
 
