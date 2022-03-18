@@ -5,14 +5,17 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.utils;
 
-import frc.controllers.BobXboxController;
+import frc.robot.Robot;
 import frc.robot.commands.climberautomated.ActivateNextSequence;
 import frc.robot.commands.climberautomated.ClimbSeqAvaliable;
 import frc.robot.commands.climberautomated.DeactivateNextSequence;
 import frc.robot.commands.climbermanual.ExtendPiston;
 import frc.robot.commands.climbermanual.RetractPiston;
+import frc.robot.commands.intakeWheelMove;
+import frc.robot.commands.pistoneMove;
+import frc.robot.utils.controllers.BobXboxController;
 
 public class OI {
 
@@ -23,9 +26,6 @@ public class OI {
     driverController = new BobXboxController(0, 0.11, 0.11);
     operatorController = new BobXboxController(1, 0.11, 0.11);
 
-    operatorController.aButton.whenPressed(new RetractPiston(Robot.climber));
-    operatorController.yButton.whenPressed(new ExtendPiston(Robot.climber));
-
     operatorController.Dpad.Left.whenPressed(new ClimbSeqAvaliable(Robot.climberAvaliable));
 
     operatorController.Dpad.Right.whenPressed(new ActivateNextSequence(Robot.climber));
@@ -33,6 +33,10 @@ public class OI {
 
     operatorController.Dpad.Up.whenPressed(new ExtendPiston(Robot.climber));
     operatorController.Dpad.Down.whenPressed(new RetractPiston(Robot.climber));
+    /// Operator:
+    operatorController.yButton.whenPressed(new pistoneMove(Robot.intakesystem));
+    operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
+    operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
   }
 }
 

@@ -1,0 +1,14 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Climber": "Subsystem",
+      "/LiveWindow/ClimberAvaliable": "Subsystem",
+      "/LiveWindow/Drivebase": "Subsystem",
+      "/LiveWindow/Intakesystem": "Subsystem",
+      "/LiveWindow/PID": "Subsystem",
+      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+    }
+  }
+}

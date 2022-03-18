@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.util.Constants;
+import frc.robot.utils.Constants;
 
 public class Climber extends SubsystemBase {
 
@@ -28,8 +28,8 @@ public class Climber extends SubsystemBase {
     pistonRaiser =
         new DoubleSolenoid(
             PneumaticsModuleType.CTREPCM,
-            Constants.PneumaticsMap.Climber.SOLENOID_LEFT_FORWARD,
-            Constants.PneumaticsMap.Climber.SOLENOID_LEFT_BACKWARD);
+            Constants.PneumaticsMap.CLIMBER_FORWARD,
+            Constants.PneumaticsMap.CLIMBER_BACKWARD);
 
     delay = new Timer();
   }

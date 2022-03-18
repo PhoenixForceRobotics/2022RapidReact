@@ -8,7 +8,8 @@ public class ClimberAvaliable extends SubsystemBase {
 
   boolean ClimberSeqAvailable = true;
 
-  public ClimberAvaliable() {}
+  public ClimberAvaliable() {
+  }
 
   public void setClimberSeqAvaliable(boolean value) {
     ClimberSeqAvailable = value;
