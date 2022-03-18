@@ -1,104 +1,167 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
+import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.drive.Vector2d;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.utils.Constants;
-import frc.robot.utils.Motor;
 import frc.robot.utils.SparkMotorGroup;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Drivebase extends SubsystemBase {
-  // Create Motor Data Fields
-  RelativeEncoder leftMotorEncoder;
-  RelativeEncoder rightMotorEncoder;
 
-  double Multiplier = 1;
+  private SparkMotorGroup left;
+  private SparkMotorGroup right;
 
-  private SparkMotorGroup leftMotors;
-  private SparkMotorGroup rightMotors;
+  private RelativeEncoder leftEncoder;
+  private RelativeEncoder rightEncoder;
 
-  // Drivebase constructor
+  private Gyro gyro = new ADXRS450_Gyro();
+
+  private DifferentialDrive differentialDrive;
+  private DifferentialDriveOdometry odometry;
+  private Translation2d prevPosition;
+  private Vector2d prevVelocity;
+  private Vector2d curVelocity;
+  private Vector2d poseAcceleration;
+
+  private BuiltInAccelerometer accelerometer;
+  private LinearFilter xAccelerationLinearFilter;
+  private LinearFilter yAccelerationLinearFilter;
+  private double xAcceleration;
+  private double yAcceleration;
+  private Vector2d accelerometerAcceleration;
+
   public Drivebase() {
-    // Set the motor instances to an object
-    // The parameters for a motor are (portNumber, MotorType, reversedOrNotBooleam,
-    // voltageInput)
-    // MotorType for our robot is kBrushless, and the voltage input is 40)
-    // Set the Motors idle mode to coast.
-    // to do so, use "motorName.setIdleMode(Idlemode.kCoast);"
+    left =
+        new SparkMotorGroup(
+            true,
+            new CANSparkMax(2, MotorType.kBrushless),
+            new CANSparkMax(14, MotorType.kBrushless));
 
-    leftMotors =
+    right =
         new SparkMotorGroup(
             false,
-            new Motor(
-                Constants.MotorMap.Drivebase.LEFT_1,
-                MotorType.kBrushless,
-                Constants.MotorMap.Drivebase.LEFT1_REVERSED,
-                40),
-            new Motor(
-                Constants.MotorMap.Drivebase.LEFT_2,
-                MotorType.kBrushless,
-                Constants.MotorMap.Drivebase.LEFT2_REVERSED,
-                40));
+            new CANSparkMax(4, MotorType.kBrushless),
+            new CANSparkMax(15, MotorType.kBrushless));
 
-    rightMotors =
-        new SparkMotorGroup(
-            false,
-            new Motor(
-                Constants.MotorMap.Drivebase.RIGHT_1,
-                MotorType.kBrushless,
-                Constants.MotorMap.Drivebase.RIGHT1_REVERSED,
-                40),
-            new Motor(
-                Constants.MotorMap.Drivebase.RIGHT_2,
-                MotorType.kBrushless,
-                Constants.MotorMap.Drivebase.RIGHT2_REVERSED,
-                40));
+    leftEncoder = left.getEncoder();
+    rightEncoder = right.getEncoder();
 
-    leftMotorEncoder = leftMotors.getEncoder();
-    leftMotorEncoder = rightMotors.getEncoder();
-    motorCoast();
+    setConversion(12); // TODO: Distance in meters
+    resetEncoders();
+
+    odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
+    prevVelocity = new Vector2d();
+    poseAcceleration = new Vector2d();
+
+    accelerometer = new BuiltInAccelerometer();
+    xAccelerationLinearFilter = LinearFilter.singlePoleIIR(0.2, 0.02);
+    yAccelerationLinearFilter = LinearFilter.singlePoleIIR(0.2, 0.02);
   }
 
-  public void leftMotorSpeed(double speed) {
-    leftMotors.set(speed);
+  @Override
+  public void periodic() {
+    // Previous odometry
+    prevPosition = odometry.getPoseMeters().getTranslation();
+
+    // Update odometry
+    odometry.update(gyro.getRotation2d(), leftEncoder.getPosition(), rightEncoder.getPosition());
+
+    // Calculate velocity
+    double vX = (odometry.getPoseMeters().getTranslation().getX() - prevPosition.getX()) / 0.02;
+    double vY = (odometry.getPoseMeters().getTranslation().getY() - prevPosition.getY()) / 0.02;
+
+    // Previous velocity
+    prevVelocity = curVelocity;
+
+    // Calculate velocity
+    curVelocity = new Vector2d(vX, vY);
+
+    // get acceleration vector
+    double aX = (curVelocity.x - prevVelocity.x) / 0.02;
+    double aY = (curVelocity.y - prevVelocity.y) / 0.02;
+
+    poseAcceleration = new Vector2d(aX, aY);
+
+    xAcceleration = xAccelerationLinearFilter.calculate(accelerometer.getX());
+    yAcceleration = yAccelerationLinearFilter.calculate(accelerometer.getY());
+    accelerometerAcceleration = new Vector2d(xAcceleration, yAcceleration); // Pythagorean!
+
+    // if wheel.acceleration > accelerometer velocity + (arbritary constant to prevent small amounts
+    // of slipage from causing any issue)
+
   }
 
-  public void rightMotorSpeed(double speed) {
-    rightMotors.set(speed);
+  public void set(double leftPercentage, double rightPercentage) {
+    left.set(leftPercentage);
+    right.set(rightPercentage);
   }
 
-  public Double getMotorSpeed() {
-    return Collections.max(
-        new ArrayList<Double>(Arrays.asList(leftMotors.get(), rightMotors.get())));
+  public void setVoltage(double leftVoltage, double rightVoltage) {
+    left.setVoltage(leftVoltage);
+    right.setVoltage(rightVoltage);
   }
 
-  // Create a method that sets the motors speeds based on an input
-  // All the ones on the left should have the same speed
-  // All the ones on the right should have the same speed
-  // to do so, use "motorName.set(motorSpeed)"
-
-  public void motorCoast() {
-    leftMotors.setCoast();
-    rightMotors.setCoast();
+  public void tankDrive(double leftStick, double rightStick, int stickPower) {
+    left.set(Math.pow(leftStick, stickPower));
+    right.set(Math.pow(rightStick, stickPower));
   }
 
-  public void motorBreak() {
-    leftMotors.setBrake();
-    rightMotors.setBrake();
+  public void setConversion(double wheelCircumference) {
+    leftEncoder.setPositionConversionFactor(wheelCircumference);
+    leftEncoder.setVelocityConversionFactor(wheelCircumference / 60);
+
+    rightEncoder.setPositionConversionFactor(wheelCircumference);
+    rightEncoder.setVelocityConversionFactor(wheelCircumference / 60);
   }
 
-  public void shift() {
-    if (Multiplier == Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed) {
-      Multiplier = Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed2;
-    } else {
-      Multiplier = Constants.SubsystemSpeeds.DrivebaseSpeed.MotorSpeed;
-    }
+  public Pose2d getPose() {
+    return odometry.getPoseMeters();
   }
 
-  public double getMultiplier() {
-    return Multiplier;
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds(leftEncoder.getVelocity(), rightEncoder.getVelocity());
+  }
+
+  public double getHeading() {
+    return gyro.getRotation2d().getDegrees();
+  }
+
+  public void resetEncoders() {
+    leftEncoder.setPosition(0);
+    rightEncoder.setPosition(0);
+  }
+
+  public SparkMotorGroup getLeft() {
+    return left;
+  }
+
+  public SparkMotorGroup getRight() {
+    return right;
+  }
+
+  public DifferentialDrive getDifferentialDrive() {
+    return differentialDrive;
+  }
+
+  public BuiltInAccelerometer getAccelerometer() {
+    return accelerometer;
+  }
+
+  public Vector2d getPoseAcceleration() {
+    return poseAcceleration;
+  }
+
+  public Vector2d getAccelerometerAcceleration() {
+    return accelerometerAcceleration;
   }
 }

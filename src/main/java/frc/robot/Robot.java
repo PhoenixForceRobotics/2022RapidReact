@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Intakesystem;
 import frc.robot.utils.OI;
 
 /**
@@ -25,7 +26,7 @@ public class Robot extends TimedRobot {
   // public static PneumaticsControlModule pneumaticsControlModule;
   // public static Compressor compressor;
   // public static PowerDistribution powerDistribution;
-  public static Drivebase drivebase;
+  public static Intakesystem intakesystem;
   public static OI oi;
   public static Feeder feeder;
   /**
@@ -35,8 +36,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI();
-    drivebase = new Drivebase();
     feeder = new Feeder(oi);
+    intakesystem = new Intakesystem();
 
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
