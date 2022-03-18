@@ -9,9 +9,8 @@ public class RunFeedToShooter extends CommandBase {
 
   // add requirments for up 90
 
-  public RunFeedToShooter(Feeder feeder, double m_speed) {
-    addRequirements(feeder);
-    this.feeder = feeder;
+  public RunFeedToShooter(Feeder m_feeder, double m_speed) {
+    feeder = m_feeder;
     speed = m_speed;
   }
 

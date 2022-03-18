@@ -10,7 +10,6 @@ public class RunOutRight extends CommandBase {
   // add requirments for up 90
 
   public RunOutRight(Feeder m_feeder, double m_speed) {
-    addRequirements(feeder);
     feeder = m_feeder;
     speed = m_speed;
   }
