@@ -9,7 +9,7 @@ package frc.robot;
 
 import frc.controllers.BobXboxController;
 import frc.robot.commands.climberautomated.ActivateNextSequence;
-import frc.robot.commands.climberautomated.ClimberSequence;
+import frc.robot.commands.climberautomated.ClimbSeqAvaliable;
 import frc.robot.commands.climberautomated.DeactivateNextSequence;
 import frc.robot.commands.climbermanual.ExtendPiston;
 import frc.robot.commands.climbermanual.RetractPiston;
@@ -26,10 +26,13 @@ public class OI {
     operatorController.aButton.whenPressed(new RetractPiston(Robot.climber));
     operatorController.yButton.whenPressed(new ExtendPiston(Robot.climber));
 
-    operatorController.startButton.whenPressed(new ClimberSequence());
+    operatorController.Dpad.Left.whenPressed(new ClimbSeqAvaliable(Robot.climberAvaliable));
 
-    operatorController.xButton.whenPressed(new ActivateNextSequence(Robot.climber));
-    operatorController.xButton.whenReleased(new DeactivateNextSequence(Robot.climber));
+    operatorController.Dpad.Right.whenPressed(new ActivateNextSequence(Robot.climber));
+    operatorController.Dpad.Right.whenReleased(new DeactivateNextSequence(Robot.climber));
+
+    operatorController.Dpad.Up.whenPressed(new ExtendPiston(Robot.climber));
+    operatorController.Dpad.Down.whenPressed(new RetractPiston(Robot.climber));
   }
 }
 

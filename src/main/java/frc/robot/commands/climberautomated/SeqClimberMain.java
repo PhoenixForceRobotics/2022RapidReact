@@ -3,8 +3,8 @@ package frc.robot.commands.climberautomated;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 
-public class ClimberSequence extends SequentialCommandGroup {
-  public ClimberSequence() {
+public class SeqClimberMain extends SequentialCommandGroup {
+  public SeqClimberMain() {
     System.out.println("");
     System.out.println("Climber Sequence has been called");
     addCommands(

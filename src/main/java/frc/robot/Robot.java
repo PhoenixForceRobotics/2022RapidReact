@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.ClimberAvaliable;
 import frc.robot.subsystems.PID;
 
 /**
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
   public static Climber climber;
   public static OI oi;
+  public static ClimberAvaliable climberAvaliable;
   // public static IntakeSystem intakeSystem;
   public static PID pid;
 
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
     // drivebase = new Drivebase();
     climber = new Climber();
+    climberAvaliable = new ClimberAvaliable();
     pid = new PID();
     // intakeSystem = new IntakeSystem();
     oi = new OI();

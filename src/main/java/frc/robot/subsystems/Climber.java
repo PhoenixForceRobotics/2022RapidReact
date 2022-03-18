@@ -14,6 +14,8 @@ public class Climber extends SubsystemBase {
 
   boolean activateNextSequence = false;
 
+  boolean ClimberSeqAvailable = true;
+
   DoubleSolenoid pistonRaiser;
 
   DoubleSolenoid.Value isPiston;
