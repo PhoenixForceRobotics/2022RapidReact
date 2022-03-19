@@ -4,16 +4,18 @@
 
 package frc.robot;
 
+import edu.wpi.first.util.datalog.IntegerArrayLogEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
+import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.turn.FlywheelTurnSequence;
+import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Intakesystem;
+import frc.robot.subsystems.Intake;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
-import frc.robot.utils.PID;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,69 +23,42 @@ import frc.robot.utils.PID;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-  // private static final String kDefaultAuto = "Default";
-  // private static final String kCustomAuto = "My Auto";
-  // private String m_autoSelected;
-  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  // public static Climb climb;
-  // public static PneumaticsControlModule pneumaticsControlModule;
-  // public static Compressor compressor;
-  // public static PowerDistribution powerDistribution;
-  public static Intakesystem intakesystem;
-  public static OI oi;
-
+public class Robot extends TimedRobot 
+{
+  // Declare "Subsystems" here
+  public static Intake intake;
+  public static Drivebase drivebase;
   public static Flywheel flywheel;
 
-  public static PID pid;
 
+  // Declare "OI" here
+  public static OI oi;
+
+  // Declare "Commands" here
   public static FlywheelPID flywheelPID;
-  // public static FlywheelTurn flywheelTurn;
   public static FlywheelTurnSequence flywheelTurnSequence;
-  // public static FlywheelHood flywheelHood;
-  // public static FlywheelHoodReset flywheelHoodReset;
   public static FlywheelHoodSequence flywheelHoodSequence;
-
+  public static RunDrivebase runDrivebase;
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+
   @Override
   public void robotInit() {
+    drivebase = new Drivebase();
+    flywheel = new Flywheel();
+    intake = new Intake();
 
-    // Alex PID edition
+    oi = new OI();
 
-    pid = new PID();
+    runDrivebase = new RunDrivebase(drivebase, oi);
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
-    // flywheelTurn = new FlywheelTurn(flywheel);
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
-    // flywheelHoodReset = new FlywheelHoodReset(flywheel);
-    // flywheelHood = new FlywheelHood(flywheel);
     flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
 
-    oi = new OI();
-  }
-
-  public static void addFlywheelTurn() {
-    flywheelTurnSequence.schedule();
-  }
-
-  public static void addFlywheelPID() {
-    flywheelPID.schedule();
-    oi = new OI();
-    intakesystem = new Intakesystem();
-
-    // climb = new Climb();
-    // pneumaticsControlModule = new PneumaticsControlModule(0);
-    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    // powerDistribution = new PowerDistribution();
-
-    // pneumaticsControlModule.clearAllStickyFaults();
-    // powerDistribution.clearStickyFaults();
-  }
-
-  public static void addFlywheelHood() {
-    flywheelHoodSequence.schedule();
+    
   }
 
   /**
@@ -117,7 +92,13 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    CommandScheduler.getInstance().cancelAll();
+    runDrivebase.schedule();
+    flywheelPID.schedule();
+    flywheelTurnSequence.schedule();
+    flywheelHoodSequence.schedule();
+  }
 
   /** This function is called periodically during operator control. */
   @Override

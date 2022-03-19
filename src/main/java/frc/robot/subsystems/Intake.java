@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Motor;
 
-public class Intakesystem extends SubsystemBase {
+public class Intake extends SubsystemBase {
 
   // variable decleration
 
@@ -17,7 +17,7 @@ public class Intakesystem extends SubsystemBase {
   private static DoubleSolenoid piston1, piston2;
   private static RelativeEncoder rotatormotor2Encoder, wheelmotorEncoder;
 
-  public Intakesystem() {
+  public Intake() {
 
     // motor setting
 

@@ -20,8 +20,14 @@ public class RunDrivebase extends CommandBase {
   }
 
   @Override
+  public void initialize() {
+    System.out.println("Starting Drivebase!\n");
+  }
+
+  @Override
   public void execute() {
     drivebase.set(driver.getLeftY(), driver.getRightY());
+    System.out.println("Running Drivebase: " + drivebase.getLeftEncoder().getVelocity() + ", " + drivebase.getRightEncoder().getVelocity());
 
     isSpinningOut =
         drivebase.getAccelerometerAcceleration().magnitude() + DriveConstants.MAX_ACCELERATION_ERROR
