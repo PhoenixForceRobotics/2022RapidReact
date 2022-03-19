@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.Constants.DriveConstants;
 import frc.robot.utils.SparkMotorGroup;
 
 public class Drivebase extends SubsystemBase {
@@ -44,14 +45,14 @@ public class Drivebase extends SubsystemBase {
     left =
         new SparkMotorGroup(
             true,
-            new CANSparkMax(2, MotorType.kBrushless),
-            new CANSparkMax(14, MotorType.kBrushless));
+            new CANSparkMax(DriveConstants.LEFT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.LEFT_2, MotorType.kBrushless));
 
     right =
         new SparkMotorGroup(
             false,
-            new CANSparkMax(4, MotorType.kBrushless),
-            new CANSparkMax(15, MotorType.kBrushless));
+            new CANSparkMax(DriveConstants.RIGHT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.RIGHT_2, MotorType.kBrushless));
 
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();
@@ -60,7 +61,7 @@ public class Drivebase extends SubsystemBase {
     resetEncoders();
 
     odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
-    prevVelocity = new Vector2d();
+    curVelocity = new Vector2d();
     poseAcceleration = new Vector2d();
 
     accelerometer = new BuiltInAccelerometer();
@@ -151,6 +152,14 @@ public class Drivebase extends SubsystemBase {
 
   public DifferentialDrive getDifferentialDrive() {
     return differentialDrive;
+  }
+
+  public RelativeEncoder getLeftEncoder() {
+    return leftEncoder;
+  }
+
+  public RelativeEncoder getRightEncoder() {
+    return rightEncoder;
   }
 
   public BuiltInAccelerometer getAccelerometer() {
