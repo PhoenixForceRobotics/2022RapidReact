@@ -9,15 +9,15 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Motor;
 
-public class Intake extends SubsystemBase {
+public class IntakeMotors extends SubsystemBase {
 
   // variable decleration
 
   public static Motor rotatormotor2, wheelmotor;
-  private static DoubleSolenoid piston1, piston2;
+  private static DoubleSolenoid intakearm;
   private static RelativeEncoder rotatormotor2Encoder, wheelmotorEncoder;
 
-  public Intake() {
+  public IntakeMotors() {
 
     // motor setting
 
@@ -31,8 +31,7 @@ public class Intake extends SubsystemBase {
 
     // piston setting
 
-    piston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
-    piston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+    intakearm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
   }
 
   // rotator motor setter/getters
@@ -91,22 +90,12 @@ public class Intake extends SubsystemBase {
 
   // piston1 functions
 
-  public void setPiston1Forward() {
-    piston1.set(Value.kForward);
+  public void setintakearmForward() {
+    intakearm.set(Value.kForward);
   }
 
-  public void setPiston1Reverse() {
-    piston1.set(Value.kReverse);
-  }
-
-  // piston1 functions
-
-  public void setPiston2Forward() {
-    piston2.set(Value.kForward);
-  }
-
-  public void setPiston2Reverse() {
-    piston2.set(Value.kReverse);
+  public void setintakearmReverse() {
+    intakearm.set(Value.kReverse);
   }
 
   public boolean pissonntoggle = true;

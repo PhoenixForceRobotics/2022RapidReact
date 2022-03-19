@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
+import frc.robot.commands.intakeWheelMove;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakePistons;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
 
@@ -25,7 +27,8 @@ import frc.robot.utils.OI;
  */
 public class Robot extends TimedRobot {
   // Declare "Subsystems" here
-  public static Intake intake;
+  public static IntakePistons intakepistons;
+  public static IntakeMotors intakemotors;
   public static Drivebase drivebase;
   public static Flywheel flywheel;
   public static Climber climber;
@@ -38,6 +41,7 @@ public class Robot extends TimedRobot {
   public static FlywheelTurnSequence flywheelTurnSequence;
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
+  public static intakeWheelMove intakewheelmove;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -47,7 +51,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drivebase = new Drivebase();
     flywheel = new Flywheel();
-    intake = new Intake();
+    intakepistons = new IntakePistons();
+    intakemotors = new IntakeMotors();
     climber = new Climber();
     oi = new OI();
 
@@ -55,6 +60,7 @@ public class Robot extends TimedRobot {
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
+    intakewheelmove = new intakeWheelMove(Robot.intakemotors, Robot.oi);
   }
 
   /**
@@ -94,6 +100,7 @@ public class Robot extends TimedRobot {
     flywheelPID.schedule();
     flywheelTurnSequence.schedule();
     flywheelHoodSequence.schedule();
+    intakewheelmove.schedule();
   }
 
   /** This function is called periodically during operator control. */

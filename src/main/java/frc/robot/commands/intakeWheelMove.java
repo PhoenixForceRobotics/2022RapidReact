@@ -1,19 +1,21 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeMotors;
+import frc.robot.utils.OI;
+import frc.robot.utils.PFRController;
 
 public class intakeWheelMove extends CommandBase {
-  private Intake intakesystem;
-  private XboxController driverController;
+  private IntakeMotors intakemotors;
+  private PFRController operator;
 
   // add requirments for up 90
 
-  public intakeWheelMove(Intake intakesystem) {
-    addRequirements(intakesystem);
-    this.intakesystem = intakesystem;
-    intakesystem.WheelMotorBrake();
+  public intakeWheelMove(IntakeMotors intakemotors, OI oi) {
+    addRequirements(intakemotors);
+    this.intakemotors = intakemotors;
+    intakemotors.WheelMotorBrake();
+    operator = oi.operatorController;
   }
 
   // Begin up 90 command
@@ -28,15 +30,11 @@ public class intakeWheelMove extends CommandBase {
   @Override
   public void execute() {
     System.out.println("Wheelmotor initilized");
-    if ((driverController.getRightTriggerAxis() > 0)
-        || (driverController.getLeftTriggerAxis() > 0)) {
-      if (driverController.getRightTriggerAxis() > driverController.getLeftTriggerAxis()) {
-        intakesystem.setWheelmotorSpeed(driverController.getRightTriggerAxis());
-        intakesystem.setRotatormotor2Speed(driverController.getRightTriggerAxis());
-      } else {
-        intakesystem.setWheelmotorSpeed(driverController.getLeftTriggerAxis());
-        intakesystem.setRotatormotor2Speed(driverController.getLeftTriggerAxis());
-      }
+    if (operator.getLeftY() > 0.1) {
+      intakemotors.setWheelmotorSpeed(0.1);
+      intakemotors.setRotatormotor2Speed(0.1);
+    } else {
+      intakemotors.setRotatormotor2Speed(0);
     }
   }
 
