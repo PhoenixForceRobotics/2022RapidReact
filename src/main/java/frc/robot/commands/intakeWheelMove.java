@@ -2,15 +2,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intakesystem;
+import frc.robot.subsystems.Intake;
 
 public class intakeWheelMove extends CommandBase {
-  private Intakesystem intakesystem;
+  private Intake intakesystem;
   private XboxController driverController;
 
   // add requirments for up 90
 
-  public intakeWheelMove(Intakesystem intakesystem) {
+  public intakeWheelMove(Intake intakesystem) {
     addRequirements(intakesystem);
     this.intakesystem = intakesystem;
     intakesystem.WheelMotorBrake();

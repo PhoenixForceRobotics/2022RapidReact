@@ -1,14 +1,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intakesystem;
+import frc.robot.subsystems.Intake;
 
-public class pistoneMove extends CommandBase {
-  private Intakesystem intakesystem;
+public class PistonMove extends CommandBase {
+  private Intake intakesystem;
 
   // add requirments for up 90
 
-  public pistoneMove(Intakesystem intakesystem) {
+  public PistonMove(Intake intakesystem) {
     addRequirements(intakesystem);
     this.intakesystem = intakesystem;
   }

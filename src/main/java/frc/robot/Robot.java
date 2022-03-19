@@ -7,7 +7,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Intakesystem;
+import frc.robot.commands.FlywheelPID;
+import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.commands.feeder.RunOutake;
+import frc.robot.commands.hood.FlywheelHoodSequence;
+import frc.robot.commands.turn.FlywheelTurnSequence;
+import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.Intake;
+import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
 
 /**
@@ -20,17 +29,22 @@ import frc.robot.utils.OI;
  * project.
  */
 public class Robot extends TimedRobot {
-  // private static final String kDefaultAuto = "Default";
-  // private static final String kCustomAuto = "My Auto";
-  // private String m_autoSelected;
-  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  // public static Climb climb;
-  // public static PneumaticsControlModule pneumaticsControlModule;
-  // public static Compressor compressor;
-  // public static PowerDistribution powerDistribution;
-  public static Intakesystem intakesystem;
+  // Declare "Subsystems" here
+  public static Intake intake;
+  public static Drivebase drivebase;
+  public static Flywheel flywheel;
+  public static Climber climber;
+
+  // Declare "OI" here
   public static OI oi;
   public static Feeder feeder;
+
+  // Declare "Commands" here
+  public static FlywheelPID flywheelPID;
+  public static FlywheelTurnSequence flywheelTurnSequence;
+  public static FlywheelHoodSequence flywheelHoodSequence;
+  public static RunDrivebase runDrivebase;
+  public static RunOutake runOutake;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -40,9 +54,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     feeder = new Feeder();
-    intakesystem = new Intakesystem();
-
-    oi = new OI();
 
     // climb = new Climb();
     // pneumaticsControlModule = new PneumaticsControlModule(0);
@@ -51,6 +62,18 @@ public class Robot extends TimedRobot {
 
     // pneumaticsControlModule.clearAllStickyFaults();
     // powerDistribution.clearStickyFaults();
+    drivebase = new Drivebase();
+    flywheel = new Flywheel();
+    intake = new Intake();
+    climber = new Climber();
+    oi = new OI();
+
+
+    runOutake = new RunOutake(feeder, oi);
+    runDrivebase = new RunDrivebase(drivebase, oi);
+    flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
+    flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
+    flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
   }
 
   /**
@@ -98,6 +121,11 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    CommandScheduler.getInstance().cancelAll();
+    runDrivebase.schedule();
+    flywheelPID.schedule();
+    flywheelTurnSequence.schedule();
+    flywheelHoodSequence.schedule();
   }
 
   /** This function is called periodically during operator control. */
