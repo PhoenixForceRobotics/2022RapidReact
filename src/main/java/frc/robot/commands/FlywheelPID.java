@@ -48,7 +48,7 @@ public class FlywheelPID extends CommandBase {
     // }
     if (flywheel.getToggleFlyWheel()) {
       flywheel.setFlywheelPercent(.1);
-    } else if (!flywheel.getToggleFlyWheel()) {
+    } else {
       flywheel.setFlywheelPercent(0);
     }
   }
