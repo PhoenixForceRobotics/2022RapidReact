@@ -68,8 +68,8 @@ public class Constants {
   }
 
   public static final class ClimbConstants {
-      public static final int FORWARD_CHANNEL = 1;
-      public static final int REVERSE_CHANNEL = 0;
+    public static final int FORWARD_CHANNEL = 1;
+    public static final int REVERSE_CHANNEL = 0;
   }
 
   public static final class TurretConstants {

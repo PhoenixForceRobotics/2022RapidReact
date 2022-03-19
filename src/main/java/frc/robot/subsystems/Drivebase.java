@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.utils.SparkMotorGroup;
 import frc.robot.utils.Constants.DriveConstants;
+import frc.robot.utils.SparkMotorGroup;
 
 public class Drivebase extends SubsystemBase {
 
@@ -155,11 +155,11 @@ public class Drivebase extends SubsystemBase {
   }
 
   public RelativeEncoder getLeftEncoder() {
-      return leftEncoder;
+    return leftEncoder;
   }
 
   public RelativeEncoder getRightEncoder() {
-      return rightEncoder;
+    return rightEncoder;
   }
 
   public BuiltInAccelerometer getAccelerometer() {

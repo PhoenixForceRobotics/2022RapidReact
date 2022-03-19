@@ -44,7 +44,7 @@ public class PFRController extends XboxController {
   @Override
   public double getLeftY() {
     // Inverts the axis
-    return -super.getLeftY(); 
+    return -super.getLeftY();
   }
 
   @Override

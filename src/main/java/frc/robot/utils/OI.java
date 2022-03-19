@@ -9,9 +9,9 @@ package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.ToggleFlywheelPID;
-import frc.robot.commands.intakeWheelMove;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
+import frc.robot.commands.intakeWheelMove;
 import frc.robot.commands.turn.FlywheelTurnManual;
 
 /**

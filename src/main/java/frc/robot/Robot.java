@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.util.datalog.IntegerArrayLogEntry;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
@@ -24,8 +23,7 @@ import frc.robot.utils.OI;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot 
-{
+public class Robot extends TimedRobot {
   // Declare "Subsystems" here
   public static Intake intake;
   public static Drivebase drivebase;
@@ -40,12 +38,11 @@ public class Robot extends TimedRobot
   public static FlywheelTurnSequence flywheelTurnSequence;
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
-  
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-
   @Override
   public void robotInit() {
     drivebase = new Drivebase();
@@ -58,8 +55,6 @@ public class Robot extends TimedRobot
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
-
-    
   }
 
   /**
