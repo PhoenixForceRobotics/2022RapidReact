@@ -112,7 +112,9 @@ public class Drivebase extends SubsystemBase {
   }
 
   public void tankDrive(double leftStick, double rightStick) {
-    set(Math.pow(leftStick, DriveConstants.STICK_POWER), Math.pow(rightStick, DriveConstants.STICK_POWER));  
+    set(
+        Math.pow(leftStick, DriveConstants.STICK_POWER),
+        Math.pow(rightStick, DriveConstants.STICK_POWER));
   }
 
   public void setConversion(double wheelCircumference) {
