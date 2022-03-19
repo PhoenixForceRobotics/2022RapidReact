@@ -20,7 +20,7 @@ public class RunOutake extends CommandBase {
 
   @Override
   public void execute() {
-    //This is a comment
+
     //Checks which button is pressed
     if(operator.getLeftY() > 0.1){
       feeder.setTransporterTop(0.1);

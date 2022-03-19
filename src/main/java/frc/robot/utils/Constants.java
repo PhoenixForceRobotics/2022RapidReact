@@ -54,19 +54,18 @@ public class Constants {
   public static final class FeederConstants {
 
     // TODO: Change feeder gear ratio values when we have them!
-    public static final double RATIO_TRANSPORTER_TOP = 12;
-    public static final double RATIO_TRANSPORTER_BOTTOM = 12;
-    public static final double RATIO_OUTAKE = 12;
+    public static final double RATIO_TRANSPORTER_TOP = 4.333;
+    public static final double RATIO_TRANSPORTER_BOTTOM = 3.333;
+    public static final double RATIO_OUTAKE = 4.333;
 
-    // TODO: Change feeder reverse values to make all move ball toward shooter side
-    // of the robot on going forward
-    public static final int TRANSPORTER_TOP = 97;
+    // TODO: Change ports and change reverse values
+    public static final int TRANSPORTER_TOP = 60;
     public static final boolean TRANSPORTER_TOP_REVERSE = true;
 
-    public static final int TRANSPORTER_BOTTOM = 98;
+    public static final int TRANSPORTER_BOTTOM = 59;
     public static final boolean TRANSPORTER_BOTTOM_REVERSE = true;
 
-    public static final int OUTAKE = 99;
+    public static final int OUTAKE = 58;
     public static final boolean OUTAKE_REVERSE = true;
   }
 
