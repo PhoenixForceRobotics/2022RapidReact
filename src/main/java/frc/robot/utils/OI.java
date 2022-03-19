@@ -31,6 +31,7 @@ public class OI {
     operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
     operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
 
     /*
      * Example:

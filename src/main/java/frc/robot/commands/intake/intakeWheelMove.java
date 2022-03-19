@@ -31,6 +31,7 @@ public class intakeWheelMove extends CommandBase {
       intakemotors.setcollectormotor1Speed(0.1);
       intakemotors.setcollectormotor2Speed(0.1);
     } else {
+      intakemotors.setcollectormotor1Speed(0);
       intakemotors.setcollectormotor2Speed(0);
     }
   }

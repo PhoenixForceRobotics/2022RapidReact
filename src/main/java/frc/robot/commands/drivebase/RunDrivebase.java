@@ -26,7 +26,7 @@ public class RunDrivebase extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.set(driver.getLeftY(), driver.getRightY());
+    drivebase.tankDrive(-driver.getLeftY(), -driver.getRightY());
     System.out.println(
         "Running Drivebase: "
             + drivebase.getLeftEncoder().getVelocity()
