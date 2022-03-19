@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.Constants;
 
 public class IntakePistons extends SubsystemBase {
 
@@ -12,7 +13,11 @@ public class IntakePistons extends SubsystemBase {
   private static DoubleSolenoid intakearm;
 
   public IntakePistons() {
-    intakearm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
+    intakearm =
+        new DoubleSolenoid(
+            PneumaticsModuleType.CTREPCM,
+            Constants.IntakeConstants.INTAKE_PISTON_PORT_1,
+            Constants.IntakeConstants.INTAKE_PISTON_PORT_2);
   }
 
   // piston1 functions

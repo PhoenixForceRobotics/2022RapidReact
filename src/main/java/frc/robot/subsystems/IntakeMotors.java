@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.Constants;
 import frc.robot.utils.Motor;
 
 public class IntakeMotors extends SubsystemBase {
@@ -17,8 +18,10 @@ public class IntakeMotors extends SubsystemBase {
 
     // motor setting
 
-    collectormotor2 = new Motor(12, MotorType.kBrushless, true, 40);
-    collectormotor1 = new Motor(13, MotorType.kBrushless, true, 40);
+    collectormotor2 =
+        new Motor(Constants.IntakeConstants.INTAKE_WHEEL_PORT, MotorType.kBrushless, true, 40);
+    collectormotor1 =
+        new Motor(Constants.IntakeConstants.INTAKE_WHEEL_PORT, MotorType.kBrushless, true, 40);
 
     // motor encoder setting
 

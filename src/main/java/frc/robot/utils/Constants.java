@@ -134,4 +134,11 @@ public class Constants {
         386.0892; // force of earth's gravity at sea level in inches/second/second; it's
     // in inches to stay consistent with everything else
   }
+
+  public static final class IntakeConstants {
+    public static int INTAKE_WHEEL_PORT = 12;
+    public static int INTAKE_WHEEL_PORT_2 = 13;
+    public static int INTAKE_PISTON_PORT_1 = 4;
+    public static int INTAKE_PISTON_PORT_2 = 5;
+  }
 }
