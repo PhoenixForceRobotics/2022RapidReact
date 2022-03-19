@@ -44,16 +44,15 @@ public class Drivebase extends SubsystemBase {
   public Drivebase() {
     left =
         new SparkMotorGroup(
-            true,
+            DriveConstants.LEFT_REVERSE,
             new CANSparkMax(DriveConstants.LEFT_1, MotorType.kBrushless),
             new CANSparkMax(DriveConstants.LEFT_2, MotorType.kBrushless));
 
     right =
         new SparkMotorGroup(
-            false,
+            DriveConstants.RIGHT_REVERSE,
             new CANSparkMax(DriveConstants.RIGHT_1, MotorType.kBrushless),
             new CANSparkMax(DriveConstants.RIGHT_2, MotorType.kBrushless));
-
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();
 
@@ -112,9 +111,10 @@ public class Drivebase extends SubsystemBase {
     right.setVoltage(rightVoltage);
   }
 
-  public void tankDrive(double leftStick, double rightStick, int stickPower) {
-    left.set(Math.pow(leftStick, stickPower));
-    right.set(Math.pow(rightStick, stickPower));
+  public void tankDrive(double leftStick, double rightStick) {
+    set(
+        Math.pow(leftStick, DriveConstants.STICK_POWER),
+        Math.pow(rightStick, DriveConstants.STICK_POWER));
   }
 
   public void setConversion(double wheelCircumference) {
