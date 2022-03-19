@@ -8,6 +8,7 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
+import frc.robot.commands.IntakeWheelMove;
 import frc.robot.commands.ToggleFlywheelPID;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
@@ -31,6 +32,10 @@ public class OI {
     operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
     operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+<<<<<<< HEAD
+=======
+    operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
+>>>>>>> 41ff9b003cf06ab17a8a295d54711c1e24bb74a9
 
     /*
      * Example:

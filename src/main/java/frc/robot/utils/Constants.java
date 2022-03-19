@@ -22,13 +22,13 @@ import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstrai
 public class Constants {
   public static final class DriveConstants {
 
-    public static final int LEFT_1 = 1;
-    public static final int LEFT_2 = 2;
-    public static final boolean LEFT_REVERSE = true;
+    public static final int LEFT_1 = 3;
+    public static final int LEFT_2 = 4;
+    public static final boolean LEFT_REVERSE = false;
 
-    public static final int RIGHT_1 = 3;
-    public static final int RIGHT_2 = 4;
-    public static final boolean RIGHT_REVERSE = false;
+    public static final int RIGHT_1 = 1;
+    public static final int RIGHT_2 = 2;
+    public static final boolean RIGHT_REVERSE = true;
 
     public static final double STICK_POWER = 3;
 
@@ -133,5 +133,14 @@ public class Constants {
     public static double GRAVITY =
         386.0892; // force of earth's gravity at sea level in inches/second/second; it's
     // in inches to stay consistent with everything else
+  }
+
+  public static final class ControllerConstants {
+    public static final int DPAD_DOWN = 180;
+    public static final int DPAD_UP = 0;
+    public static final int DPAD_LEFT = 270;
+    public static final int DPAD_RIGHT = 90;
+
+    public static final double AXIS_DEADZONE = 0.05;
   }
 }

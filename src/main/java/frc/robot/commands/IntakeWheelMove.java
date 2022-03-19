@@ -5,6 +5,7 @@ import frc.robot.subsystems.IntakeMotors;
 import frc.robot.utils.OI;
 import frc.robot.utils.PFRController;
 
+<<<<<<< HEAD:src/main/java/frc/robot/commands/intakeWheelMove.java
 public class intakeWheelMove extends CommandBase {
   private IntakeMotors intakemotors;
   private PFRController operator;
@@ -16,6 +17,18 @@ public class intakeWheelMove extends CommandBase {
     this.intakemotors = intakemotors;
     intakemotors.WheelMotorBrake();
     operator = oi.operatorController;
+=======
+public class IntakeWheelMove extends CommandBase {
+  private Intake intakesystem;
+  private XboxController driverController;
+
+  // add requirments for up 90
+
+  public IntakeWheelMove(Intake intakesystem) {
+    addRequirements(intakesystem);
+    this.intakesystem = intakesystem;
+    intakesystem.WheelMotorBrake();
+>>>>>>> 41ff9b003cf06ab17a8a295d54711c1e24bb74a9:src/main/java/frc/robot/commands/IntakeWheelMove.java
   }
 
   // Begin up 90 command
