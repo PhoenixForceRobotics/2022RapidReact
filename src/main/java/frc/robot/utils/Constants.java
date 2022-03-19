@@ -134,4 +134,13 @@ public class Constants {
         386.0892; // force of earth's gravity at sea level in inches/second/second; it's
     // in inches to stay consistent with everything else
   }
+
+  public static final class ControllerConstants {
+    public static final int DPAD_DOWN = 180;
+    public static final int DPAD_UP = 0;
+    public static final int DPAD_LEFT = 270;
+    public static final int DPAD_RIGHT = 90;
+
+    public static final double AXIS_DEADZONE = 0.05;
+  }
 }
