@@ -40,16 +40,4 @@ public class PFRController extends XboxController {
   public JoystickButton rJoystickButton() {
     return new JoystickButton(this, Button.kLeftStick.value);
   }
-
-  @Override
-  public double getLeftY() {
-    // Inverts the axis
-    return -super.getLeftY();
-  }
-
-  @Override
-  public double getRightY() {
-    // Inverts the axis
-    return super.getRightY();
-  }
 }

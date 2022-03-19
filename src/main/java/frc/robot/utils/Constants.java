@@ -22,13 +22,13 @@ import edu.wpi.first.math.trajectory.constraint.DifferentialDriveVoltageConstrai
 public class Constants {
   public static final class DriveConstants {
 
-    public static final int LEFT_1 = 1;
-    public static final int LEFT_2 = 2;
-    public static final boolean LEFT_REVERSE = true;
+    public static final int LEFT_1 = 3;
+    public static final int LEFT_2 = 4;
+    public static final boolean LEFT_REVERSE = false;
 
-    public static final int RIGHT_1 = 3;
-    public static final int RIGHT_2 = 4;
-    public static final boolean RIGHT_REVERSE = false;
+    public static final int RIGHT_1 = 1;
+    public static final int RIGHT_2 = 2;
+    public static final boolean RIGHT_REVERSE = true;
 
     public static final double STICK_POWER = 3;
 
