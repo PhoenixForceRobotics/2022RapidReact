@@ -136,11 +136,11 @@ public class Constants {
   }
 
   public static final class ControllerConstants {
-      public static final int DPAD_DOWN = 180;
-      public static final int DPAD_UP = 0;
-      public static final int DPAD_LEFT = 270;
-      public static final int DPAD_RIGHT = 90;
+    public static final int DPAD_DOWN = 180;
+    public static final int DPAD_UP = 0;
+    public static final int DPAD_LEFT = 270;
+    public static final int DPAD_RIGHT = 90;
 
-      public static final double AXIS_DEADZONE = 0.05;
+    public static final double AXIS_DEADZONE = 0.05;
   }
 }

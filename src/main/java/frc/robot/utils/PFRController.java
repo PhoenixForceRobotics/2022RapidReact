@@ -43,46 +43,38 @@ public class PFRController extends XboxController {
     return new JoystickButton(this, Button.kLeftStick.value);
   }
 
-  public POVButton dPadDownButton()
-  {
+  public POVButton dPadDownButton() {
     return new POVButton(this, ControllerConstants.DPAD_DOWN);
   }
 
-  public POVButton dPadRightButton()
-  {
+  public POVButton dPadRightButton() {
     return new POVButton(this, ControllerConstants.DPAD_RIGHT);
   }
 
-  public POVButton dPadUpButton()
-  {
+  public POVButton dPadUpButton() {
     return new POVButton(this, ControllerConstants.DPAD_UP);
   }
 
-  public POVButton dPadLeftButton()
-  {
+  public POVButton dPadLeftButton() {
     return new POVButton(this, ControllerConstants.DPAD_UP);
   }
 
-  // Could not find a way to remove the long class package path :( 
+  // Could not find a way to remove the long class package path :(
   // Just know that this is simply the "Button.java" class
-  
-  public edu.wpi.first.wpilibj2.command.button.Button lTriggerButton()
-  {
+
+  public edu.wpi.first.wpilibj2.command.button.Button lTriggerButton() {
     return new edu.wpi.first.wpilibj2.command.button.Button(this::lTriggerPressed);
   }
 
-  public edu.wpi.first.wpilibj2.command.button.Button rTriggerButton() 
-  {
+  public edu.wpi.first.wpilibj2.command.button.Button rTriggerButton() {
     return new edu.wpi.first.wpilibj2.command.button.Button(this::rTriggerPressed);
   }
-  public boolean lTriggerPressed()
-  {
+
+  public boolean lTriggerPressed() {
     return getLeftTriggerAxis() > ControllerConstants.AXIS_DEADZONE;
   }
 
-  public boolean rTriggerPressed()
-  {
+  public boolean rTriggerPressed() {
     return getRightTriggerAxis() > ControllerConstants.AXIS_DEADZONE;
   }
-  
 }
