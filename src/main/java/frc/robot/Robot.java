@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
-import frc.robot.commands.intakeWheelMove;
+import frc.robot.commands.intake.intakeWheelMove;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;

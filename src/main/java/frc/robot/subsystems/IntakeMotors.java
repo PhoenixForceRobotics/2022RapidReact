@@ -3,9 +3,6 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Motor;
 
@@ -13,90 +10,71 @@ public class IntakeMotors extends SubsystemBase {
 
   // variable decleration
 
-  public static Motor rotatormotor2, wheelmotor;
-  private static DoubleSolenoid intakearm;
-  private static RelativeEncoder rotatormotor2Encoder, wheelmotorEncoder;
+  public static Motor collectormotor2, collectormotor1;
+  private static RelativeEncoder collectormotor1Encoder, collectormotor2Encoder;
 
   public IntakeMotors() {
 
     // motor setting
 
-    rotatormotor2 = new Motor(5, MotorType.kBrushless, true, 40);
-    wheelmotor = new Motor(6, MotorType.kBrushless, true, 40);
+    collectormotor2 = new Motor(12, MotorType.kBrushless, true, 40);
+    collectormotor1 = new Motor(13, MotorType.kBrushless, true, 40);
 
     // motor encoder setting
 
-    rotatormotor2Encoder = rotatormotor2.getEncoder();
-    wheelmotorEncoder = wheelmotor.getEncoder();
-
-    // piston setting
-
-    intakearm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
+    collectormotor1Encoder = collectormotor2.getEncoder();
+    collectormotor2Encoder = collectormotor1.getEncoder();
   }
 
   // rotator motor setter/getters
 
-  // rotator motor 2 setter/getters
-
-  public void setRotator2Encoder(double value) {
-    rotatormotor2Encoder.setPosition(value);
+  public void setcollectormotor2Encoder(double value) {
+    collectormotor2Encoder.setPosition(value);
   }
 
-  public double getRotator2EncoderPosition() {
-    return rotatormotor2Encoder.getPosition();
+  public double getcollectormotor2EncoderPosition() {
+    return collectormotor2Encoder.getPosition();
   }
 
-  public void setRotatormotor2Speed(double speed) {
-    rotatormotor2.set(speed);
+  public void setcollectormotor2Speed(double speed) {
+    collectormotor2.set(speed);
   }
 
-  public void rotatorMotor2Coast() {
-    rotatormotor2.setIdleMode(IdleMode.kCoast);
+  public void collectormotor2Coast() {
+    collectormotor2.setIdleMode(IdleMode.kCoast);
   }
 
-  public void rotatorMotor2Brake() {
-    rotatormotor2.setIdleMode(IdleMode.kBrake);
+  public void collectormotor2Brake() {
+    collectormotor2.setIdleMode(IdleMode.kBrake);
   }
 
-  public double getRotator2Velocity() {
-    return rotatormotor2Encoder.getVelocity();
+  public double getcollectormotor2Velocity() {
+    return collectormotor2Encoder.getVelocity();
   }
 
   // wheel motor setter/getters
 
-  public void setWheelEncoder(double value) {
-    wheelmotorEncoder.setPosition(value);
+  public void setcollectormotor1Encoder(double value) {
+    collectormotor1Encoder.setPosition(value);
   }
 
-  public double getWheelEncoderPosition() {
-    return wheelmotorEncoder.getPosition();
+  public double getcollectormotor1EncoderPosition() {
+    return collectormotor1Encoder.getPosition();
   }
 
-  public void setWheelmotorSpeed(double speed) {
-    wheelmotor.set(speed);
+  public void setcollectormotor1Speed(double speed) {
+    collectormotor1.set(speed);
   }
 
-  public void WheelMotorCoast() {
-    wheelmotor.setIdleMode(IdleMode.kCoast);
+  public void collectormotor1Coast() {
+    collectormotor1.setIdleMode(IdleMode.kCoast);
   }
 
-  public void WheelMotorBrake() {
-    wheelmotor.setIdleMode(IdleMode.kBrake);
+  public void collectormotor1Brake() {
+    collectormotor1.setIdleMode(IdleMode.kBrake);
   }
 
-  public double getWheelVelocity() {
-    return wheelmotorEncoder.getVelocity();
+  public double getcollectormotor1Velocity() {
+    return collectormotor1Encoder.getVelocity();
   }
-
-  // piston1 functions
-
-  public void setintakearmForward() {
-    intakearm.set(Value.kForward);
-  }
-
-  public void setintakearmReverse() {
-    intakearm.set(Value.kReverse);
-  }
-
-  public boolean pissonntoggle = true;
 }
