@@ -67,6 +67,11 @@ public class Constants {
             .addConstraint(AUTO_VOLTAGE_CONSTRAINT);
   }
 
+  public static final class ClimbConstants {
+      public static final int FORWARD_CHANNEL = 1;
+      public static final int REVERSE_CHANNEL = 0;
+  }
+
   public static final class TurretConstants {
     public static int HOOD_PORT = 11;
     public static int LEFT_FLYWHEEL_PORT = 21;

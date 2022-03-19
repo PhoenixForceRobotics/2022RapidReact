@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.SparkMotorGroup;
+import frc.robot.utils.Constants.DriveConstants;
 
 public class Drivebase extends SubsystemBase {
 
@@ -44,14 +45,14 @@ public class Drivebase extends SubsystemBase {
     left =
         new SparkMotorGroup(
             true,
-            new CANSparkMax(3, MotorType.kBrushless),
-            new CANSparkMax(4, MotorType.kBrushless));
+            new CANSparkMax(DriveConstants.LEFT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.LEFT_2, MotorType.kBrushless));
 
     right =
         new SparkMotorGroup(
             false,
-            new CANSparkMax(1, MotorType.kBrushless),
-            new CANSparkMax(2, MotorType.kBrushless));
+            new CANSparkMax(DriveConstants.RIGHT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.RIGHT_2, MotorType.kBrushless));
 
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();

@@ -11,6 +11,7 @@ import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.turn.FlywheelTurnSequence;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Intake;
@@ -29,7 +30,7 @@ public class Robot extends TimedRobot
   public static Intake intake;
   public static Drivebase drivebase;
   public static Flywheel flywheel;
-
+  public static Climber climber;
 
   // Declare "OI" here
   public static OI oi;
@@ -50,7 +51,7 @@ public class Robot extends TimedRobot
     drivebase = new Drivebase();
     flywheel = new Flywheel();
     intake = new Intake();
-
+    climber = new Climber();
     oi = new OI();
 
     runDrivebase = new RunDrivebase(drivebase, oi);

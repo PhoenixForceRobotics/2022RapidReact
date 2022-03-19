@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase {
 
     // piston setting
 
-    piston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+    piston1 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
     piston2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
   }
 

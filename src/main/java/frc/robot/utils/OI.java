@@ -8,9 +8,10 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
-import frc.robot.commands.PistonMove;
 import frc.robot.commands.ToggleFlywheelPID;
 import frc.robot.commands.intakeWheelMove;
+import frc.robot.commands.climber.ClimbDown;
+import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.turn.FlywheelTurnManual;
 
 /**
@@ -29,9 +30,11 @@ public class OI {
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
     operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
     operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
-    operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
+    operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     operatorController.rBumper().whenPressed(new intakeWheelMove(Robot.intake));
     operatorController.rBumper().whenPressed(new intakeWheelMove(Robot.intake));
+
     /*
      * Example:
      * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));
