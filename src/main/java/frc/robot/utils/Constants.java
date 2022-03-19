@@ -51,6 +51,25 @@ public class Constants {
     public static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2
   }
 
+  public static final class FeederConstants {
+
+    // TODO: Change feeder gear ratio values when we have them!
+    public static final double RATIO_TRANSPORTER_TOP = 12;
+    public static final double RATIO_TRANSPORTER_BOTTOM = 12;
+    public static final double RATIO_OUTAKE = 12;
+
+    // TODO: Change feeder reverse values to make all move ball toward shooter side
+    // of the robot on going forward
+    public static final int TRANSPORTER_TOP = 97;
+    public static final boolean TRANSPORTER_TOP_REVERSE = true;
+
+    public static final int TRANSPORTER_BOTTOM = 98;
+    public static final boolean TRANSPORTER_BOTTOM_REVERSE = true;
+
+    public static final int OUTAKE = 99;
+    public static final boolean OUTAKE_REVERSE = true;
+  }
+
   public static final class AutoConstants {
     public static final RamseteController RAMSETE_CONTROLLER = new RamseteController();
 

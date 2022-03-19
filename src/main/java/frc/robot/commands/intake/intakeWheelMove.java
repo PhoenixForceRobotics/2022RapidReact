@@ -5,13 +5,13 @@ import frc.robot.subsystems.IntakeMotors;
 import frc.robot.utils.OI;
 import frc.robot.utils.PFRController;
 
-public class intakeWheelMove extends CommandBase {
+public class IntakeWheelMove extends CommandBase {
   private IntakeMotors intakemotors;
   private PFRController operator;
 
   // add requirments for up 90
 
-  public intakeWheelMove(IntakeMotors intakemotors, OI oi) {
+  public IntakeWheelMove(IntakeMotors intakemotors, OI oi) {
     addRequirements(intakemotors);
     this.intakemotors = intakemotors;
     intakemotors.collectormotor1Brake();

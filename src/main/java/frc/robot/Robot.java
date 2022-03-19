@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.commands.feeder.RunOutake;
 import frc.robot.commands.hood.FlywheelHoodSequence;
-import frc.robot.commands.intake.intakeWheelMove;
+import frc.robot.commands.intake.IntakeWheelMove;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.subsystems.IntakePistons;
@@ -35,13 +37,15 @@ public class Robot extends TimedRobot {
 
   // Declare "OI" here
   public static OI oi;
+  public static Feeder feeder;
 
   // Declare "Commands" here
   public static FlywheelPID flywheelPID;
   public static FlywheelTurnSequence flywheelTurnSequence;
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
-  public static intakeWheelMove intakewheelmove;
+  public static IntakeWheelMove intakewheelmove;
+  public static RunOutake runOutake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -49,6 +53,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    feeder = new Feeder();
+
+    // climb = new Climb();
+    // pneumaticsControlModule = new PneumaticsControlModule(0);
+    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    // powerDistribution = new PowerDistribution();
+
+    // pneumaticsControlModule.clearAllStickyFaults();
+    // powerDistribution.clearStickyFaults();
     drivebase = new Drivebase();
     flywheel = new Flywheel();
     intakepistons = new IntakePistons();
@@ -56,11 +69,12 @@ public class Robot extends TimedRobot {
     climber = new Climber();
     oi = new OI();
 
+    runOutake = new RunOutake(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
-    intakewheelmove = new intakeWheelMove(Robot.intakemotors, Robot.oi);
+    intakewheelmove = new IntakeWheelMove(Robot.intakemotors, Robot.oi);
   }
 
   /**
@@ -114,6 +128,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {}
+
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {}

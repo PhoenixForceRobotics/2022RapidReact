@@ -3,6 +3,8 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/Drivebase": "Subsystem",
+      "/LiveWindow/Feeder": "Subsystem",
+      "/LiveWindow/Intakesystem": "Subsystem",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     }
   }
