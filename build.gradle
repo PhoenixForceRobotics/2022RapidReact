@@ -2,6 +2,7 @@ plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
     id 'com.diffplug.gradle.spotless' version '4.5.0'
+    id 'com.github.spotbugs' version '5.0.6'
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -103,4 +104,11 @@ spotless {
 
 afterEvaluate {
     tasks.getByName('spotlessCheck').dependsOn(tasks.getByName('spotlessApply'))
+}
+
+//Spotbugs static analysis
+spotbugs {
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
 }
