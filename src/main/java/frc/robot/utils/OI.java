@@ -8,15 +8,13 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
-<<<<<<< HEAD
 import frc.robot.commands.PistonMove;
-=======
 import frc.robot.commands.IntakeWheelMove;
->>>>>>> master
 import frc.robot.commands.ToggleFlywheelPID;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.turn.FlywheelTurnManual;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator

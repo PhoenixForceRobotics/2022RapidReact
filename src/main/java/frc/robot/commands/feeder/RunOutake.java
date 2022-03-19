@@ -9,8 +9,6 @@ public class RunOutake extends CommandBase {
   private Feeder feeder;
   private PFRController operator;
 
-  // add requirments for up 90
-
   public RunOutake(Feeder m_feeder, OI oi) {
     operator = oi.operatorController;
     feeder = m_feeder;
@@ -22,7 +20,8 @@ public class RunOutake extends CommandBase {
 
   @Override
   public void execute() {
-
+    //This is a comment
+    //Checks which button is pressed
     if(operator.getLeftY() > 0.1){
       feeder.setTransporterTop(0.1);
       feeder.setTransporterBottom(0.1);
