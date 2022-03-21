@@ -12,7 +12,7 @@ import frc.robot.commands.PistonMove;
 import frc.robot.commands.IntakeWheelMove;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
-import frc.robot.commands.flywheel.FlywheelPID;
+import frc.robot.commands.turret.FlywheelVelocity;
 import frc.robot.commands.turret.TurretAutoAim;
 import frc.robot.commands.turret.TurretManualTurn;
 
@@ -32,7 +32,7 @@ public class OI {
     // Initialize Button Bindings
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
     operatorController.aButton().whileHeld(new TurretManualTurn(Robot.flywheel, this));
-    operatorController.lJoystickButton().whileHeld(new FlywheelPID(Robot.flywheel));
+    operatorController.lJoystickButton().whileHeld(new FlywheelVelocity(Robot.flywheel));
     operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));

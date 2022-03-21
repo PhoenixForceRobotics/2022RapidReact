@@ -1,4 +1,4 @@
-package frc.robot.commands.hood;
+package frc.robot.commands.turret;
 
 import com.revrobotics.RelativeEncoder;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -21,11 +21,7 @@ public class ResetHood extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    if (hoodEncoder.getVelocity() <= 10) {
-      return true;
-    } else {
-      return false;
-    }
+    return hoodEncoder.getVelocity() <= 10;
   }
 
   @Override

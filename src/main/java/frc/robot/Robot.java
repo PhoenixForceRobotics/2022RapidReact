@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
-import frc.robot.commands.flywheel.FlywheelPID;
 import frc.robot.subsystems.Feeder;
 import frc.robot.commands.feeder.RunOutake;
 import frc.robot.subsystems.Climber;
@@ -37,7 +36,6 @@ public class Robot extends TimedRobot {
   public static Feeder feeder;
 
   // Declare "Commands" here
-  public static FlywheelPID flywheelPID;
   public static RunDrivebase runDrivebase;
   public static RunOutake runOutake;
 

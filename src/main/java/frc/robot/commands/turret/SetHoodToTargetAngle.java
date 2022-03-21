@@ -1,4 +1,4 @@
-package frc.robot.commands.hood;
+package frc.robot.commands.turret;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -25,8 +25,7 @@ public class SetHoodToTargetAngle extends CommandBase {
   @Override
   public void execute() {
     // pitchAngle = FlywheelMath.getTheta();
-    pid.setSetpoint(
-        FlywheelMath.getTheta()); // TODO: Ask Emily whether this accounts for the turret angle
+    pid.setSetpoint(FlywheelMath.getTheta()); // TODO: Ask Emily whether this accounts for the turret angle
 
     turret.setHood(pid.calculate(turret.getHoodAngle()));
   }

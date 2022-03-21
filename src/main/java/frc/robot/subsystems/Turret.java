@@ -98,8 +98,7 @@ public class Turret extends SubsystemBase {
     } else if (direction == RotationDirection.COUNTER_CLOCKWISE && atLeftLimit) {
       rotation.set(0);
     } else {
-      rotation.set(
-          MathUtil.clamp(speedPercentage, -TurretConstants.MAX_SPEED, TurretConstants.MAX_SPEED));
+      rotation.set(MathUtil.clamp(speedPercentage, -TurretConstants.MAX_SPEED, TurretConstants.MAX_SPEED));
     }
   }
 
