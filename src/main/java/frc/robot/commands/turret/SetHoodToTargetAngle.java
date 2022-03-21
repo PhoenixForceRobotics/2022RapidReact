@@ -10,15 +10,12 @@ public class SetHoodToTargetAngle extends CommandBase {
   NetworkTableManager networkTableManager;
 
   private Turret turret;
-  private double maxDegree, minDegree;
 
   private PIDController pid;
 
   public SetHoodToTargetAngle(Turret turret) {
     this.turret = turret;
     // shoot angle
-    maxDegree = 85;
-    minDegree = 45;
     pid = new PIDController(0.1, 0, 0);
   }
 
