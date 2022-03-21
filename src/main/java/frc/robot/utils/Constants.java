@@ -73,6 +73,7 @@ public class Constants {
   }
 
   public static final class TurretConstants {
+
     public static int HOOD_PORT = 11;
     public static int LEFT_FLYWHEEL_PORT = 21;
     public static int RIGHT_FLYWHEEL_PORT = 20;
@@ -81,7 +82,7 @@ public class Constants {
     public static boolean HOOD_REVERSED = false;
     public static boolean LEFT_FLYWHEEL_REVERSED = false;
     public static boolean RIGHT_FLYWHEEL_REVERSED = true;
-    public static boolean ROTATE_REVERSED = false;
+    public static boolean ROTATE_REVERSED = true;
 
     public static double ROTATE_SPEED = .2;
 
@@ -89,8 +90,16 @@ public class Constants {
 
     public static int RELAY_PORT = 0;
 
-    public static double FLYWHEEL_P = .1;
-    public static double FLYWHEEL_D = 0;
+    public static FalconConfigFields FLYWHEEL =
+        new FalconConfigFields(new PIDValues(0.1, 0, 0, 0, 1), 1.0);
+
+    // TODO: Calculate the feedforward for the flywheel
+
+    public static final double MAX_ANGLE_LEFT = -90; // In degrees
+    public static final double MAX_ANGLE_RIGHT = 90;
+
+    public static final double MAX_SPEED = 0.5;
+    public static final int STICK_POWER = 3;
 
     public static double HOOP_HEIGHT = 103.937; // Inches
     public static double FLYWHEEL_HEIGHT = 33;
@@ -142,5 +151,10 @@ public class Constants {
     public static final int DPAD_RIGHT = 90;
 
     public static final double AXIS_DEADZONE = 0.05;
+  }
+
+  public static final class UtilConstants {
+    public static final double FALCON_ENCODER_RESOLUTION = 2048;
+    public static final int CLOSED_LOOP_SPEED_MS = 1; // in milliseconds
   }
 }

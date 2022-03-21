@@ -9,10 +9,11 @@ package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.IntakeWheelMove;
-import frc.robot.commands.ToggleFlywheelPID;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
-import frc.robot.commands.turn.FlywheelTurnManual;
+import frc.robot.commands.flywheel.FlywheelPID;
+import frc.robot.commands.turret.TurretAutoAim;
+import frc.robot.commands.turret.TurretManualTurn;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -28,11 +29,14 @@ public class OI {
 
     // Initialize Button Bindings
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-    operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
-    operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
+    operatorController.aButton().whileHeld(new TurretManualTurn(Robot.flywheel, this));
+    operatorController.lJoystickButton().whileHeld(new FlywheelPID(Robot.flywheel));
     operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
+
+    driverController.lBumper().whenHeld(new TurretManualTurn(Robot.flywheel, this));
+    driverController.lBumper().whenReleased(new TurretAutoAim(Robot.flywheel));
 
     /*
      * Example:

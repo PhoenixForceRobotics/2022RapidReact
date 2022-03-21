@@ -3,12 +3,15 @@ package frc.robot.utils;
 public class FalconConfigFields {
   private PIDValues[] falconPIDs;
   private double maxOutput;
-  private int timeout;
 
-  public FalconConfigFields(PIDValues[] falconPIDs, double maxOutput, int timeout) {
+  public FalconConfigFields(PIDValues[] falconPIDs, double maxOutput) {
     this.falconPIDs = falconPIDs;
     this.maxOutput = maxOutput;
-    this.timeout = timeout;
+  }
+
+  public FalconConfigFields(PIDValues falconPID, double maxOutput) {
+    this.falconPIDs = new PIDValues[] {falconPID};
+    this.maxOutput = maxOutput;
   }
 
   public PIDValues[] getFalconPIDs() {
@@ -17,9 +20,5 @@ public class FalconConfigFields {
 
   public double getMaxOutput() {
     return maxOutput;
-  }
-
-  public int getTimeout() {
-    return timeout;
   }
 }

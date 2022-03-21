@@ -6,15 +6,13 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
-import frc.robot.commands.hood.FlywheelHoodSequence;
-import frc.robot.commands.turn.FlywheelTurnSequence;
+import frc.robot.commands.flywheel.FlywheelPID;
+import frc.robot.commands.flywheel.FlywheelVelocity;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.subsystems.Flywheel;
 import frc.robot.subsystems.Intake;
-import frc.robot.utils.FlywheelMath;
+import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
 /**
@@ -27,7 +25,7 @@ public class Robot extends TimedRobot {
   // Declare "Subsystems" here
   public static Intake intake;
   public static Drivebase drivebase;
-  public static Flywheel flywheel;
+  public static Turret flywheel;
   public static Climber climber;
 
   // Declare "OI" here
@@ -35,8 +33,6 @@ public class Robot extends TimedRobot {
 
   // Declare "Commands" here
   public static FlywheelPID flywheelPID;
-  public static FlywheelTurnSequence flywheelTurnSequence;
-  public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
 
   /**
@@ -46,15 +42,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivebase = new Drivebase();
-    flywheel = new Flywheel();
+    flywheel = new Turret();
     intake = new Intake();
     climber = new Climber();
     oi = new OI();
 
     runDrivebase = new RunDrivebase(drivebase, oi);
-    flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
-    flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
-    flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
   }
 
   /**
@@ -91,9 +84,6 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     CommandScheduler.getInstance().cancelAll();
     runDrivebase.schedule();
-    flywheelPID.schedule();
-    flywheelTurnSequence.schedule();
-    flywheelHoodSequence.schedule();
   }
 
   /** This function is called periodically during operator control. */
