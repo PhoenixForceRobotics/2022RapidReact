@@ -5,32 +5,31 @@ import frc.robot.subsystems.Feeder;
 import frc.robot.utils.OI;
 import frc.robot.utils.PFRController;
 
-public class RunOutake extends CommandBase {
+public class RunFeeder extends CommandBase {
   private Feeder feeder;
   private PFRController operator;
 
-  public RunOutake(Feeder m_feeder, OI oi) {
+  public RunFeeder(Feeder m_feeder, OI oi) {
     operator = oi.operatorController;
     feeder = m_feeder;
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
 
-    //Checks which button is pressed
-    if(operator.getLeftY() > 0.1){
+    // Checks which button is pressed
+    if (operator.getLeftY() > 0.1) {
       feeder.setTransporterTop(0.1);
       feeder.setTransporterBottom(0.1);
       feeder.setOutake(-0.1);
-    } else if(operator.getLeftBumper() == true){
+    } else if (operator.getLeftBumper() == true) {
       feeder.setTransporterTop(0.1);
       feeder.setTransporterBottom(0.1);
       feeder.setOutake(0.1);
-    } else if(operator.getRightBumper() == true){
+    } else if (operator.getRightBumper() == true) {
       feeder.setTransporterTop(-0.1);
       feeder.setTransporterBottom(-0.1);
       feeder.setOutake(-0.1);
@@ -46,4 +45,3 @@ public class RunOutake extends CommandBase {
     return false;
   }
 }
-

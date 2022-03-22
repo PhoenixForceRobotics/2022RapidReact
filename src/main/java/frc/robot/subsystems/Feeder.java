@@ -11,10 +11,11 @@ public class Feeder extends SubsystemBase {
   public Motor transporterTop;
   public Motor outake;
 
-
   public Feeder() {
-    transporterTop = new Motor(Constants.FeederConstants.TRANSPORTER_TOP, MotorType.kBrushless, true, 40);
-    transporterBottom = new Motor(Constants.FeederConstants.TRANSPORTER_BOTTOM, MotorType.kBrushless, true, 40);
+    transporterTop =
+        new Motor(Constants.FeederConstants.TRANSPORTER_TOP, MotorType.kBrushless, true, 40);
+    transporterBottom =
+        new Motor(Constants.FeederConstants.TRANSPORTER_BOTTOM, MotorType.kBrushless, true, 40);
     outake = new Motor(Constants.FeederConstants.OUTAKE, MotorType.kBrushless, true, 40);
   }
 
