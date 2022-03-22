@@ -17,7 +17,9 @@ public class TurretAutoAim extends CommandBase {
 
   private PIDController pid;
   private NetworkTable table;
+
   private NetworkTableEntry ACSX;
+  private NetworkTableEntry hasTarget;
 
   private RotationDirection rotationDirection;
 
@@ -27,9 +29,12 @@ public class TurretAutoAim extends CommandBase {
     table = NetworkTableInstance.getDefault().getTable("PiVisionData");
 
     ACSX = table.getEntry("ACSX");
+    hasTarget = table.getEntry("hasTarget");
 
-    pid = new PIDController(1, 0, 0);
+    pid = new PIDController(0.5, 0, 1);
     pid.setSetpoint(0);
+    rotationDirection = RotationDirection.COUNTER_CLOCKWISE;
+    addRequirements(turret);
   }
 
   @Override
@@ -39,13 +44,15 @@ public class TurretAutoAim extends CommandBase {
 
   @Override
   public void execute() {
-    xCoordinate = ACSX.getDouble(5);
+    xCoordinate = ACSX.getDouble(0);
+    
 
-    if (xCoordinate != 5) {
+    if (hasTarget.getBoolean(false)) {
       double output = MathUtil.clamp(pid.calculate(-xCoordinate), -0.5, 0.5);
 
+      System.out.println("Output: " + output);
+
       turret.setRotation(output);
-      System.out.println("targeting! Output: " + output);
     } else {
       scan();
     }
@@ -53,6 +60,7 @@ public class TurretAutoAim extends CommandBase {
 
   public void scan() {
 
+    System.out.println("Scanning");
     // Switch directions when at limit
     if (turret.isAtLeftLimit()) {
       rotationDirection = RotationDirection.CLOCKWISE;

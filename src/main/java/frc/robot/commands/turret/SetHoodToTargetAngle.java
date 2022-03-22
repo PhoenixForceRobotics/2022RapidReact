@@ -15,20 +15,14 @@ public class SetHoodToTargetAngle extends CommandBase {
 
   public SetHoodToTargetAngle(Turret turret) {
     this.turret = turret;
-    // shoot angle
-    pid = new PIDController(0.1, 0, 0);
+    pid = new PIDController(0.3, 0, 0);
   }
 
   @Override
   public void execute() {
-    // pitchAngle = FlywheelMath.getTheta();
-    pid.setSetpoint(FlywheelMath.getTheta()); // TODO: Ask Emily whether this accounts for the turret angle
+    pid.setSetpoint(
+        FlywheelMath.getTheta()); // TODO: Ask Emily whether this accounts for the turret angle
 
     turret.setHood(pid.calculate(turret.getHoodAngle()));
-  }
-
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }

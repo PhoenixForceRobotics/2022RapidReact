@@ -13,6 +13,7 @@ public class TurretManualTurn extends CommandBase {
   public TurretManualTurn(Turret flywheel, OI oi) {
     this.flywheel = flywheel;
     this.operator = oi.operatorController;
+    addRequirements(flywheel);
   }
 
   @Override

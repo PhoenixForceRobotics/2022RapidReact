@@ -17,21 +17,20 @@ public class RunOutake extends CommandBase {
   }
 
   @Override
-  public void initialize() {
-  }
+  public void initialize() {}
 
   @Override
   public void execute() {
 
-    if(operator.getLeftY() > 0.1){
+    if (operator.getLeftY() > 0.1) {
       feeder.setTransporterTop(0.1);
       feeder.setTransporterBottom(0.1);
       feeder.setOutake(-0.1);
-    } else if(operator.getLeftBumper() == true){
+    } else if (operator.getLeftBumper() == true) {
       feeder.setTransporterTop(0.1);
       feeder.setTransporterBottom(0.1);
       feeder.setOutake(0.1);
-    } else if(operator.getRightBumper() == true){
+    } else if (operator.getRightBumper() == true) {
       feeder.setTransporterTop(-0.1);
       feeder.setTransporterBottom(-0.1);
       feeder.setOutake(-0.1);
@@ -47,4 +46,3 @@ public class RunOutake extends CommandBase {
     return false;
   }
 }
-

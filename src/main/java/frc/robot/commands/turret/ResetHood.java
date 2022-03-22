@@ -16,7 +16,6 @@ public class ResetHood extends CommandBase {
   public void initialize() {
     turret.setHoodCoast();
     hoodEncoder = turret.getHoodEncoder();
-    turret.setHood(0.2);
   }
 
   @Override

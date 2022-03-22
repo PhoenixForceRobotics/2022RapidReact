@@ -37,7 +37,7 @@ public class Turret extends SubsystemBase {
   private boolean flywheelEnabled;
 
   private ShuffleboardTab tab;
-  private NetworkTableEntry turretAtLimit, flywheelVelocity, flywheelPosition;
+  private NetworkTableEntry flywheelVelocity, turretAtRightLimit, turretAtLeftLimit, flywheelPosition;
 
   public Turret() {
     rotation =
@@ -64,14 +64,16 @@ public class Turret extends SubsystemBase {
     rotation.setIdleMode(IdleMode.kBrake);
     flywheelLeft.setCoast();
     flywheelRight.setCoast();
+    
 
     limelight = new Relay(TurretConstants.RELAY_PORT, Direction.kReverse);
     limelight.set(Value.kOn);
 
     tab = Shuffleboard.getTab("Turret Values");
-    turretAtLimit = tab.add("Turret At Limit", false).getEntry();
+    turretAtLeftLimit = tab.add("Turret At Left Limit", false).getEntry();
+    turretAtRightLimit = tab.add("Turret At Right Limit", false).getEntry();
     flywheelVelocity = tab.add("Flywheel Velocity", 0).getEntry();
-    flywheelPosition = tab.add("Flywheel Positon", 0).getEntry();
+    flywheelPosition = tab.add("Turret Positon", 0).getEntry();
   }
 
   @Override
@@ -79,14 +81,19 @@ public class Turret extends SubsystemBase {
     atLeftLimit = getTurretAngle() < TurretConstants.MAX_ANGLE_LEFT;
     atRightLimit = getTurretAngle() > TurretConstants.MAX_ANGLE_RIGHT;
 
-    if (atLeftLimit || atRightLimit) {
-      turretAtLimit.setBoolean(true);
-    } else {
-      turretAtLimit.setBoolean(false);
+    if (atLeftLimit) {
+      turretAtLeftLimit.setBoolean(true);
+    } else if (atRightLimit) {
+      turretAtRightLimit.setBoolean(true);
+    }
+    else
+    {
+      turretAtLeftLimit.setBoolean(false);
+      turretAtRightLimit.setBoolean(false);
     }
 
     flywheelVelocity.setDouble(getFlywheelVelocity());
-    flywheelPosition.setDouble(getFlywheelPosition());
+    flywheelPosition.setDouble(getTurretRotations());
   }
 
   public void setRotation(double speedPercentage) {
@@ -98,7 +105,8 @@ public class Turret extends SubsystemBase {
     } else if (direction == RotationDirection.COUNTER_CLOCKWISE && atLeftLimit) {
       rotation.set(0);
     } else {
-      rotation.set(MathUtil.clamp(speedPercentage, -TurretConstants.MAX_SPEED, TurretConstants.MAX_SPEED));
+      rotation.set(
+          MathUtil.clamp(speedPercentage, -TurretConstants.MAX_SPEED, TurretConstants.MAX_SPEED));
     }
   }
 
@@ -152,9 +160,9 @@ public class Turret extends SubsystemBase {
     hoodEncoder.setPosition(0);
   }
 
-  public void resetFlywheelEncoder() {
-    flywheelLeft.setSelectedSensorPosition(0);
-  }
+  // public void resetFlywheelEncoder() {
+  //   flywheelLeft.setSelectedSensorPosition(0);
+  // }
 
   public double getTurretRotations() {
     return rotationEncoder.getPosition();
