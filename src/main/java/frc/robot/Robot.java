@@ -8,14 +8,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
-import frc.robot.commands.feeder.RunFeeder;
 import frc.robot.commands.hood.FlywheelHoodSequence;
+import frc.robot.commands.intakefeeder.RunFeederManager;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.Drivebase;
+// import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shuttle;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
@@ -28,8 +27,7 @@ import frc.robot.utils.OI;
  */
 public class Robot extends TimedRobot {
   // Declare "Subsystems" here
-  public static Intake intake;
-  public static Drivebase drivebase;
+  // public static Drivebase drivebase;
   public static Flywheel flywheel;
   public static Climber climber;
   public static Feeder feeder;
@@ -43,7 +41,7 @@ public class Robot extends TimedRobot {
   public static FlywheelTurnSequence flywheelTurnSequence;
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
-  public static RunFeeder runOutake;
+  public static RunFeederManager runOutake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -62,14 +60,13 @@ public class Robot extends TimedRobot {
 
     shuttle = new Shuttle();
     feeder = new Feeder();
-    drivebase = new Drivebase();
+    // drivebase = new Drivebase();
     flywheel = new Flywheel();
-    intake = new Intake();
     climber = new Climber();
     oi = new OI();
 
-    runOutake = new RunFeeder(feeder, oi);
-    runDrivebase = new RunDrivebase(drivebase, oi);
+    runOutake = new RunFeederManager(feeder, oi);
+    // runDrivebase = new RunDrivebase(drivebase, oi);
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
     flywheelHoodSequence = new FlywheelHoodSequence(flywheel);

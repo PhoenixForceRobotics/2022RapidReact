@@ -9,12 +9,9 @@ package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.ToggleFlywheelPID;
-import frc.robot.commands.climber.ClimbDown;
-import frc.robot.commands.climber.ClimbUp;
-import frc.robot.commands.intake.MoveIntakePiston;
-import frc.robot.commands.intake.RunStopIntakeMotors;
-import frc.robot.commands.intake.SeqIntake;
+import frc.robot.commands.intakefeedertest.RunJustShuttle;
 import frc.robot.commands.turn.FlywheelTurnManual;
+import frc.robot.commands.intakefeeder.RunShuttlePiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -32,19 +29,16 @@ public class OI {
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
     operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
     operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
-    operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
-    operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     // operatorController.rBumper().whenPressed(new RunIntake(Robot.intake));
 
-    /// Operator:
+    operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.2));
+    operatorController.xButton().whenReleased(new RunJustShuttle(Robot.shuttle, 0));
 
-    operatorController.yButton().whenPressed(new MoveIntakePiston(Robot.intake));
-    operatorController.lTriggerButton().whenPressed(new SeqIntake(Robot.intake));
-    operatorController
-        .lTriggerButton()
-        .whenReleased(new RunStopIntakeMotors(Robot.intake, Robot.shuttle, Robot.oi));
-    // operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
-    // operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
+    /// Operator:
+    operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));
+    operatorController.lTriggerButton().whenReleased(new RunShuttlePiston(Robot.shuttle, false));
     /*
      * Example:
      * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));

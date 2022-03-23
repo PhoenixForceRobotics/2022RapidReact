@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.Constants;
 import frc.robot.utils.Motor;
 
 public class Shuttle extends SubsystemBase {
@@ -22,7 +23,12 @@ public class Shuttle extends SubsystemBase {
   public Shuttle() {
 
     // motor setting
-    shuttleMotor = new Motor(6, MotorType.kBrushless, true, 40);
+    shuttleMotor =
+        new Motor(
+            Constants.FeederIntakeConstants.SHUTTLE,
+            MotorType.kBrushless,
+            Constants.FeederIntakeConstants.SHUTTLE_REVERSE,
+            40);
 
     // motor encoder setting
     shuttleEncoder = shuttleMotor.getEncoder();
@@ -42,7 +48,7 @@ public class Shuttle extends SubsystemBase {
     return shuttleEncoder.getPosition();
   }
 
-  public void setshuttleMotor(double speed) {
+  public void setShuttleMotor(double speed) {
     shuttleMotor.set(speed);
   }
 
@@ -68,6 +74,7 @@ public class Shuttle extends SubsystemBase {
     return shuttleExtender.get();
   }
 
+  // Shuttle Delay Might Be Used For Sequential Command Groups
   public void startTimer() {
     delay.start();
   }
