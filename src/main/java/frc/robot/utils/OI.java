@@ -7,11 +7,12 @@
 
 package frc.robot.utils;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
 import frc.robot.commands.intakefeedertest.RunJustFeeds;
 import frc.robot.commands.intakefeedertest.RunJustShuttle;
 import frc.robot.commands.turn.FlywheelTurnManual;
-import frc.robot.commands.intakefeeder.RunShuttlePiston;
+import frc.robot.commands.intakefeeder.RunCollectorPiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -40,8 +41,8 @@ public class OI {
     operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.4));
     operatorController.xButton().whenReleased(new RunJustShuttle(Robot.shuttle, 0));
 
-    operatorController.bButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));
-    operatorController.bButton().whenReleased(new RunShuttlePiston(Robot.shuttle, false));
+    operatorController.bButton().whenPressed(new RunCollectorPiston(Robot.shuttle, Value.kForward));
+    operatorController.bButton().whenReleased(new RunCollectorPiston(Robot.shuttle, Value.kReverse));
 
     /// Operator:
     // operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));

@@ -26,17 +26,17 @@ public class RunFeederManager extends CommandBase {
     if (operator.getRightY() > 0.1) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
-      feeder.setOutake(-1 * Constants.FeederIntakeConstants.OUTAKE);
+      feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
       // Shifts ball left
     } else if (operator.getLeftBumper() == true) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
-      feeder.setOutake(Constants.FeederIntakeConstants.OUTAKE_SPEED);
+      feeder.setOutake(Constants.FeederIntakeConstants.OUTTAKE_SPEED);
       // Shifts ball right
     } else if (operator.getRightBumper() == true) {
-      feeder.setTransporterTop(-1 * Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
-      feeder.setTransporterBottom(-1 * Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
-      feeder.setOutake(-1 * Constants.FeederIntakeConstants.OUTAKE_SPEED);
+      feeder.setTransporterTop(-Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
+      feeder.setTransporterBottom(-Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
+      feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
     } else {
       feeder.setTransporterTop(0);
       feeder.setTransporterBottom(0);

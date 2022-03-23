@@ -13,11 +13,11 @@ public class Feeder extends SubsystemBase {
 
   public Feeder() {
     transporterTop =
-        new Motor(Constants.FeederIntakeConstants.TRANSPORTER_TOP, MotorType.kBrushless, true, 40);
+        new Motor(Constants.FeederIntakeConstants.TRANSPORTER_TOP, true);
     transporterBottom =
         new Motor(
-            Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM, MotorType.kBrushless, false, 40);
-    outake = new Motor(Constants.FeederIntakeConstants.OUTAKE, MotorType.kBrushless, true, 40);
+            Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM, false);
+    outake = new Motor(Constants.FeederIntakeConstants.OUTTAKE, true);
   }
 
   // Make forward move it left towards the shooter side, will change reversed to

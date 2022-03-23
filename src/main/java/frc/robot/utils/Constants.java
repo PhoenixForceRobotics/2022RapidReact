@@ -66,8 +66,8 @@ public class Constants {
     public static final double TRANSPORTER_BOTTOM_SPEED = 0.6;
 
 
-    public static final int OUTAKE = 5;
-    public static final double OUTAKE_SPEED = 0.8;
+    public static final int OUTTAKE = 5;
+    public static final double OUTTAKE_SPEED = 0.8;
 
 
     public static final int SHUTTLE = 7;

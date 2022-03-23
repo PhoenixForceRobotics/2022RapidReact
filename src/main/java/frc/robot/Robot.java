@@ -10,13 +10,13 @@ import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.intakefeeder.RunFeederManager;
-import frc.robot.commands.intakefeeder.RunShuttleMotor;
+import frc.robot.commands.intakefeeder.RunCollectorMotor;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Shuttle;
+import frc.robot.subsystems.Collector;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
 
@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   public static Flywheel flywheel;
   public static Climber climber;
   public static Feeder feeder;
-  public static Shuttle shuttle;
+  public static Collector shuttle;
 
   // Declare "OI" here
   public static OI oi;
@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
   public static RunFeederManager runFeederManager;
-  public static RunShuttleMotor runShuttleMotor;
+  public static RunCollectorMotor runShuttleMotor;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
     // pneumaticsControlModule.clearAllStickyFaults();
     // powerDistribution.clearStickyFaults();
 
-    shuttle = new Shuttle();
+    shuttle = new Collector();
     feeder = new Feeder();
     // drivebase = new Drivebase();
     flywheel = new Flywheel();
