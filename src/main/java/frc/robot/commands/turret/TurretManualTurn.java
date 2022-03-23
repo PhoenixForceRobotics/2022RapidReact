@@ -12,7 +12,7 @@ public class TurretManualTurn extends CommandBase {
 
   public TurretManualTurn(Turret flywheel, OI oi) {
     this.flywheel = flywheel;
-    this.operator = oi.operatorController;
+    this.operator = oi.driverController;
     addRequirements(flywheel);
   }
 
@@ -20,5 +20,10 @@ public class TurretManualTurn extends CommandBase {
   public void execute() {
     flywheel.setRotation(
         Math.pow(operator.getLeftX(), TurretConstants.STICK_POWER) * TurretConstants.ROTATE_SPEED);
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    flywheel.setRotation(0);
   }
 }

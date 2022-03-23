@@ -41,12 +41,12 @@ public class Constants {
     // TODO: !!!!SysID to gain these values!!!!!\
 
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
-        new DifferentialDriveKinematics(
-            1); // TODO: Find the actual value of the track width IN METERS
+        new DifferentialDriveKinematics(1);
+    // TODO: Find the actual value of the track width IN METERS
 
     public static final PIDController LEFT_PID = new PIDController(0.01, 0, 0);
-    public static final PIDController RIGHT_PID =
-        new PIDController(0.01, 0, 0); // TODO: tune this PID
+    public static final PIDController RIGHT_PID = new PIDController(0.01, 0, 0);
+    // TODO: tune this PID
 
     public static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2
   }
@@ -114,7 +114,7 @@ public class Constants {
 
     // TODO: Calculate the feedforward for the flywheel
 
-    public static final double MAX_ANGLE_LEFT = -90; // In degrees
+    public static final double MAX_ANGLE_LEFT = -120; // In degrees
     public static final double MAX_ANGLE_RIGHT = 90;
 
     public static final double MAX_SPEED = 0.5;
@@ -128,39 +128,37 @@ public class Constants {
 
     public static double ZONE3 = 362.243; // Furthest corner to center
     public static double ZONE2 = ZONE3 * 2 / 3; // 241.4953333
-    public static double ZONE1 = ZONE3 / 3; // 120.7476667
-
-    // lower speeds for more accuracy
-    public static double VELOCITY_ZONE1 =
-        ZONE1
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));
-    // Meters per second, can reach ZONE1 horizontally max,
-    // TOTAL_HEIGHT height at 50 degrees ~305.55 inches/second (for now)
-    public static double VELOCITY_ZONE2 =
-        ZONE2
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));;
-    // Meters per second, can reach ZONE2 horizontally,
-    // TOTAL_HEIGHT height at 50 degrees ~354 inches/second (for now)
-    public static double VELOCITY_ZONE3 =
-        ZONE3
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));;
-    // inches per second, can reach ZONE3 horizontally,
-    // TOTAL_HEIGHT height at 50 degrees ~412 inches/second
+    public static double ZONE1 = ZONE3 / 3; // 120.74.......;;''''''''''[76667
 
     public static double ROTATE_BUFFER = 0.05;
 
     public static double GRAVITY =
         386.0892; // force of earth's gravity at sea level in inches/second/second; it's
     // in inches to stay consistent with everything else
+
+    // lower speeds for more accuracy
+    public static double VELOCITY_ZONE1 =
+        ZONE1
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));
+    // Meters per second, can reach ZONE1 horizontally max,
+    // TOTAL_HEIGHT height at 50 degrees ~305.55 inches/second (for now)
+    public static double VELOCITY_ZONE2 =
+        ZONE2
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));;
+    // Meters per second, can reach ZONE2 horizontally,
+    // TOTAL_HEIGHT height at 50 degrees ~354 inches/second (for now)
+    public static double VELOCITY_ZONE3 =
+        ZONE3
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));;
+    // inches per second, can reach ZONE3 horizontally,
+    // TOTAL_HEIGHT height at 50 degrees ~412 inches/second
+
   }
 
   public static final class ControllerConstants {

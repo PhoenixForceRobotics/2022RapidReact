@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
@@ -37,7 +38,10 @@ public class Turret extends SubsystemBase {
   private boolean flywheelEnabled;
 
   private ShuffleboardTab tab;
-  private NetworkTableEntry flywheelVelocity, turretAtRightLimit, turretAtLeftLimit, flywheelPosition;
+  private NetworkTableEntry flywheelVelocity,
+      turretAtRightLimit,
+      turretAtLeftLimit,
+      flywheelPosition;
 
   public Turret() {
     rotation =
@@ -53,7 +57,6 @@ public class Turret extends SubsystemBase {
         new Falcon(TurretConstants.RIGHT_FLYWHEEL_PORT, TurretConstants.RIGHT_FLYWHEEL_REVERSED);
 
     flywheelLeft.PIDconfig(TurretConstants.FLYWHEEL);
-    flywheelRight.PIDconfig(TurretConstants.FLYWHEEL);
 
     rotationEncoder = rotation.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     hoodEncoder = hood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
@@ -62,9 +65,10 @@ public class Turret extends SubsystemBase {
 
     hood.setIdleMode(IdleMode.kBrake);
     rotation.setIdleMode(IdleMode.kBrake);
+
     flywheelLeft.setCoast();
-    flywheelRight.setCoast();
-    
+    flywheelRight.follow(flywheelLeft);
+    flywheelRight.setInverted(InvertType.OpposeMaster);
 
     limelight = new Relay(TurretConstants.RELAY_PORT, Direction.kReverse);
     limelight.set(Value.kOn);
@@ -73,7 +77,7 @@ public class Turret extends SubsystemBase {
     turretAtLeftLimit = tab.add("Turret At Left Limit", false).getEntry();
     turretAtRightLimit = tab.add("Turret At Right Limit", false).getEntry();
     flywheelVelocity = tab.add("Flywheel Velocity", 0).getEntry();
-    flywheelPosition = tab.add("Turret Positon", 0).getEntry();
+    flywheelPosition = tab.add("Turret Angle", 0).getEntry();
   }
 
   @Override
@@ -85,9 +89,7 @@ public class Turret extends SubsystemBase {
       turretAtLeftLimit.setBoolean(true);
     } else if (atRightLimit) {
       turretAtRightLimit.setBoolean(true);
-    }
-    else
-    {
+    } else {
       turretAtLeftLimit.setBoolean(false);
       turretAtRightLimit.setBoolean(false);
     }
@@ -120,12 +122,14 @@ public class Turret extends SubsystemBase {
 
   public void setFlywheelPercent(double percentageSpeed) {
     flywheelLeft.setPercentage(percentageSpeed);
-    flywheelRight.setPercentage(percentageSpeed);
   }
 
   public void setFlywheelVelocity(double velocity) {
     flywheelLeft.setVelocity(velocity);
-    flywheelRight.setVelocity(velocity);
+  }
+
+  public void setFlywheelVoltage(double outputVoltage) {
+    flywheelLeft.setVoltage(outputVoltage);
   }
 
   public double getFlywheelPosition() {
@@ -134,7 +138,7 @@ public class Turret extends SubsystemBase {
 
   public double getFlywheelVelocity() {
     return flywheelLeft.getVelocity();
-  }
+  } // returns RPM @ the motor
 
   public void setHood(double speed) {
     hood.set(speed);
@@ -152,17 +156,13 @@ public class Turret extends SubsystemBase {
     return hoodEncoder.getPosition();
   }
 
-  public double getHoodAngle() {
-    return 60; // TODO: get ratio to
-  }
-
   public void resetHoodEncoder() {
     hoodEncoder.setPosition(0);
   }
 
-  // public void resetFlywheelEncoder() {
-  //   flywheelLeft.setSelectedSensorPosition(0);
-  // }
+  public void resetFlywheelEncoder() {
+    flywheelLeft.setSelectedSensorPosition(0);
+  }
 
   public double getTurretRotations() {
     return rotationEncoder.getPosition();

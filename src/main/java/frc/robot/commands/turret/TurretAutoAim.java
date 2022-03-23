@@ -31,21 +31,16 @@ public class TurretAutoAim extends CommandBase {
     ACSX = table.getEntry("ACSX");
     hasTarget = table.getEntry("hasTarget");
 
-    pid = new PIDController(0.5, 0, 1);
+    pid = new PIDController(0.15, 0, 0.00001);
+
     pid.setSetpoint(0);
     rotationDirection = RotationDirection.COUNTER_CLOCKWISE;
     addRequirements(turret);
   }
 
   @Override
-  public void initialize() {
-    xCoordinate = ACSX.getDouble(5);
-  }
-
-  @Override
   public void execute() {
     xCoordinate = ACSX.getDouble(0);
-    
 
     if (hasTarget.getBoolean(false)) {
       double output = MathUtil.clamp(pid.calculate(-xCoordinate), -0.5, 0.5);
@@ -73,5 +68,10 @@ public class TurretAutoAim extends CommandBase {
     } else if (rotationDirection == RotationDirection.COUNTER_CLOCKWISE) {
       turret.setRotation(-TurretConstants.ROTATE_SPEED);
     }
+  }
+
+  @Override
+  public void end(boolean interrupted) {
+    turret.setRotation(0);
   }
 }

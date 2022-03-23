@@ -2,10 +2,10 @@ package frc.robot.utils;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import frc.robot.utils.Constants.UtilConstants;
 
-public class Falcon extends TalonFX {
+public class Falcon extends WPI_TalonFX {
 
   public Falcon(int portID, boolean isInverted) {
     super(portID);
@@ -56,6 +56,12 @@ public class Falcon extends TalonFX {
     set(ControlMode.Current, current);
   }
 
+  @Override
+  public void setVoltage(double outputVolts) {
+    // TODO Auto-generated method stub
+    super.setVoltage(outputVolts);
+  }
+
   public void setVelocity(double velocity) {
     set(ControlMode.Velocity, convertRPMToCTRE(velocity));
   }
@@ -69,9 +75,13 @@ public class Falcon extends TalonFX {
     return super.getSelectedSensorPosition() / UtilConstants.FALCON_ENCODER_RESOLUTION;
   }
 
-  // Returns number of rotations per per minute
+  // Returns number of rotations per minute
   public double getVelocity() {
-    return super.getSelectedSensorVelocity() / UtilConstants.FALCON_ENCODER_RESOLUTION * 600;
+    return (super.getSelectedSensorVelocity() / UtilConstants.FALCON_ENCODER_RESOLUTION) * 600;
+  }
+
+  public double getRawVelocity() {
+    return getSelectedSensorVelocity();
   }
 
   public static double convertRotationsToCTRE(double rotations) {

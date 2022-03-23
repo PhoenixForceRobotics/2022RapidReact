@@ -23,6 +23,6 @@ public class SetHoodToTargetAngle extends CommandBase {
     pid.setSetpoint(
         FlywheelMath.getTheta()); // TODO: Ask Emily whether this accounts for the turret angle
 
-    turret.setHood(pid.calculate(turret.getHoodAngle()));
+    turret.setHood(pid.calculate(0));
   }
 }
