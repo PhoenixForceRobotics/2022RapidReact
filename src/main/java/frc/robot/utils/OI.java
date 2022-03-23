@@ -9,6 +9,7 @@ package frc.robot.utils;
 
 import frc.robot.Robot;
 import frc.robot.commands.ToggleFlywheelPID;
+import frc.robot.commands.intakefeedertest.RunJustFeeds;
 import frc.robot.commands.intakefeedertest.RunJustShuttle;
 import frc.robot.commands.turn.FlywheelTurnManual;
 import frc.robot.commands.intakefeeder.RunShuttlePiston;
@@ -28,13 +29,20 @@ public class OI {
     // Initialize Button Bindings
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
     operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
-    operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
+    // operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
+
     // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     // operatorController.rBumper().whenPressed(new RunIntake(Robot.intake));
 
+    operatorController.yButton().whenPressed(new RunJustFeeds(Robot.feeder, 0.4));
+    operatorController.yButton().whenReleased(new RunJustFeeds(Robot.feeder, 0));
+
     operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.4));
     operatorController.xButton().whenReleased(new RunJustShuttle(Robot.shuttle, 0));
+
+    operatorController.bButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));
+    operatorController.bButton().whenReleased(new RunShuttlePiston(Robot.shuttle, false));
 
     /// Operator:
     // operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));

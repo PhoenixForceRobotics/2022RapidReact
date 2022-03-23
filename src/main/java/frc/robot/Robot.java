@@ -10,6 +10,7 @@ import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.intakefeeder.RunFeederManager;
+import frc.robot.commands.intakefeeder.RunShuttleMotor;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 // import frc.robot.subsystems.Drivebase;
@@ -41,7 +42,8 @@ public class Robot extends TimedRobot {
   public static FlywheelTurnSequence flywheelTurnSequence;
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
-  public static RunFeederManager runOutake;
+  public static RunFeederManager runFeederManager;
+  public static RunShuttleMotor runShuttleMotor;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -65,7 +67,7 @@ public class Robot extends TimedRobot {
     climber = new Climber();
     oi = new OI();
 
-    runOutake = new RunFeederManager(feeder, oi);
+    // runOutake = new RunFeederManager(feeder, oi);
     // runDrivebase = new RunDrivebase(drivebase, oi);
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);

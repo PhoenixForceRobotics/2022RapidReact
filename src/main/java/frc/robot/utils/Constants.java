@@ -59,16 +59,16 @@ public class Constants {
 
     // TODO: Change ports and change reverse values
     public static final int TRANSPORTER_TOP = 6;
-    public static final double TRANSPORTER_TOP_SPEED = 0.4;
-    public static final boolean TRANSPORTER_TOP_REVERSE = true;
+    public static final double TRANSPORTER_TOP_SPEED = 0.6;
+
 
     public static final int TRANSPORTER_BOTTOM = 9;
-    public static final double TRANSPORTER_BOTTOM_SPEED = 0.4;
-    public static final boolean TRANSPORTER_BOTTOM_REVERSE = true;
+    public static final double TRANSPORTER_BOTTOM_SPEED = 0.6;
+
 
     public static final int OUTAKE = 5;
-    public static final double OUTAKE_SPEED = 0.4;
-    public static final boolean OUTAKE_REVERSE = true;
+    public static final double OUTAKE_SPEED = 0.8;
+
 
     public static final int SHUTTLE = 7;
     public static final double SHUTTLE_SPEED = 0.4;

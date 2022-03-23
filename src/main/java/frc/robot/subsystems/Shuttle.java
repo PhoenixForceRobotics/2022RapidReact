@@ -30,10 +30,8 @@ public class Shuttle extends SubsystemBase {
             Constants.FeederIntakeConstants.SHUTTLE_REVERSE,
             40);
 
-    // motor encoder setting
     shuttleEncoder = shuttleMotor.getEncoder();
 
-    // piston setting
     shuttleExtender = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
 
     delay = new Timer();
