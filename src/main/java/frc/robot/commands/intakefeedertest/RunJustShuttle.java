@@ -22,6 +22,6 @@ public class RunJustShuttle extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

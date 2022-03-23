@@ -33,12 +33,12 @@ public class OI {
     // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     // operatorController.rBumper().whenPressed(new RunIntake(Robot.intake));
 
-    operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.2));
+    operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.4));
     operatorController.xButton().whenReleased(new RunJustShuttle(Robot.shuttle, 0));
 
     /// Operator:
-    operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));
-    operatorController.lTriggerButton().whenReleased(new RunShuttlePiston(Robot.shuttle, false));
+    // operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));
+    // operatorController.lTriggerButton().whenReleased(new RunShuttlePiston(Robot.shuttle, false));
     /*
      * Example:
      * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));

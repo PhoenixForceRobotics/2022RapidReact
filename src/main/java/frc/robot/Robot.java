@@ -105,10 +105,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().cancelAll();
-    runDrivebase.schedule();
-    flywheelPID.schedule();
-    flywheelTurnSequence.schedule();
-    flywheelHoodSequence.schedule();
+    // runDrivebase.schedule();
+    // flywheelPID.schedule();
+    // flywheelTurnSequence.schedule();
+    // flywheelHoodSequence.schedule();
   }
 
   /** This function is called periodically during operator control. */
