@@ -7,8 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.subsystems.Intakesystem;
+import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
 /**
@@ -18,17 +19,15 @@ import frc.robot.utils.OI;
  * project.
  */
 public class Robot extends TimedRobot {
-  // private static final String kDefaultAuto = "Default";
-  // private static final String kCustomAuto = "My Auto";
-  // private String m_autoSelected;
-  // private final SendableChooser<String> m_chooser = new SendableChooser<>();
-  // public static Climb climb;
-  // public static PneumaticsControlModule pneumaticsControlModule;
-  // public static Compressor compressor;
-  // public static PowerDistribution powerDistribution;
+  // Declare "Subsystems" here
   public static Drivebase drivebase;
-  public static Intakesystem intakesystem;
+  public static Turret turret;
+  public static Climber climber;
+
+  // Declare "OI" here
   public static OI oi;
+
+  // Declare "Commands" here
   public static RunDrivebase runDrivebase;
 
   /**
@@ -38,18 +37,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     drivebase = new Drivebase();
-    intakesystem = new Intakesystem();
+    climber = new Climber();
+    turret = new Turret();
 
     oi = new OI();
 
     runDrivebase = new RunDrivebase(drivebase, oi);
-    // climb = new Climb();
-    // pneumaticsControlModule = new PneumaticsControlModule(0);
-    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    // powerDistribution = new PowerDistribution();
-
-    // pneumaticsControlModule.clearAllStickyFaults();
-    // powerDistribution.clearStickyFaults();
   }
 
   /**
@@ -98,6 +91,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {}
+
   /** This function is called once when test mode is enabled. */
   @Override
   public void testInit() {}

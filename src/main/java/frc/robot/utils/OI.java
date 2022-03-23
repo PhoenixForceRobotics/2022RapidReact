@@ -8,78 +8,90 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
-import frc.robot.commands.intakeWheelMove;
-import frc.robot.commands.pistoneMove;
-import frc.robot.utils.controllers.BobXboxController;
+import frc.robot.commands.turret.FlywheelVelocity;
+import frc.robot.commands.turret.TurretAutoAim;
+import frc.robot.commands.turret.TurretManualTurn;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
  * and command groups that allow control of the robot.
  */
 public class OI {
-
-  public BobXboxController driverController;
-  public BobXboxController operatorController;
+  public PFRController driverController;
+  public PFRController operatorController;
 
   public OI() {
-    driverController = new BobXboxController(0, 0.11, 0.11);
-    operatorController = new BobXboxController(1, 0.11, 0.11);
+    driverController = new PFRController(0);
+    operatorController = new PFRController(1);
 
-    /// Driver:
-    // drivebase commands
+    // Initialize Button Bindings
+    // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
+    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
 
+    driverController.lBumper().whenHeld(new TurretManualTurn(Robot.turret, this));
+    driverController.lBumper().whenReleased(new TurretAutoAim(Robot.turret));
+    driverController.aButton().whenHeld(new FlywheelVelocity(Robot.turret, this));
     /// Operator:
-    operatorController.yButton.whenPressed(new pistoneMove(Robot.intakesystem));
-    operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
-    operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intakesystem));
+
+    // operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
+    // operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
+    // operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
+    /*
+     * Example:
+     * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));
+     */
+
+    // button.whenReleased(new ExampleCommand());
   }
 }
 
-  //                        XBOX ELITE CONTROLLER MAP
-  //
-  //
-  //               [ LT ]                        [ RT ]                  Left Trigger, Right Trigger
-  //            [    LB    ]                  [    RB    ]               Left Bumper, Right Bumper
-  //            ------------                  ------------
-  //          /              \--------------/              \
-  //         /      ----                             Y      \             Left Stick, Home Button
-  //        /     /      \         \ /            X     B    \
-  //       /      \      /         / \               A        \           Y Button, X Button, B
-  // Button, A Button
-  //      /         ----                                       \
-  //     /                    []         []                     \         Select Button, Start
-  // Button
-  //    /                                                        \
-  //   /      ||        --------------------------       ----     \
-  //   \   ========    /                          \    /      \   /       DPad, Right Stick
-  //    \     ||      /                            \   \      /  /
-  //     \           /                              \    ----   /
-  //      -----------                                -----------
+// XBOX ELITE CONTROLLER MAP
+//
+//
+// [ LT ] [ RT ] Left Trigger, Right Trigger
+// [ LB ] [ RB ] Left Bumper, Right Bumper
+// ------------ ------------
+// / \--------------/ \
+// / ---- Y \ Left Stick, Home Button
+// / / \ \ / X B \
+// / \ / / \ A \ Y Button, X Button, B
+// Button, A Button
+// / ---- \
+// / [] [] \ Select Button, Start
+// Button
+// / \
+// / || -------------------------- ---- \
+// \ ======== / \ / \ / DPad, Right Stick
+// \ || / \ \ / /
+// \ / \ ---- /
+// ----------- -----------
 
-  //// CREATING BUTTONS
-  // One type of button is a joystick button which is any button on a
-  //// joystick.
-  // You create one by telling it which joystick it's on and which button
-  // number it is.
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
+//// CREATING BUTTONS
+// One type of button is a joystick button which is any button on a
+//// joystick.
+// You create one by telling it which joystick it's on and which button
+// number it is.
+// Joystick stick = new Joystick(port);
+// Button button = new JoystickButton(stick, buttonNumber);
 
-  // There are a few additional built in buttons you can use. Additionally,
-  // by subclassing Button you can create custom triggers and bind those to
-  // commands the same as any other Button.
+// There are a few additional built in buttons you can use. Additionally,
+// by subclassing Button you can create custom triggers and bind those to
+// commands the same as any other Button.
 
-  //// TRIGGERING COMMANDS WITH BUTTONS
-  // Once you have a button, it's trivial to bind it to a button in one of
-  // three ways:
+//// TRIGGERING COMMANDS WITH BUTTONS
+// Once you have a button, it's trivial to bind it to a button in one of
+// three ways:
 
-  // Start the command when the button is pressed and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenPressed(new ExampleCommand());
+// Start the command when the button is pressed and let it run the command
+// until it is finished as determined by it's isFinished method.
+// button.whenPressed(new ExampleCommand());
 
-  // Run the command while the button is being held down and interrupt it once
-  // the button is released.
-  // button.whileHeld(new ExampleCommand());
+// Run the command while the button is being held down and interrupt it once
+// the button is released.
+// button.whileHeld(new ExampleCommand());
 
-  // Start the command when the button is released and let it run the command
-  // until it is finished as determined by it's isFinished method.
-  // button.whenReleased(new ExampleCommand());
+// Start the command when the button is released and let it run the command
+// until it is finished as determined by it's isFinished method.
+// button.whenReleased(new ExampleCommand());

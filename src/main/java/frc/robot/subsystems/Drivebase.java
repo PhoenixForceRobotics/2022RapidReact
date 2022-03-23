@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.drive.Vector2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.Constants.DriveConstants;
 import frc.robot.utils.SparkMotorGroup;
 
 public class Drivebase extends SubsystemBase {
@@ -43,16 +44,15 @@ public class Drivebase extends SubsystemBase {
   public Drivebase() {
     left =
         new SparkMotorGroup(
-            true,
-            new CANSparkMax(3, MotorType.kBrushless),
-            new CANSparkMax(4, MotorType.kBrushless));
+            DriveConstants.LEFT_REVERSE,
+            new CANSparkMax(DriveConstants.LEFT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.LEFT_2, MotorType.kBrushless));
 
     right =
         new SparkMotorGroup(
-            false,
-            new CANSparkMax(2, MotorType.kBrushless),
-            new CANSparkMax(1, MotorType.kBrushless));
-
+            DriveConstants.RIGHT_REVERSE,
+            new CANSparkMax(DriveConstants.RIGHT_1, MotorType.kBrushless),
+            new CANSparkMax(DriveConstants.RIGHT_2, MotorType.kBrushless));
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();
 
@@ -111,9 +111,10 @@ public class Drivebase extends SubsystemBase {
     right.setVoltage(rightVoltage);
   }
 
-  public void tankDrive(double leftStick, double rightStick, int stickPower) {
-    left.set(Math.pow(leftStick, stickPower));
-    right.set(Math.pow(rightStick, stickPower));
+  public void tankDrive(double leftStick, double rightStick) {
+    set(
+        Math.pow(leftStick, DriveConstants.STICK_POWER),
+        Math.pow(rightStick, DriveConstants.STICK_POWER));
   }
 
   public void setConversion(double wheelCircumference) {
@@ -151,6 +152,14 @@ public class Drivebase extends SubsystemBase {
 
   public DifferentialDrive getDifferentialDrive() {
     return differentialDrive;
+  }
+
+  public RelativeEncoder getLeftEncoder() {
+    return leftEncoder;
+  }
+
+  public RelativeEncoder getRightEncoder() {
+    return rightEncoder;
   }
 
   public BuiltInAccelerometer getAccelerometer() {

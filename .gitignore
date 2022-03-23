@@ -158,5 +158,8 @@ gradle-app.setting
 .settings/
 bin/
 
+.vscode/settings.json
+.wpilib/wpilib_preferences.json
+
 # Simulation GUI and other tools window save file
 *-window.json
