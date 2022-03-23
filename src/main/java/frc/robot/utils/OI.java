@@ -8,16 +8,12 @@
 package frc.robot.utils;
 
 import frc.robot.Robot;
-import frc.robot.commands.PistonMove;
-import frc.robot.commands.IntakeWheelMove;
-import frc.robot.commands.ToggleFlywheelPID;
-import frc.robot.commands.climber.ClimbDown;
-import frc.robot.commands.climber.ClimbUp;
-import frc.robot.commands.turn.FlywheelTurnManual;
+import frc.robot.commands.turret.FlywheelVelocity;
+import frc.robot.commands.turret.TurretAutoAim;
+import frc.robot.commands.turret.TurretManualTurn;
 
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands
+ * This class is the glue that binds the controls on the physical operator interface to the commands
  * and command groups that allow control of the robot.
  */
 public class OI {
@@ -30,15 +26,16 @@ public class OI {
 
     // Initialize Button Bindings
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-    operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
-    operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
-    operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
-    operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
-    operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
+    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
 
+    driverController.lBumper().whenHeld(new TurretManualTurn(Robot.turret, this));
+    driverController.lBumper().whenReleased(new TurretAutoAim(Robot.turret));
+    driverController.aButton().whenHeld(new FlywheelVelocity(Robot.turret, this));
     /// Operator:
 
-    operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
+    // operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
     // operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
     // operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
     /*

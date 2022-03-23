@@ -5,12 +5,14 @@ public class PIDValues {
   private double I;
   private double D;
   private double FF;
+  private double peakOutput;
 
-  public PIDValues(double P, double I, double D, double FF) {
+  public PIDValues(double P, double I, double D, double FF, double peakOutput) {
     this.P = P;
     this.I = I;
     this.D = D;
     this.FF = FF;
+    this.peakOutput = peakOutput;
   }
 
   public double getP() {
@@ -27,5 +29,9 @@ public class PIDValues {
 
   public double getFF() {
     return FF;
+  }
+
+  public double getPeakOutput() {
+    return peakOutput;
   }
 }
