@@ -174,4 +174,19 @@ public class Constants {
     public static final double FALCON_ENCODER_RESOLUTION = 2048;
     public static final int CLOSED_LOOP_SPEED_MS = 1; // in milliseconds
   }
+
+  public static final class IntakeConstants{
+    public static final int COLLECTOR_PORT = 7;
+    public static final int OUTTAKE_PORT = 9;
+    public static final int INTAKE_LEFT_PORT = 5;
+    public static final int INTAKE_RIGHT_PORT = 6;
+
+    public static final boolean COLLECTOR_REVERSED = false;
+    public static final boolean OUTTAKE_REVERSED = false;
+    public static final boolean INTAKE_LEFT_REVERSED = false;
+    public static final boolean INTAKE_RIGHT_REVERSED = true;
+
+    public static final int COLLECTOR_FORWARD_PORT = 2;
+    public static final int COLLECTOR_REVERSED_PORT = 3;
+  }
 }

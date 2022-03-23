@@ -45,7 +45,7 @@ public class FlywheelVelocity extends CommandBase {
         // pid.calculate(turret.getFlywheelVelocity()
         // + feedforward.calculate(2500)));
         Robot.oi.driverController.getLeftTriggerAxis());
-        // Currently just percentage from trigger
+    // Currently just percentage from trigger
   }
 
   @Override

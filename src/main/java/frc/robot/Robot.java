@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
@@ -19,17 +20,15 @@ import frc.robot.utils.OI;
  */
 public class Robot extends TimedRobot {
   // Declare "Subsystems" here
-  // public static Intake intake;
   public static Drivebase drivebase;
   public static Turret turret;
-  // public static Climber climber;
+  public static Climber climber;
 
   // Declare "OI" here
   public static OI oi;
 
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
-  // public static RunOutake runOutake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,23 +36,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // feeder = new Feeder();
-
-    // climb = new Climb();
-    // pneumaticsControlModule = new PneumaticsControlModule(0);
-    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-    // powerDistribution = new PowerDistribution();
-
-    // pneumaticsControlModule.clearAllStickyFaults();
-    // powerDistribution.clearStickyFaults();
     drivebase = new Drivebase();
-    // flywheel = new Turret();
-    // intake = new Intake();
-    // climber = new Climber();
+    climber = new Climber();
     turret = new Turret();
+    
     oi = new OI();
 
-    // runOutake = new RunOutake(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
   }
 
@@ -88,9 +76,7 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {
-    runDrivebase.schedule();
-  }
+  public void teleopInit() {}
 
   /** This function is called periodically during operator control. */
   @Override
