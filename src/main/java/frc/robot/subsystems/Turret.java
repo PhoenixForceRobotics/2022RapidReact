@@ -48,8 +48,7 @@ public class Turret extends SubsystemBase {
         new Motor(
             TurretConstants.ROTATE_PORT, MotorType.kBrushless, TurretConstants.ROTATE_REVERSED);
     hood =
-        new Motor(
-            TurretConstants.HOOD_PORT, MotorType.kBrushless, TurretConstants.HOOD_REVERSED);
+        new Motor(TurretConstants.HOOD_PORT, MotorType.kBrushless, TurretConstants.HOOD_REVERSED);
 
     flywheelLeft =
         new Falcon(TurretConstants.LEFT_FLYWHEEL_PORT, TurretConstants.LEFT_FLYWHEEL_REVERSED);

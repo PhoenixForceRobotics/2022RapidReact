@@ -175,7 +175,7 @@ public class Constants {
     public static final int CLOSED_LOOP_SPEED_MS = 1; // in milliseconds
   }
 
-  public static final class IntakeConstants{
+  public static final class IntakeConstants {
     public static final int COLLECTOR_PORT = 7;
     public static final int OUTTAKE_PORT = 9;
     public static final int INTAKE_LEFT_PORT = 5;
