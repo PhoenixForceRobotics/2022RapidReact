@@ -1,6 +1,5 @@
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.Constants;
 import frc.robot.utils.Motor;
@@ -12,11 +11,8 @@ public class Feeder extends SubsystemBase {
   private Motor outake;
 
   public Feeder() {
-    transporterTop =
-        new Motor(Constants.FeederIntakeConstants.TRANSPORTER_TOP, true);
-    transporterBottom =
-        new Motor(
-            Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM, false);
+    transporterTop = new Motor(Constants.FeederIntakeConstants.TRANSPORTER_TOP, true);
+    transporterBottom = new Motor(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM, false);
     outake = new Motor(Constants.FeederIntakeConstants.OUTTAKE, true);
   }
 

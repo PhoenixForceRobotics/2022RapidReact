@@ -14,7 +14,8 @@ public class RunJustFeeds extends CommandBase {
 
   @Override
   public void initialize() {
-    feeder.setOutake(-speed);
+    System.out.println("Just feeds was called");
+    feeder.setOutake(speed);
     feeder.setTransporterTop(speed);
     feeder.setTransporterBottom(speed);
   }
@@ -27,4 +28,3 @@ public class RunJustFeeds extends CommandBase {
     return true;
   }
 }
-

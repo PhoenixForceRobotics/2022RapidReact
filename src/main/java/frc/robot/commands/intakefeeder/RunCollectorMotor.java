@@ -17,7 +17,7 @@ public class RunCollectorMotor extends CommandBase {
   public void initialize() {
     double reverser = isReversed ? -1 : 1;
     shuttle.setCollectorMotor(reverser * Constants.FeederIntakeConstants.SHUTTLE_SPEED);
-  }    
+  }
 
   @Override
   public void end(boolean interrupted) {

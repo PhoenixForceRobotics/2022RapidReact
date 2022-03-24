@@ -16,14 +16,16 @@ public class RunFeederManager extends CommandBase {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+    System.out.println("Feeder started");
+  }
 
   @Override
   public void execute() {
 
     // Checks which button is pressed
     // Feeds ball into
-    if (operator.getRightY() > 0.1) {
+    if (operator.lTriggerPressed()) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
       feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);

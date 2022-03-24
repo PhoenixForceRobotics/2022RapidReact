@@ -1,14 +1,12 @@
 package frc.robot.commands.intakefeeder;
 
-import frc.robot.subsystems.Collector;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-
+import frc.robot.subsystems.Collector;
 
 public class RunCollectorPiston extends InstantCommand {
   private Collector shuttle;
   private Value direction;
-  
 
   public RunCollectorPiston(Collector shuttle, Value direction) {
     this.shuttle = shuttle;

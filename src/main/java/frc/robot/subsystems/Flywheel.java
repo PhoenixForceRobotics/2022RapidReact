@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
 import edu.wpi.first.wpilibj.Relay;
@@ -26,16 +25,12 @@ public class Flywheel extends SubsystemBase {
   public Relay limelight;
 
   public Flywheel() {
-    flywheelRotate =
-        new Motor(
-            TurretConstants.ROTATE_PORT, TurretConstants.ROTATE_REVERSED);
+    flywheelRotate = new Motor(TurretConstants.ROTATE_PORT, TurretConstants.ROTATE_REVERSED);
     flywheelLeft =
         new Falcon(TurretConstants.LEFT_FLYWHEEL_PORT, TurretConstants.LEFT_FLYWHEEL_REVERSED);
     flywheelRight =
         new Falcon(TurretConstants.RIGHT_FLYWHEEL_PORT, TurretConstants.RIGHT_FLYWHEEL_REVERSED);
-    flywheelHood =
-        new Motor(
-            TurretConstants.HOOD_PORT, TurretConstants.HOOD_REVERSED);
+    flywheelHood = new Motor(TurretConstants.HOOD_PORT, TurretConstants.HOOD_REVERSED);
     limelight = new Relay(TurretConstants.RELAY_PORT, Direction.kReverse);
     fwRotateEncoder = flywheelRotate.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     fwHoodEncoder = flywheelHood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);

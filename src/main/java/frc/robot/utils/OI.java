@@ -9,10 +9,10 @@ package frc.robot.utils;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
-import frc.robot.commands.intakefeedertest.RunJustFeeds;
-import frc.robot.commands.intakefeedertest.RunJustShuttle;
-import frc.robot.commands.turn.FlywheelTurnManual;
+import frc.robot.commands.intakefeeder.RunCollectorMotor;
 import frc.robot.commands.intakefeeder.RunCollectorPiston;
+import frc.robot.commands.intakefeedertest.RunJustFeeds;
+import frc.robot.commands.turn.FlywheelTurnManual;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -35,14 +35,20 @@ public class OI {
     // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     // operatorController.rBumper().whenPressed(new RunIntake(Robot.intake));
 
-    operatorController.yButton().whenPressed(new RunJustFeeds(Robot.feeder, 0.4));
-    operatorController.yButton().whenReleased(new RunJustFeeds(Robot.feeder, 0));
-
-    operatorController.xButton().whenPressed(new RunJustShuttle(Robot.shuttle, 0.4));
-    operatorController.xButton().whenReleased(new RunJustShuttle(Robot.shuttle, 0));
 
     operatorController.bButton().whenPressed(new RunCollectorPiston(Robot.shuttle, Value.kForward));
-    operatorController.bButton().whenReleased(new RunCollectorPiston(Robot.shuttle, Value.kReverse));
+    operatorController
+        .bButton()
+        .whenReleased(new RunCollectorPiston(Robot.shuttle, Value.kReverse));
+
+    operatorController.lTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
+    operatorController.rTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
+ 
+
+    // operatorController.lTriggerButton().whenPressed(new RunCollectorPiston(Robot.shuttle,
+    // Value.kForward));
+    // operatorController.lTriggerButton().whenReleased(new RunCollectorPiston(Robot.shuttle,
+    // Value.kReverse));
 
     /// Operator:
     // operatorController.lTriggerButton().whenPressed(new RunShuttlePiston(Robot.shuttle, true));

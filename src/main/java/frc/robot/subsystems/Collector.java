@@ -24,7 +24,9 @@ public class Collector extends SubsystemBase {
 
     // motor setting
     collectorMotor =
-        new Motor(Constants.FeederIntakeConstants.SHUTTLE, Constants.FeederIntakeConstants.SHUTTLE_REVERSE);
+        new Motor(
+            Constants.FeederIntakeConstants.SHUTTLE,
+            Constants.FeederIntakeConstants.SHUTTLE_REVERSE);
 
     collectorEncoder = collectorMotor.getEncoder();
 
@@ -55,8 +57,7 @@ public class Collector extends SubsystemBase {
   }
 
   // shuttleExtender functions
-  public void setPiston(Value value)
-  {
+  public void setPiston(Value value) {
     collectorPiston.set(value);
   }
 
@@ -67,8 +68,6 @@ public class Collector extends SubsystemBase {
   public void setShuttleExtenderReverse() {
     setPiston(Value.kReverse);
   }
-
-  
 
   public DoubleSolenoid.Value getShuttleExtenderPosition() {
     return collectorPiston.get();

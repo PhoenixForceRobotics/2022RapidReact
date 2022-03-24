@@ -10,15 +10,15 @@ import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.intakefeeder.RunFeederManager;
-import frc.robot.commands.intakefeeder.RunCollectorMotor;
 import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
-// import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Flywheel;
-import frc.robot.subsystems.Collector;
 import frc.robot.utils.FlywheelMath;
 import frc.robot.utils.OI;
+
+// import frc.robot.subsystems.Drivebase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -43,7 +43,6 @@ public class Robot extends TimedRobot {
   public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
   public static RunFeederManager runFeederManager;
-  public static RunCollectorMotor runShuttleMotor;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -67,7 +66,7 @@ public class Robot extends TimedRobot {
     climber = new Climber();
     oi = new OI();
 
-    // runOutake = new RunFeederManager(feeder, oi);
+    runFeederManager = new RunFeederManager(feeder, oi);
     // runDrivebase = new RunDrivebase(drivebase, oi);
     flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
     flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
@@ -111,6 +110,7 @@ public class Robot extends TimedRobot {
     // flywheelPID.schedule();
     // flywheelTurnSequence.schedule();
     // flywheelHoodSequence.schedule();
+    runFeederManager.schedule();
   }
 
   /** This function is called periodically during operator control. */
