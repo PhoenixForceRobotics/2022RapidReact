@@ -5,7 +5,6 @@
       "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/Drivebase": "Subsystem",
       "/LiveWindow/Feeder": "Subsystem",
-      "/LiveWindow/Flywheel": "Subsystem",
       "/LiveWindow/Intakesystem": "Subsystem",
       "/LiveWindow/Shuttle": "Subsystem",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
