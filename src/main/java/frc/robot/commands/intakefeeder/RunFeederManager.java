@@ -25,7 +25,7 @@ public class RunFeederManager extends CommandBase {
 
     // Checks which button is pressed
     // Feeds ball into
-    if (operator.lTriggerPressed()) {
+    if (operator.rTriggerPressed()) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
       feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
