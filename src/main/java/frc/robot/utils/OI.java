@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
 import frc.robot.commands.intakefeeder.RunCollectorMotor;
 import frc.robot.commands.intakefeeder.RunCollectorPiston;
-import frc.robot.commands.turn.FlywheelTurnManual;
+import frc.robot.commands.turret.FlywheelVelocity;
+import frc.robot.commands.turret.TurretAutoAim;
+import frc.robot.commands.turret.TurretManualTurn;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands
@@ -27,9 +29,7 @@ public class OI {
 
     // Initialize Button Bindings
     // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-    operatorController.aButton().whileHeld(new FlywheelTurnManual(Robot.flywheel, this));
     // operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
-
     // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
 
@@ -50,6 +50,18 @@ public class OI {
     // operatorController.lTriggerButton().whenReleased(new RunCollectorPiston(Robot.shuttle,
     // Value.kReverse));
 
+    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
+
+    driverController.lBumper().whenHeld(new TurretManualTurn(Robot.turret, this));
+    driverController.lBumper().whenReleased(new TurretAutoAim(Robot.turret));
+    driverController.aButton().whenHeld(new FlywheelVelocity(Robot.turret, this));
+    /// Operator:
+
+    // operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
+    // operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
+    // operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
     /*
      * Example:
      * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));

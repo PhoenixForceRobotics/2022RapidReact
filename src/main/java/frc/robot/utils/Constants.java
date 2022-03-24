@@ -41,12 +41,12 @@ public class Constants {
     // TODO: !!!!SysID to gain these values!!!!!\
 
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
-        new DifferentialDriveKinematics(
-            1); // TODO: Find the actual value of the track width IN METERS
+        new DifferentialDriveKinematics(1);
+    // TODO: Find the actual value of the track width IN METERS
 
     public static final PIDController LEFT_PID = new PIDController(0.01, 0, 0);
-    public static final PIDController RIGHT_PID =
-        new PIDController(0.01, 0, 0); // TODO: tune this PID
+    public static final PIDController RIGHT_PID = new PIDController(0.01, 0, 0);
+    // TODO: tune this PID
 
     public static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2
   }
@@ -94,6 +94,7 @@ public class Constants {
   }
 
   public static final class TurretConstants {
+
     public static int HOOD_PORT = 11;
     public static int LEFT_FLYWHEEL_PORT = 21;
     public static int RIGHT_FLYWHEEL_PORT = 20;
@@ -110,8 +111,16 @@ public class Constants {
 
     public static int RELAY_PORT = 0;
 
-    public static double FLYWHEEL_P = .1;
-    public static double FLYWHEEL_D = 0;
+    public static FalconConfigFields FLYWHEEL =
+        new FalconConfigFields(new PIDValues(0.1, 0, 0, 0, 1), 1.0);
+
+    // TODO: Calculate the feedforward for the flywheel
+
+    public static final double MAX_ANGLE_LEFT = -120; // In degrees
+    public static final double MAX_ANGLE_RIGHT = 90;
+
+    public static final double MAX_SPEED = 0.5;
+    public static final int STICK_POWER = 3;
 
     public static double HOOP_HEIGHT = 103.937; // Inches
     public static double FLYWHEEL_HEIGHT = 33;
@@ -121,39 +130,37 @@ public class Constants {
 
     public static double ZONE3 = 362.243; // Furthest corner to center
     public static double ZONE2 = ZONE3 * 2 / 3; // 241.4953333
-    public static double ZONE1 = ZONE3 / 3; // 120.7476667
-
-    // lower speeds for more accuracy
-    public static double VELOCITY_ZONE1 =
-        ZONE1
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));
-    // Meters per second, can reach ZONE1 horizontally max,
-    // TOTAL_HEIGHT height at 50 degrees ~305.55 inches/second (for now)
-    public static double VELOCITY_ZONE2 =
-        ZONE2
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));;
-    // Meters per second, can reach ZONE2 horizontally,
-    // TOTAL_HEIGHT height at 50 degrees ~354 inches/second (for now)
-    public static double VELOCITY_ZONE3 =
-        ZONE3
-            / (Math.cos((50.0 / 180.0) * Math.PI)
-                * Math.sqrt(
-                    (ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT)
-                        / (TurretConstants.GRAVITY / 2)));;
-    // inches per second, can reach ZONE3 horizontally,
-    // TOTAL_HEIGHT height at 50 degrees ~412 inches/second
+    public static double ZONE1 = ZONE3 / 3; // 120.74.......;;''''''''''[76667
 
     public static double ROTATE_BUFFER = 0.05;
 
     public static double GRAVITY =
         386.0892; // force of earth's gravity at sea level in inches/second/second; it's
     // in inches to stay consistent with everything else
+
+    // lower speeds for more accuracy
+    public static double VELOCITY_ZONE1 =
+        ZONE1
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE1 * Math.tan((50 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));
+    // Meters per second, can reach ZONE1 horizontally max,
+    // TOTAL_HEIGHT height at 50 degrees ~305.55 inches/second (for now)
+    public static double VELOCITY_ZONE2 =
+        ZONE2
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE2 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));;
+    // Meters per second, can reach ZONE2 horizontally,
+    // TOTAL_HEIGHT height at 50 degrees ~354 inches/second (for now)
+    public static double VELOCITY_ZONE3 =
+        ZONE3
+            / (Math.cos((50.0 / 180.0) * Math.PI)
+                * Math.sqrt(
+                    (ZONE3 * Math.tan((50.0 / 180.0) * Math.PI) - TOTAL_HEIGHT) / (GRAVITY / 2)));;
+    // inches per second, can reach ZONE3 horizontally,
+    // TOTAL_HEIGHT height at 50 degrees ~412 inches/second
+
   }
 
   public static final class ControllerConstants {
@@ -163,5 +170,25 @@ public class Constants {
     public static final int DPAD_RIGHT = 90;
 
     public static final double AXIS_DEADZONE = 0.05;
+  }
+
+  public static final class UtilConstants {
+    public static final double FALCON_ENCODER_RESOLUTION = 2048;
+    public static final int CLOSED_LOOP_SPEED_MS = 1; // in milliseconds
+  }
+
+  public static final class IntakeConstants {
+    public static final int COLLECTOR_PORT = 7;
+    public static final int OUTTAKE_PORT = 9;
+    public static final int INTAKE_LEFT_PORT = 5;
+    public static final int INTAKE_RIGHT_PORT = 6;
+
+    public static final boolean COLLECTOR_REVERSED = false;
+    public static final boolean OUTTAKE_REVERSED = false;
+    public static final boolean INTAKE_LEFT_REVERSED = false;
+    public static final boolean INTAKE_RIGHT_REVERSED = true;
+
+    public static final int COLLECTOR_FORWARD_PORT = 2;
+    public static final int COLLECTOR_REVERSED_PORT = 3;
   }
 }

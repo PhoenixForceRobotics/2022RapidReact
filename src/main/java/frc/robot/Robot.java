@@ -6,19 +6,15 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.FlywheelPID;
 import frc.robot.commands.drivebase.RunDrivebase;
-import frc.robot.commands.hood.FlywheelHoodSequence;
 import frc.robot.commands.intakefeeder.RunFeederManager;
-import frc.robot.commands.turn.FlywheelTurnSequence;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Collector;
+import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Flywheel;
-import frc.robot.utils.FlywheelMath;
+import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
-// import frc.robot.subsystems.Drivebase;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -28,8 +24,8 @@ import frc.robot.utils.OI;
  */
 public class Robot extends TimedRobot {
   // Declare "Subsystems" here
-  // public static Drivebase drivebase;
-  public static Flywheel flywheel;
+  public static Drivebase drivebase;
+  public static Turret turret;
   public static Climber climber;
   public static Feeder feeder;
   public static Collector shuttle;
@@ -38,9 +34,6 @@ public class Robot extends TimedRobot {
   public static OI oi;
 
   // Declare "Commands" here
-  public static FlywheelPID flywheelPID;
-  public static FlywheelTurnSequence flywheelTurnSequence;
-  public static FlywheelHoodSequence flywheelHoodSequence;
   public static RunDrivebase runDrivebase;
   public static RunFeederManager runFeederManager;
 
@@ -61,16 +54,12 @@ public class Robot extends TimedRobot {
 
     shuttle = new Collector();
     feeder = new Feeder();
-    // drivebase = new Drivebase();
-    flywheel = new Flywheel();
+    drivebase = new Drivebase();
     climber = new Climber();
     oi = new OI();
 
     runFeederManager = new RunFeederManager(feeder, oi);
-    // runDrivebase = new RunDrivebase(drivebase, oi);
-    flywheelPID = new FlywheelPID(flywheel, FlywheelMath.getVelocity());
-    flywheelTurnSequence = new FlywheelTurnSequence(flywheel);
-    flywheelHoodSequence = new FlywheelHoodSequence(flywheel);
+    runDrivebase = new RunDrivebase(drivebase, oi);
   }
 
   /**
