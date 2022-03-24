@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxRelativeEncoder;
 import edu.wpi.first.math.MathUtil;
@@ -44,11 +43,8 @@ public class Turret extends SubsystemBase {
       flywheelPosition;
 
   public Turret() {
-    rotation =
-        new Motor(
-            TurretConstants.ROTATE_PORT, TurretConstants.ROTATE_REVERSED);
-    hood =
-        new Motor(TurretConstants.HOOD_PORT, TurretConstants.HOOD_REVERSED);
+    rotation = new Motor(TurretConstants.ROTATE_PORT, TurretConstants.ROTATE_REVERSED);
+    hood = new Motor(TurretConstants.HOOD_PORT, TurretConstants.HOOD_REVERSED);
 
     flywheelLeft =
         new Falcon(TurretConstants.LEFT_FLYWHEEL_PORT, TurretConstants.LEFT_FLYWHEEL_REVERSED);

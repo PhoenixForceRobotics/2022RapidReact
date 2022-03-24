@@ -15,7 +15,6 @@ import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
