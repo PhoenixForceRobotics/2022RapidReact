@@ -7,8 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.commands.intakefeeder.RunFeederManager;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Drivebase;
+import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
@@ -23,12 +26,15 @@ public class Robot extends TimedRobot {
   public static Drivebase drivebase;
   public static Turret turret;
   public static Climber climber;
+  public static Feeder feeder;
+  public static Collector shuttle;
 
   // Declare "OI" here
   public static OI oi;
 
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
+  public static RunFeederManager runFeederManager;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,12 +42,22 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+
+    // climb = new Climb();
+    // pneumaticsControlModule = new PneumaticsControlModule(0);
+    // compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    // powerDistribution = new PowerDistribution();
+
+    // pneumaticsControlModule.clearAllStickyFaults();
+    // powerDistribution.clearStickyFaults();
+
+    shuttle = new Collector();
+    feeder = new Feeder();
     drivebase = new Drivebase();
     climber = new Climber();
-    turret = new Turret();
-
     oi = new OI();
 
+    runFeederManager = new RunFeederManager(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
   }
 
@@ -76,7 +92,14 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    CommandScheduler.getInstance().cancelAll();
+    // runDrivebase.schedule();
+    // flywheelPID.schedule();
+    // flywheelTurnSequence.schedule();
+    // flywheelHoodSequence.schedule();
+    runFeederManager.schedule();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
