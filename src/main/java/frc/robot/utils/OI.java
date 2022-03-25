@@ -33,11 +33,6 @@ public class OI {
     // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
     // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
 
-    operatorController.bButton().whenPressed(new RunCollectorPiston(Robot.shuttle, Value.kForward));
-    operatorController
-        .bButton()
-        .whenReleased(new RunCollectorPiston(Robot.shuttle, Value.kReverse));
-
     operatorController.lTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
     operatorController.rTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
 

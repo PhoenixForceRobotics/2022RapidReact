@@ -18,10 +18,8 @@ public class RunCollectorPiston extends InstantCommand {
 
     if (direction == Value.kForward) {
       shuttle.setShuttleExtenderForward();
-      System.out.println("Piston Forward");
     } else {
       shuttle.setShuttleExtenderReverse();
-      System.out.println("Piston Backward");
     }
   }
 }

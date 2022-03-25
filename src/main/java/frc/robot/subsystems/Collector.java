@@ -63,10 +63,12 @@ public class Collector extends SubsystemBase {
 
   public void setShuttleExtenderForward() {
     setPiston(Value.kForward);
+    System.out.println("Piston forward");
   }
 
   public void setShuttleExtenderReverse() {
     setPiston(Value.kReverse);
+    System.out.println("Piston backward");
   }
 
   public DoubleSolenoid.Value getShuttleExtenderPosition() {
