@@ -30,7 +30,7 @@ public class Collector extends SubsystemBase {
 
     collectorEncoder = collectorMotor.getEncoder();
 
-    collectorPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+    collectorPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
 
     delay = new Timer();
   }

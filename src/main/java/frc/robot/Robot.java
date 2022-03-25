@@ -55,6 +55,7 @@ public class Robot extends TimedRobot {
     feeder = new Feeder();
     drivebase = new Drivebase();
     climber = new Climber();
+    turret = new Turret();
     oi = new OI();
 
     runFeederManager = new RunFeederManager(feeder, oi);
@@ -94,10 +95,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     CommandScheduler.getInstance().cancelAll();
-    // runDrivebase.schedule();
-    // flywheelPID.schedule();
-    // flywheelTurnSequence.schedule();
-    // flywheelHoodSequence.schedule();
+    runDrivebase.schedule();
     runFeederManager.schedule();
   }
 

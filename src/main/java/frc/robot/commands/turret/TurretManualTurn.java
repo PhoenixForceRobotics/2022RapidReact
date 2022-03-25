@@ -7,23 +7,23 @@ import frc.robot.utils.OI;
 import frc.robot.utils.PFRController;
 
 public class TurretManualTurn extends CommandBase {
-  private Turret flywheel;
+  private Turret turret;
   private PFRController operator;
 
-  public TurretManualTurn(Turret flywheel, OI oi) {
-    this.flywheel = flywheel;
+  public TurretManualTurn(Turret turret, OI oi) {
+    this.turret = turret;
     this.operator = oi.driverController;
-    addRequirements(flywheel);
+    addRequirements(turret);
   }
 
   @Override
   public void execute() {
-    flywheel.setRotation(
+    turret.setRotation(
         Math.pow(operator.getLeftX(), TurretConstants.STICK_POWER) * TurretConstants.ROTATE_SPEED);
   }
 
   @Override
   public void end(boolean interrupted) {
-    flywheel.setRotation(0);
+    turret.setRotation(0);
   }
 }

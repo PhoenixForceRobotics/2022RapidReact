@@ -26,11 +26,11 @@ public class RunFeederManager extends CommandBase {
     // Checks which button is pressed
     // Feeds ball into
     if (operator.rTriggerPressed()) {
-      feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
+      feeder.setTransporterTop(1);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
-      feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
+      feeder.setOutake(-1);
       // Shifts ball left
-    } else if (operator.getLeftBumper() == true) {
+    }else if (operator.getLeftBumper() == true) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
       feeder.setOutake(Constants.FeederIntakeConstants.OUTTAKE_SPEED);
@@ -39,6 +39,11 @@ public class RunFeederManager extends CommandBase {
       feeder.setTransporterTop(-Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(-Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
       feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
+    // } else if (operator.getAButton() == true) {
+    //   feeder.setTransporterTop(-Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
+    //   feeder.setTransporterBottom(0);
+    //   feeder.setOutake(Constants.FeederIntakeConstants.OUTTAKE_SPEED);
+    // }
     } else {
       feeder.setTransporterTop(0);
       feeder.setTransporterBottom(0);
