@@ -28,7 +28,7 @@ public class RunFeederManager extends CommandBase {
     if (operator.rTriggerPressed()) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);
       feeder.setTransporterBottom(Constants.FeederIntakeConstants.TRANSPORTER_BOTTOM_SPEED);
-      feeder.setOutake(-Constants.FeederIntakeConstants.OUTTAKE_SPEED);
+      feeder.setOutake(-1);
       // Shifts ball left
     } else if (operator.getLeftBumper() == true) {
       feeder.setTransporterTop(Constants.FeederIntakeConstants.TRANSPORTER_TOP_SPEED);

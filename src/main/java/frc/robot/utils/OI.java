@@ -9,6 +9,8 @@ package frc.robot.utils;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
+import frc.robot.commands.climber.ClimbDown;
+import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.intakefeeder.RunCollectorMotor;
 import frc.robot.commands.intakefeeder.RunCollectorPiston;
 import frc.robot.commands.turret.FlywheelVelocity;
@@ -48,10 +50,9 @@ public class OI {
     // operatorController.lTriggerButton().whenReleased(new RunCollectorPiston(Robot.shuttle,
     // Value.kReverse));
 
-    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
-    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
+    operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
     // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
-
     driverController.lBumper().whenHeld(new TurretManualTurn(Robot.turret, this));
     driverController.lBumper().whenReleased(new TurretAutoAim(Robot.turret));
     driverController.aButton().whenHeld(new FlywheelVelocity(Robot.turret, this));

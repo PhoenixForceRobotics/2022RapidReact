@@ -6,7 +6,6 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
@@ -17,6 +16,7 @@ public class FlywheelVelocity extends CommandBase {
   private SimpleMotorFeedforward feedforward;
   private ShuffleboardTab tab;
   private NetworkTableEntry kp, ki, kd;
+  private double speed;
 
   public FlywheelVelocity(Turret turret, OI oi) {
     this.turret = turret;
@@ -32,6 +32,7 @@ public class FlywheelVelocity extends CommandBase {
 
   @Override
   public void initialize() {
+    speed = 0;
     pid.setSetpoint(5000); // TODO: Finalize units
   }
 
@@ -40,11 +41,12 @@ public class FlywheelVelocity extends CommandBase {
     pid.setP(kp.getDouble(0));
     pid.setI(ki.getDouble(0));
     pid.setD(kd.getDouble(0));
-    System.out.println("Running Flywheel");
+
+    speed = speed + 0.05;
     turret.setFlywheelPercent(
         // pid.calculate(turret.getFlywheelVelocity()
         // + feedforward.calculate(2500)));
-        Robot.oi.driverController.getLeftTriggerAxis());
+        speed);
     // Currently just percentage from trigger
   }
 

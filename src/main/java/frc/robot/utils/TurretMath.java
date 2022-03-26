@@ -5,24 +5,28 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.utils.Constants.TurretConstants;
 
-public class FlywheelMath {
+public class TurretMath {
   private static double theta, distance;
   static NetworkTable table = NetworkTableInstance.getDefault().getTable("PiVisionData");
   static NetworkTableEntry distanceEntry = table.getEntry("distance");
   static NetworkTableEntry thetaEntry = table.getEntry("pitch");
 
   public static double getTheta() {
-    distance = distanceEntry.getDouble(-1) + 24;
-
-    if (distance == 23) {
-      return 50;
-    } else if (distance <= TurretConstants.ZONE1) {
-      return getThetaZone1();
-    } else if (distance <= TurretConstants.ZONE2) {
-      return getThetaZone2();
+    distance = NetworkTableManager.getDistanceEntry() + 24;
+    System.out.println("Distance" + distance);
+    if (distance == 24) {
+      return 75;
     } else {
-      return getThetaZone3();
+      theta = -0.0306 * distance + (-7.99 * Math.pow(10, -5) * Math.pow(distance, 2) + 88.7);
+      return theta;
     }
+    // } else if (distance <= TurretConstants.ZONE1) {
+    //   return getThetaZone1();
+    // } else if (distance <= TurretConstants.ZONE2) {
+    //   return getThetaZone2();
+    // } else {
+    //   return getThetaZone3();
+    // }
   }
 
   // Math from the spreadsheet

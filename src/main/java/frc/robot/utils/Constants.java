@@ -59,10 +59,10 @@ public class Constants {
 
     // TODO: Change ports and change reverse values
     public static final int TRANSPORTER_TOP = 6;
-    public static final double TRANSPORTER_TOP_SPEED = 0.3;
+    public static final double TRANSPORTER_TOP_SPEED = 1;
 
     public static final int TRANSPORTER_BOTTOM = 9;
-    public static final double TRANSPORTER_BOTTOM_SPEED = 0.3;
+    public static final double TRANSPORTER_BOTTOM_SPEED = 0.5;
 
     public static final int OUTTAKE = 5;
     public static final double OUTTAKE_SPEED = 0.3;
@@ -89,8 +89,8 @@ public class Constants {
   }
 
   public static final class ClimbConstants {
-    public static final int FORWARD_CHANNEL = 1;
-    public static final int REVERSE_CHANNEL = 0;
+    public static final int FORWARD_CHANNEL = 2;
+    public static final int REVERSE_CHANNEL = 3;
   }
 
   public static final class TurretConstants {
@@ -107,7 +107,7 @@ public class Constants {
 
     public static double ROTATE_SPEED = .2;
 
-    public static double HOOD_SPEED = .4;
+    public static double HOOD_SPEED = .2;
 
     public static int RELAY_PORT = 0;
 

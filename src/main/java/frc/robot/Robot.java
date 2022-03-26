@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
 import frc.robot.commands.intakefeeder.RunFeederManager;
+import frc.robot.commands.turret.HoodSequence;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Drivebase;
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
   public static RunFeederManager runFeederManager;
+  public static HoodSequence hoodSequence;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -55,10 +57,12 @@ public class Robot extends TimedRobot {
     feeder = new Feeder();
     drivebase = new Drivebase();
     climber = new Climber();
+    turret = new Turret();
     oi = new OI();
 
     runFeederManager = new RunFeederManager(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
+    hoodSequence = new HoodSequence(turret);
   }
 
   /**
@@ -93,11 +97,10 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
-    CommandScheduler.getInstance().cancelAll();
-    // runDrivebase.schedule();
+    runDrivebase.schedule();
     // flywheelPID.schedule();
     // flywheelTurnSequence.schedule();
-    // flywheelHoodSequence.schedule();
+    hoodSequence.schedule();
     runFeederManager.schedule();
   }
 
