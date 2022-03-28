@@ -1,5 +1,6 @@
 package frc.robot.utils;
 
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.controller.SimpleMotorFeedforward;
@@ -190,5 +191,31 @@ public class Constants {
 
     public static final int COLLECTOR_FORWARD_PORT = 2;
     public static final int COLLECTOR_REVERSED_PORT = 3;
+  }
+
+  public static final class ColorSensorBankConstants {
+    public static enum ShuttleSlotStatus {
+      EMPTY,
+      RED,
+      BLUE,
+      UNKNOWN
+    }
+
+    //you know, openCV's scalar whatever the hell things don't sound that bad right about now
+    //TODO: do better than just placeholder values
+    public static final double COLOR_CARGO_BLUE_R = 0.0;
+    public static final double COLOR_CARGO_BLUE_G = 0.0;
+    public static final double COLOR_CARGO_BLUE_B = 1.0;
+
+    public static final Color COLOR_CARGO_BLUE = new Color(Constants.ColorSensorBankConstants.COLOR_CARGO_BLUE_R, Constants.ColorSensorBankConstants.COLOR_CARGO_BLUE_G, Constants.ColorSensorBankConstants.COLOR_CARGO_BLUE_B);
+
+    public static final double COLOR_CARGO_RED_R = 1.0;
+    public static final double COLOR_CARGO_RED_G = 0.0;
+    public static final double COLOR_CARGO_RED_B = 0.0;
+
+    public static final Color COLOR_CARGO_RED = new Color(Constants.ColorSensorBankConstants.COLOR_CARGO_RED_R, Constants.ColorSensorBankConstants.COLOR_CARGO_RED_G, Constants.ColorSensorBankConstants.COLOR_CARGO_RED_B);
+  
+    public static final int THRESHHOLD_CARGO_PROXIMITY = 2047; //if smaller than this, there's a ball in the cargo slot (11-bit int, accepts 0-2047); TODO: get actual values
+    public static final double THRESHHOLD_CARGO_COLOR_CONFIDENCE = .90; //if lower than this, the color isn't a match (even if the ColorMatch object says it is because it only picks which of its library is closer) (double, percentage between 0 and 1)
   }
 }
