@@ -15,7 +15,7 @@ public class TurretMath {
     distance = NetworkTableManager.getDistanceEntry() + 24;
     System.out.println("Distance" + distance);
     if (distance == 24) {
-      return 75;
+      return 82;
     } else {
       theta = -0.0306 * distance + (-7.99 * Math.pow(10, -5) * Math.pow(distance, 2) + 88.7);
       return theta;

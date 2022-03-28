@@ -33,11 +33,11 @@ public class RunDrivebase extends CommandBase {
             + ", "
             + drivebase.getRightEncoder().getVelocity());
 
-    isSpinningOut =
-        drivebase.getAccelerometerAcceleration().magnitude() + DriveConstants.MAX_ACCELERATION_ERROR
-            < drivebase.getPoseAcceleration().magnitude();
-    // TODO: Add reasonable constant that allows for some slack?
-    // TODO: put out visible error for the driver
+    // isSpinningOut =
+    //     drivebase.getAccelerometerAcceleration().magnitude() + DriveConstants.MAX_ACCELERATION_ERROR
+    //         < drivebase.getPoseAcceleration().magnitude();
+    // // TODO: Add reasonable constant that allows for some slack?
+    // // TODO: put out visible error for the driver
 
   }
 }

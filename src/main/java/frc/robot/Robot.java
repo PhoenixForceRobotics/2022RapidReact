@@ -5,10 +5,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.autonomous.DriveForward;
+import frc.robot.commands.autonomous.TurnAround;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.commands.intakefeeder.CollectorIn;
+import frc.robot.commands.intakefeeder.CollectorOff;
+import frc.robot.commands.intakefeeder.FeedFlywheel;
 import frc.robot.commands.intakefeeder.RunFeederManager;
-import frc.robot.commands.turret.HoodSequence;
+import frc.robot.commands.turret.RotateToCenter;
+import frc.robot.commands.turret.TurnOnFlywheel;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Drivebase;
@@ -28,7 +37,7 @@ public class Robot extends TimedRobot {
   public static Turret turret;
   public static Climber climber;
   public static Feeder feeder;
-  public static Collector shuttle;
+  public static Collector collector;
 
   // Declare "OI" here
   public static OI oi;
@@ -36,7 +45,8 @@ public class Robot extends TimedRobot {
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
   public static RunFeederManager runFeederManager;
-  public static HoodSequence hoodSequence;
+//  public static HoodSequence hoodSequence;
+  public static SequentialCommandGroup auto;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -53,7 +63,7 @@ public class Robot extends TimedRobot {
     // pneumaticsControlModule.clearAllStickyFaults();
     // powerDistribution.clearStickyFaults();
 
-    shuttle = new Collector();
+    collector = new Collector();
     feeder = new Feeder();
     drivebase = new Drivebase();
     climber = new Climber();
@@ -62,8 +72,27 @@ public class Robot extends TimedRobot {
 
     runFeederManager = new RunFeederManager(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
-    hoodSequence = new HoodSequence(turret);
-  }
+    // hoodSequence = new HoodSequence(turret);
+    auto = new SequentialCommandGroup(  
+      new ParallelCommandGroup(
+        (CommandBase) new DriveForward(drivebase, 1.5),
+        (CommandBase) new RotateToCenter(turret), 
+        (CommandBase) new CollectorIn(collector)
+      ),
+      new ParallelCommandGroup(
+        (CommandBase) new TurnAround(drivebase), 
+        (CommandBase) new CollectorOff(collector)
+      ),
+      new ParallelCommandGroup(
+        (CommandBase) new DriveForward(drivebase, 1),
+        (CommandBase) new TurnOnFlywheel(turret)
+      ),
+      (CommandBase) new FeedFlywheel(feeder, collector)
+    );  
+
+    turret.setRotationPosition(0);
+  }  
+  
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
@@ -88,7 +117,9 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    auto.schedule(); 
+  }
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -97,10 +128,10 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    CommandScheduler.getInstance().cancel(auto);
     runDrivebase.schedule();
     // flywheelPID.schedule();
     // flywheelTurnSequence.schedule();
-    hoodSequence.schedule();
     runFeederManager.schedule();
   }
 

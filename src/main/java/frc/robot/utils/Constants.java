@@ -41,7 +41,7 @@ public class Constants {
     // TODO: !!!!SysID to gain these values!!!!!\
 
     public static final DifferentialDriveKinematics DRIVE_KINEMATICS =
-        new DifferentialDriveKinematics(1);
+        new DifferentialDriveKinematics(0.76);
     // TODO: Find the actual value of the track width IN METERS
 
     public static final PIDController LEFT_PID = new PIDController(0.01, 0, 0);
@@ -89,8 +89,8 @@ public class Constants {
   }
 
   public static final class ClimbConstants {
-    public static final int FORWARD_CHANNEL = 2;
-    public static final int REVERSE_CHANNEL = 3;
+    public static final int FORWARD_CHANNEL = 3;
+    public static final int REVERSE_CHANNEL = 2;
   }
 
   public static final class TurretConstants {
@@ -105,7 +105,7 @@ public class Constants {
     public static boolean RIGHT_FLYWHEEL_REVERSED = true;
     public static boolean ROTATE_REVERSED = false;
 
-    public static double ROTATE_SPEED = .2;
+    public static double ROTATE_SPEED = .2                                                                                                                        ;
 
     public static double HOOD_SPEED = .2;
 
@@ -117,7 +117,7 @@ public class Constants {
     // TODO: Calculate the feedforward for the flywheel
 
     public static final double MAX_ANGLE_LEFT = -120; // In degrees
-    public static final double MAX_ANGLE_RIGHT = 90;
+    public static final double MAX_ANGLE_RIGHT = 120;
 
     public static final double MAX_SPEED = 0.5;
     public static final int STICK_POWER = 3;

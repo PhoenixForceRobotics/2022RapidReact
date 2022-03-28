@@ -32,7 +32,7 @@ public class TurretAutoAim extends CommandBase {
     hasTarget = table.getEntry("hasTarget");
 
     pid = new PIDController(0.15, 0, 0.00001);
-
+    
     pid.setSetpoint(0);
     rotationDirection = RotationDirection.COUNTER_CLOCKWISE;
     addRequirements(turret);
@@ -49,7 +49,9 @@ public class TurretAutoAim extends CommandBase {
 
       turret.setRotation(output);
     } else {
-      scan();
+      // scan();
+      turret.setRotation(0);
+      
     }
   }
 

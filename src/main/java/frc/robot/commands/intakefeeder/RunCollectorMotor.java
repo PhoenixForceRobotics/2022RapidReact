@@ -8,8 +8,8 @@ public class RunCollectorMotor extends CommandBase {
   private Collector shuttle;
   private boolean isReversed;
 
-  public RunCollectorMotor(Collector shuttle, boolean isReversed) {
-    this.shuttle = shuttle;
+  public RunCollectorMotor(Collector collector, boolean isReversed) {
+    this.shuttle = collector;
     this.isReversed = isReversed;
   }
 

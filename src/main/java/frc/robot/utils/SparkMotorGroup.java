@@ -32,6 +32,7 @@ public class SparkMotorGroup extends MotorControllerGroup {
     leader.set(percentage);
   }
 
+  @Override
   public void setVoltage(double voltage) {
     leader.setVoltage(voltage);
   }
