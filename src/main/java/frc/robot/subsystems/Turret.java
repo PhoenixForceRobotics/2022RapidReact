@@ -56,12 +56,20 @@ public class Turret extends SubsystemBase {
     rotationEncoder = rotation.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     hoodEncoder = hood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
-    rotationEncoder.setPositionConversionFactor(360 / 65); // Makes the encoder output "degrees"
-
+    rotationEncoder.setPositionConversionFactor(
+        360 * (12 / 60 * 20 / 365)); // Makes the encoder output "degrees"
+    // "0" is center, + is right, - is left
     hood.setIdleMode(IdleMode.kBrake);
     rotation.setIdleMode(IdleMode.kBrake);
 
     flywheelLeft.setCoast();
+    flywheelRight.setCoast();
+
+    flywheelLeft.configVoltageCompSaturation(10);
+    flywheelLeft.enableVoltageCompensation(true);
+    flywheelRight.configVoltageCompSaturation(10);
+    flywheelRight.enableVoltageCompensation(true);
+
     flywheelRight.follow(flywheelLeft);
     flywheelRight.setInverted(InvertType.OpposeMaster);
 

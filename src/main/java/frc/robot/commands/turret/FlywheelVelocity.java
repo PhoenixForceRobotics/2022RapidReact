@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
-import frc.robot.utils.OI;
 
 public class FlywheelVelocity extends CommandBase {
   private Turret turret;
@@ -18,7 +17,7 @@ public class FlywheelVelocity extends CommandBase {
   private NetworkTableEntry kp, ki, kd;
   private double speed;
 
-  public FlywheelVelocity(Turret turret, OI oi) {
+  public FlywheelVelocity(Turret turret) {
     this.turret = turret;
 
     pid = new PIDController(0.005, 0, 0);
@@ -33,7 +32,7 @@ public class FlywheelVelocity extends CommandBase {
   @Override
   public void initialize() {
     speed = 0;
-    pid.setSetpoint(5000); // TODO: Finalize units
+    pid.setSetpoint(5000); // TODO: Finalize units, use set voltage to account for voltage sag
   }
 
   @Override

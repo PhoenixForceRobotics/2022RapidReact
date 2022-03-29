@@ -51,27 +51,6 @@ public class Constants {
     public static final double MAX_ACCELERATION_ERROR = 5; // In meters/second^2
   }
 
-  public static final class FeederIntakeConstants {
-
-    public static final double RATIO_TRANSPORTER_TOP = 4.333;
-    public static final double RATIO_TRANSPORTER_BOTTOM = 3.333;
-    public static final double RATIO_OUTAKE = 4.333;
-
-    // TODO: Change ports and change reverse values
-    public static final int TRANSPORTER_TOP = 6;
-    public static final double TRANSPORTER_TOP_SPEED = 1;
-
-    public static final int TRANSPORTER_BOTTOM = 9;
-    public static final double TRANSPORTER_BOTTOM_SPEED = 0.5;
-
-    public static final int OUTTAKE = 5;
-    public static final double OUTTAKE_SPEED = 0.3;
-
-    public static final int SHUTTLE = 7;
-    public static final double SHUTTLE_SPEED = 0.4;
-    public static final boolean SHUTTLE_REVERSE = false;
-  }
-
   public static final class AutoConstants {
     public static final RamseteController RAMSETE_CONTROLLER = new RamseteController();
 
@@ -178,17 +157,23 @@ public class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int COLLECTOR_PORT = 7;
-    public static final int OUTTAKE_PORT = 9;
-    public static final int INTAKE_LEFT_PORT = 5;
-    public static final int INTAKE_RIGHT_PORT = 6;
+    public static final int COLLECTOR_PORT = 8;
+    public static final int BELT_PORT = 9;
+    public static final int TRANSPORT_LEFT_PORT = 5;
+    public static final int TRANSPORT_RIGHT_PORT = 6;
 
     public static final boolean COLLECTOR_REVERSED = false;
-    public static final boolean OUTTAKE_REVERSED = false;
-    public static final boolean INTAKE_LEFT_REVERSED = false;
-    public static final boolean INTAKE_RIGHT_REVERSED = true;
+    public static final boolean BELT_REVERSED = false;
+    public static final boolean TRANSPORT_LEFT_REVERSED = false;
+    public static final boolean TRANSPORT_RIGHT_REVERSED = true;
 
-    public static final int COLLECTOR_FORWARD_PORT = 2;
-    public static final int COLLECTOR_REVERSED_PORT = 3;
+    public static final int COLLECTOR_PISTON_FORWARD_PORT = 2;
+    public static final int COLLECTOR_PISTON_REVERSED_PORT = 3;
+
+    public static final double BELT_SPEED = 0.3;
+    public static final double TRANSPORT_OUTTAKE_SPEED = 0.35;
+    public static final double FEED_FLYWHEEL_SPEED = 1;
+    public static final double COLLECTOR_SPEED = 0.5;
+    public static final double SWITCH_FREQUENCY = 0.25;
   }
 }

@@ -7,12 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.drivebase.RunDrivebase;
-import frc.robot.commands.intakefeeder.RunFeederManager;
 import frc.robot.commands.turret.HoodSequence;
 import frc.robot.subsystems.Climber;
-import frc.robot.subsystems.Collector;
 import frc.robot.subsystems.Drivebase;
-import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Turret;
 import frc.robot.utils.OI;
 
@@ -27,15 +25,13 @@ public class Robot extends TimedRobot {
   public static Drivebase drivebase;
   public static Turret turret;
   public static Climber climber;
-  public static Feeder feeder;
-  public static Collector shuttle;
+  public static Intake intake;
 
   // Declare "OI" here
   public static OI oi;
 
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
-  public static RunFeederManager runFeederManager;
   public static HoodSequence hoodSequence;
 
   /**
@@ -53,14 +49,12 @@ public class Robot extends TimedRobot {
     // pneumaticsControlModule.clearAllStickyFaults();
     // powerDistribution.clearStickyFaults();
 
-    shuttle = new Collector();
-    feeder = new Feeder();
     drivebase = new Drivebase();
+    intake = new Intake();
     climber = new Climber();
     turret = new Turret();
     oi = new OI();
 
-    runFeederManager = new RunFeederManager(feeder, oi);
     runDrivebase = new RunDrivebase(drivebase, oi);
     hoodSequence = new HoodSequence(turret);
   }
@@ -101,7 +95,6 @@ public class Robot extends TimedRobot {
     // flywheelPID.schedule();
     // flywheelTurnSequence.schedule();
     hoodSequence.schedule();
-    runFeederManager.schedule();
   }
 
   /** This function is called periodically during operator control. */

@@ -7,13 +7,13 @@
 
 package frc.robot.utils;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import frc.robot.Robot;
 import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
-import frc.robot.commands.intakefeeder.RunCollectorMotor;
-import frc.robot.commands.intakefeeder.RunCollectorPiston;
-import frc.robot.commands.turret.FlywheelVelocity;
+import frc.robot.commands.intake.CollectorOut;
+import frc.robot.commands.intake.FeedFlywheel;
+import frc.robot.commands.intake.OuttakeLeft;
+import frc.robot.commands.intake.OuttakeRight;
 import frc.robot.commands.turret.TurretAutoAim;
 import frc.robot.commands.turret.TurretManualTurn;
 
@@ -30,37 +30,20 @@ public class OI {
     operatorController = new PFRController(1);
 
     // Initialize Button Bindings
-    // operatorController.aButton().whenPressed(new FlywheelHood(Robot.flywheel));
-    // operatorController.bButton().whenPressed(new ToggleFlywheelPID(Robot.flywheel));
-    // operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
-    // operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
 
-    operatorController.lTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
-    operatorController.rTriggerButton().whileHeld(new RunCollectorMotor(Robot.shuttle, false));
-
-    operatorController
-        .lTriggerButton()
-        .whenPressed(new RunCollectorPiston(Robot.shuttle, Value.kForward));
-    operatorController
-        .lTriggerButton()
-        .whenReleased(new RunCollectorPiston(Robot.shuttle, Value.kReverse));
-
-    // operatorController.lTriggerButton().whenPressed(new RunCollectorPiston(Robot.shuttle,
-    // Value.kForward));
-    // operatorController.lTriggerButton().whenReleased(new RunCollectorPiston(Robot.shuttle,
-    // Value.kReverse));
-
-    operatorController.yButton().whenPressed(new ClimbDown(Robot.climber));
-    operatorController.xButton().whenPressed(new ClimbUp(Robot.climber));
-    // operatorController.rBumper().whenPressed(new IntakeWheelMove(Robot.intake));
-    driverController.lBumper().whenHeld(new TurretManualTurn(Robot.turret, this));
-    driverController.lBumper().whenReleased(new TurretAutoAim(Robot.turret));
-    driverController.aButton().whenHeld(new FlywheelVelocity(Robot.turret, this));
     /// Operator:
+    operatorController.lTriggerButton().whenHeld(new CollectorOut(Robot.intake));
+    operatorController.rTriggerButton().whenHeld(new FeedFlywheel(Robot.intake));
+    operatorController.lBumper().whenHeld(new OuttakeLeft(Robot.intake));
+    operatorController.rBumper().whenHeld(new OuttakeRight(Robot.intake));
 
-    // operatorController.yButton().whenPressed(new PistonMove(Robot.intake));
-    // operatorController.rightTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
-    // operatorController.leftTriggerButton.whenPressed(new intakeWheelMove(Robot.intake));
+    operatorController.aButton().whenHeld(new TurretManualTurn(Robot.turret, this));
+    operatorController.aButton().whenReleased(new TurretAutoAim(Robot.turret));
+
+    /// Driver:
+    driverController.yButton().whenPressed(new ClimbDown(Robot.climber));
+    driverController.xButton().whenPressed(new ClimbUp(Robot.climber));
+
     /*
      * Example:
      * driverController.aButton().whenPressed(RunDrivebase(Robot.drivebase));
