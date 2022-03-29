@@ -194,13 +194,6 @@ public class Constants {
   }
 
   public static final class ColorSensorBankConstants {
-    public static enum ShuttleSlotStatus {
-      EMPTY,
-      RED,
-      BLUE,
-      UNKNOWN
-    }
-
     //you know, openCV's scalar whatever the hell things don't sound that bad right about now
     //TODO: do better than just placeholder values
     public static final double COLOR_CARGO_BLUE_R = 0.0;
