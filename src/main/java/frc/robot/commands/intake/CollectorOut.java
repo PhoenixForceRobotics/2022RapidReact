@@ -14,6 +14,7 @@ public class CollectorOut extends CommandBase {
     this.intake = intake;
     reverse = 1;
     timer = new Timer();
+    addRequirements(intake);
   }
 
   @Override

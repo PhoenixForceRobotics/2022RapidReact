@@ -9,6 +9,7 @@ public class FeedFlywheel extends CommandBase {
 
   public FeedFlywheel(Intake intake) {
     this.intake = intake;
+    addRequirements(intake);
   }
 
   @Override

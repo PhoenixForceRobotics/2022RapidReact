@@ -2,11 +2,12 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import frc.robot.utils.Constants.IntakeConstants;
 import frc.robot.utils.Motor;
 
-public class Intake {
+public class Intake extends SubsystemBase {
 
   private Motor collector, belt, transportLeft, transportRight;
 
