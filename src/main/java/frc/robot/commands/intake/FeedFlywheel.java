@@ -14,9 +14,9 @@ public class FeedFlywheel extends CommandBase {
 
   @Override
   public void initialize() {
-    intake.setTransport(-1, -1);
-    intake.setCollector(1); // Acts as a feeder
-    intake.setBelt(IntakeConstants.BELT_SPEED); // TODO: Constants
+    intake.setTransport(-1, 1);
+    intake.setCollector(0.8); // Acts as a feeder
+    intake.setBelt(-IntakeConstants.BELT_SPEED); // TODO: Constants
   }
 
   @Override

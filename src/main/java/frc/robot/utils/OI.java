@@ -12,8 +12,11 @@ import frc.robot.commands.climber.ClimbDown;
 import frc.robot.commands.climber.ClimbUp;
 import frc.robot.commands.intake.CollectorOut;
 import frc.robot.commands.intake.FeedFlywheel;
+import frc.robot.commands.intake.JiggleBelt;
 import frc.robot.commands.intake.OuttakeLeft;
 import frc.robot.commands.intake.OuttakeRight;
+import frc.robot.commands.turret.FlywheelFast;
+import frc.robot.commands.turret.FlywheelSlow;
 import frc.robot.commands.turret.TurretAutoAim;
 import frc.robot.commands.turret.TurretManualTurn;
 
@@ -39,6 +42,10 @@ public class OI {
 
     operatorController.aButton().whenHeld(new TurretManualTurn(Robot.turret, this));
     operatorController.aButton().whenReleased(new TurretAutoAim(Robot.turret));
+    operatorController.xButton().whenHeld(new JiggleBelt(Robot.intake));
+
+    operatorController.yButton().whenHeld(new FlywheelFast(Robot.turret));
+    operatorController.bButton().whenHeld(new FlywheelSlow(Robot.turret));
 
     /// Driver:
     driverController.yButton().whenPressed(new ClimbDown(Robot.climber));

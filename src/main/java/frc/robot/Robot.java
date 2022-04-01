@@ -6,8 +6,20 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.commands.autonomous.DriveForward;
+import frc.robot.commands.autonomous.TurnAround;
 import frc.robot.commands.drivebase.RunDrivebase;
+import frc.robot.commands.intake.CollectorOut;
+import frc.robot.commands.intake.FeedFlywheel;
+import frc.robot.commands.turret.CenterTurret;
+import frc.robot.commands.turret.FlywheelFast;
 import frc.robot.commands.turret.HoodSequence;
+import frc.robot.commands.turret.SetHoodToTargetAngle;
+import frc.robot.commands.turret.TurretAutoAim;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.subsystems.Intake;
@@ -32,7 +44,10 @@ public class Robot extends TimedRobot {
 
   // Declare "Commands" here
   public static RunDrivebase runDrivebase;
+  public static CenterTurret centerTurret;
   public static HoodSequence hoodSequence;
+  public static SetHoodToTargetAngle setHoodToTargetAngle;
+  public static SequentialCommandGroup auto;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -57,6 +72,18 @@ public class Robot extends TimedRobot {
 
     runDrivebase = new RunDrivebase(drivebase, oi);
     hoodSequence = new HoodSequence(turret);
+    setHoodToTargetAngle = new SetHoodToTargetAngle(turret);
+    centerTurret = new CenterTurret(turret);
+    auto =
+        new SequentialCommandGroup(
+            new ParallelRaceGroup(new DriveForward(drivebase, 2.2), new CollectorOut(intake)),
+            new ParallelCommandGroup(
+                new SequentialCommandGroup(
+                    new TurnAround(drivebase),
+                    new DriveForward(drivebase, 1),
+                    new WaitCommand(1),
+                    new FeedFlywheel(intake)),
+                new FlywheelFast(turret)));
   }
 
   /**
@@ -82,7 +109,10 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {}
+  public void autonomousInit() {
+    centerTurret.andThen(new TurretAutoAim(turret)).schedule();
+    auto.schedule();
+  }
 
   /** This function is called periodically during autonomous. */
   @Override
@@ -91,10 +121,11 @@ public class Robot extends TimedRobot {
   /** This function is called once when teleop is enabled. */
   @Override
   public void teleopInit() {
+    turret.setHoodEncoder(85);
     runDrivebase.schedule();
     // flywheelPID.schedule();
     // flywheelTurnSequence.schedule();
-    hoodSequence.schedule();
+    setHoodToTargetAngle.schedule();
   }
 
   /** This function is called periodically during operator control. */
@@ -111,7 +142,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once when test mode is enabled. */
   @Override
-  public void testInit() {}
+  public void testInit() {
+    turret.setHoodEncoder(85);
+    setHoodToTargetAngle.schedule();
+  }
 
   /** This function is called periodically during test mode. */
   @Override

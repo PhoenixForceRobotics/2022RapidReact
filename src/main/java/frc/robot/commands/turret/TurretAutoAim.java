@@ -49,7 +49,7 @@ public class TurretAutoAim extends CommandBase {
 
       turret.setRotation(output);
     } else {
-      scan();
+      turret.setRotation(0);
     }
   }
 

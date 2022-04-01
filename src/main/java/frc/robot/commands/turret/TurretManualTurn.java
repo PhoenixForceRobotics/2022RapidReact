@@ -12,7 +12,7 @@ public class TurretManualTurn extends CommandBase {
 
   public TurretManualTurn(Turret turret, OI oi) {
     this.turret = turret;
-    this.operator = oi.driverController;
+    this.operator = oi.operatorController;
     addRequirements(turret);
   }
 

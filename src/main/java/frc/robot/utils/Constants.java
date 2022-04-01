@@ -68,8 +68,8 @@ public class Constants {
   }
 
   public static final class ClimbConstants {
-    public static final int FORWARD_CHANNEL = 2;
-    public static final int REVERSE_CHANNEL = 3;
+    public static final int FORWARD_CHANNEL = 3;
+    public static final int REVERSE_CHANNEL = 2;
   }
 
   public static final class TurretConstants {
@@ -79,7 +79,7 @@ public class Constants {
     public static int RIGHT_FLYWHEEL_PORT = 20;
     public static int ROTATE_PORT = 8;
 
-    public static boolean HOOD_REVERSED = false;
+    public static boolean HOOD_REVERSED = true;
     public static boolean LEFT_FLYWHEEL_REVERSED = false;
     public static boolean RIGHT_FLYWHEEL_REVERSED = true;
     public static boolean ROTATE_REVERSED = false;
@@ -157,18 +157,18 @@ public class Constants {
   }
 
   public static final class IntakeConstants {
-    public static final int COLLECTOR_PORT = 8;
+    public static final int COLLECTOR_PORT = 7;
     public static final int BELT_PORT = 9;
     public static final int TRANSPORT_LEFT_PORT = 5;
     public static final int TRANSPORT_RIGHT_PORT = 6;
 
     public static final boolean COLLECTOR_REVERSED = false;
-    public static final boolean BELT_REVERSED = false;
-    public static final boolean TRANSPORT_LEFT_REVERSED = false;
+    public static final boolean BELT_REVERSED = true;
+    public static final boolean TRANSPORT_LEFT_REVERSED = true;
     public static final boolean TRANSPORT_RIGHT_REVERSED = true;
 
-    public static final int COLLECTOR_PISTON_FORWARD_PORT = 2;
-    public static final int COLLECTOR_PISTON_REVERSED_PORT = 3;
+    public static final int COLLECTOR_PISTON_FORWARD_PORT = 0;
+    public static final int COLLECTOR_PISTON_REVERSED_PORT = 1;
 
     public static final double BELT_SPEED = 0.3;
     public static final double TRANSPORT_OUTTAKE_SPEED = 0.35;

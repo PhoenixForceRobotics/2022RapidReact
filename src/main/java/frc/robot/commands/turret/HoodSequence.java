@@ -8,7 +8,7 @@ public class HoodSequence extends SequentialCommandGroup {
   public HoodSequence(Turret turret) {
     addCommands(
         new ResetHoodStart(turret),
-        new WaitCommand(.2),
+        new WaitCommand(.5),
         new ResetHood(turret),
         new HoodAngle(turret));
   }

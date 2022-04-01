@@ -3,28 +3,25 @@ package frc.robot.commands.turret;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Turret;
 
-public class FlywheelFast extends CommandBase {
+public class CenterTurret extends CommandBase {
   private Turret turret;
 
-  private double speed;
-
-  public FlywheelFast(Turret turret) {
+  public CenterTurret(Turret turret) {
     this.turret = turret;
   }
 
   @Override
   public void initialize() {
-    speed = 0;
+    turret.setRotation(-0.2);
   }
 
   @Override
-  public void execute() {
-    speed = speed < 0.65 ? speed + 0.05 : 0.65;
-    turret.setFlywheelPercent(speed);
+  public boolean isFinished() {
+    return turret.getTurretAngle() <= 0;
   }
 
   @Override
   public void end(boolean interrupted) {
-    turret.setFlywheelPercent(0);
+    turret.setRotation(0);
   }
 }

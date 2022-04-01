@@ -19,7 +19,7 @@ public class FlywheelSlow extends CommandBase {
 
   @Override
   public void execute() {
-    speed = speed < 0.5 ? speed + 0.05 : 0.5;
+    speed = speed < 0.4 ? speed + 0.05 : 0.4;
     turret.setFlywheelPercent(speed);
   }
 
