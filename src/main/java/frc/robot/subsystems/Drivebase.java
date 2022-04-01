@@ -56,7 +56,9 @@ public class Drivebase extends SubsystemBase {
     leftEncoder = left.getEncoder();
     rightEncoder = right.getEncoder();
 
-    setConversion(12); // TODO: Distance in meters
+    differentialDrive = new DifferentialDrive(left, right);
+
+    setConversion(0.15, 14.7);
     resetEncoders();
 
     odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
@@ -109,6 +111,7 @@ public class Drivebase extends SubsystemBase {
   public void setVoltage(double leftVoltage, double rightVoltage) {
     left.setVoltage(leftVoltage);
     right.setVoltage(rightVoltage);
+    System.out.println("Voltage: " + leftVoltage);
   }
 
   public void tankDrive(double leftStick, double rightStick) {
@@ -117,12 +120,16 @@ public class Drivebase extends SubsystemBase {
         Math.pow(rightStick, DriveConstants.STICK_POWER));
   }
 
-  public void setConversion(double wheelCircumference) {
-    leftEncoder.setPositionConversionFactor(wheelCircumference);
-    leftEncoder.setVelocityConversionFactor(wheelCircumference / 60);
+  public void arcadeDrive(double forward, double turn) {
+    differentialDrive.arcadeDrive(forward, turn);
+  }
 
-    rightEncoder.setPositionConversionFactor(wheelCircumference);
-    rightEncoder.setVelocityConversionFactor(wheelCircumference / 60);
+  public void setConversion(double wheelCircumference, double gearRatio) {
+    leftEncoder.setPositionConversionFactor(wheelCircumference * Math.PI / gearRatio);
+    leftEncoder.setVelocityConversionFactor(wheelCircumference * Math.PI / gearRatio / 60);
+
+    rightEncoder.setPositionConversionFactor(wheelCircumference * Math.PI / gearRatio);
+    rightEncoder.setVelocityConversionFactor(wheelCircumference * Math.PI / gearRatio / 60);
   }
 
   public Pose2d getPose() {

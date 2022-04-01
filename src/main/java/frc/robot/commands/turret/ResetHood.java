@@ -19,20 +19,13 @@ public class ResetHood extends CommandBase {
   }
 
   @Override
-  public void execute() {
-    if (Math.abs(hoodEncoder.getVelocity()) <= .2) {
-      hoodEncoder.setPosition(0);
-      turret.setHoodBrake();
-    }
-  }
-
-  @Override
   public boolean isFinished() {
     return Math.abs(hoodEncoder.getVelocity()) <= .2;
   }
 
   @Override
   public void end(boolean interrupted) {
+    hoodEncoder.setPosition(85);
     turret.setHoodBrake();
   }
 }

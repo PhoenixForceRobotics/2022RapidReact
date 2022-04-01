@@ -40,7 +40,8 @@ public class Turret extends SubsystemBase {
   private NetworkTableEntry flywheelVelocity,
       turretAtRightLimit,
       turretAtLeftLimit,
-      flywheelPosition;
+      flywheelPosition,
+      hoodPosition;
 
   public Turret() {
     rotation = new Motor(TurretConstants.ROTATE_PORT, TurretConstants.ROTATE_REVERSED);
@@ -56,12 +57,23 @@ public class Turret extends SubsystemBase {
     rotationEncoder = rotation.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
     hoodEncoder = hood.getEncoder(SparkMaxRelativeEncoder.Type.kHallSensor, 42);
 
-    rotationEncoder.setPositionConversionFactor(360 / 65); // Makes the encoder output "degrees"
+    rotationEncoder.setPositionConversionFactor(
+        360 * 0.0109589041); // Makes the encoder output "degrees"
+    // "0" is center, + is right, - is left
+
+    hoodEncoder.setPositionConversionFactor(360 * 0.02514285714);
 
     hood.setIdleMode(IdleMode.kBrake);
     rotation.setIdleMode(IdleMode.kBrake);
 
     flywheelLeft.setCoast();
+    flywheelRight.setCoast();
+
+    flywheelLeft.configVoltageCompSaturation(10);
+    flywheelLeft.enableVoltageCompensation(true);
+    flywheelRight.configVoltageCompSaturation(10);
+    flywheelRight.enableVoltageCompensation(true);
+
     flywheelRight.follow(flywheelLeft);
     flywheelRight.setInverted(InvertType.OpposeMaster);
 
@@ -73,6 +85,7 @@ public class Turret extends SubsystemBase {
     turretAtRightLimit = tab.add("Turret At Right Limit", false).getEntry();
     flywheelVelocity = tab.add("Flywheel Velocity", 0).getEntry();
     flywheelPosition = tab.add("Turret Angle", 0).getEntry();
+    hoodPosition = tab.add("Hood Position", 0).getEntry();
   }
 
   @Override
@@ -91,6 +104,7 @@ public class Turret extends SubsystemBase {
 
     flywheelVelocity.setDouble(getFlywheelVelocity());
     flywheelPosition.setDouble(getTurretRotations());
+    hoodPosition.setDouble(getHoodPosition());
   }
 
   public void setRotation(double speedPercentage) {
@@ -153,6 +167,10 @@ public class Turret extends SubsystemBase {
 
   public void resetHoodEncoder() {
     hoodEncoder.setPosition(0);
+  }
+
+  public void setHoodEncoder(double angle) {
+    hoodEncoder.setPosition(angle);
   }
 
   public void resetFlywheelEncoder() {
