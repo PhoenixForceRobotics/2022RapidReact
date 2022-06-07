@@ -68,8 +68,8 @@ public class Constants {
   }
 
   public static final class ClimbConstants {
-    public static final int FORWARD_CHANNEL = 3;
-    public static final int REVERSE_CHANNEL = 2;
+    public static final int FORWARD_CHANNEL = 2;
+    public static final int REVERSE_CHANNEL = 3;
   }
 
   public static final class TurretConstants {
@@ -84,7 +84,7 @@ public class Constants {
     public static boolean RIGHT_FLYWHEEL_REVERSED = true;
     public static boolean ROTATE_REVERSED = false;
 
-    public static double ROTATE_SPEED = .2;
+    public static double ROTATE_SPEED = .4;
 
     public static double HOOD_SPEED = .2;
 
@@ -101,11 +101,14 @@ public class Constants {
     public static final double MAX_SPEED = 0.5;
     public static final int STICK_POWER = 3;
 
-    public static double HOOP_HEIGHT = 103.937; // Inches
-    public static double FLYWHEEL_HEIGHT = 33;
-    public static double TOTAL_HEIGHT = HOOP_HEIGHT - FLYWHEEL_HEIGHT;
+    public static final double HOOP_HEIGHT = 103.937; // Inches
+    public static final double FLYWHEEL_HEIGHT = 33;
+    public static final double TOTAL_HEIGHT = HOOP_HEIGHT - FLYWHEEL_HEIGHT;
 
-    public static double HOOD_MAX_ROTATE = 5;
+    public static final double HOOD_MAX_ROTATE = 5;
+
+    public static final double FLYWHEEL_HIGH = 70;
+    public static final double FLYWHEEL_LOW = 55;
 
     public static double ZONE3 = 362.243; // Furthest corner to center
     public static double ZONE2 = ZONE3 * 2 / 3; // 241.4953333

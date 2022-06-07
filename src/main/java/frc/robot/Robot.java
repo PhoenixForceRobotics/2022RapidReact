@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
 
     runDrivebase = new RunDrivebase(drivebase, oi);
     hoodSequence = new HoodSequence(turret);
-    setHoodToTargetAngle = new SetHoodToTargetAngle(turret);
+    setHoodToTargetAngle = new SetHoodToTargetAngle(turret, oi);
     centerTurret = new CenterTurret(turret);
     auto =
         new SequentialCommandGroup(
@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
             new ParallelCommandGroup(
                 new SequentialCommandGroup(
                     new TurnAround(drivebase),
-                    new DriveForward(drivebase, 1),
+                    new DriveForward(drivebase, 1.4),
                     new WaitCommand(1),
                     new FeedFlywheel(intake)),
                 new FlywheelFast(turret)));

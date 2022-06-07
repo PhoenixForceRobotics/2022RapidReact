@@ -13,7 +13,7 @@ public class SetTurretToTargetAngle extends CommandBase {
     this.turret = turret;
     this.targetAngle = targetAngle;
 
-    pidController = new PIDController(0.005, 0, 0);
+    pidController = new PIDController(0.003, 0, 0.0001);
   }
 
   @Override

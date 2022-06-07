@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.utils.OI;
 import frc.robot.utils.PFRController;
+import frc.robot.utils.Constants.DriveConstants;
 
 public class RunDrivebase extends CommandBase {
   private Drivebase drivebase;
@@ -24,6 +25,6 @@ public class RunDrivebase extends CommandBase {
 
   @Override
   public void execute() {
-    drivebase.arcadeDrive(-driver.getLeftY(), driver.getRightX());
+    drivebase.arcadeDrive(Math.pow(-driver.getLeftY(), DriveConstants.STICK_POWER), Math.pow(driver.getRightX(), DriveConstants.STICK_POWER));
   }
 }

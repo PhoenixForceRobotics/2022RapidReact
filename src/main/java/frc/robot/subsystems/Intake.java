@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax.IdleMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -20,12 +21,12 @@ public class Intake extends SubsystemBase {
         new Motor(IntakeConstants.TRANSPORT_LEFT_PORT, IntakeConstants.TRANSPORT_LEFT_REVERSED);
     transportRight =
         new Motor(IntakeConstants.TRANSPORT_RIGHT_PORT, IntakeConstants.TRANSPORT_RIGHT_REVERSED);
-
     collectorPiston =
         new DoubleSolenoid(
             PneumaticsModuleType.CTREPCM,
             IntakeConstants.COLLECTOR_PISTON_FORWARD_PORT,
             IntakeConstants.COLLECTOR_PISTON_REVERSED_PORT);
+    collector.setIdleMode(IdleMode.kCoast);
   }
 
   public void setCollector(double speed) {

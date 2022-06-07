@@ -43,7 +43,7 @@ public class TurretAutoAim extends CommandBase {
     xCoordinate = ACSX.getDouble(0);
 
     if (hasTarget.getBoolean(false)) {
-      double output = MathUtil.clamp(pid.calculate(-xCoordinate), -0.5, 0.5);
+      double output = MathUtil.clamp(pid.calculate(-xCoordinate), -1, 1);
 
       System.out.println("Output: " + output);
 
