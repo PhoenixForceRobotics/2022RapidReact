@@ -124,12 +124,12 @@ public class Drivebase extends SubsystemBase {
     differentialDrive.arcadeDrive(forward, turn);
   }
 
-  public void setConversion(double wheelCircumference, double gearRatio) {
-    leftEncoder.setPositionConversionFactor(wheelCircumference * Math.PI / gearRatio);
-    leftEncoder.setVelocityConversionFactor(wheelCircumference * Math.PI / gearRatio / 60);
+  public void setConversion(double wheelDiameter, double gearRatio) {
+    leftEncoder.setPositionConversionFactor(wheelDiameter * Math.PI / gearRatio);
+    leftEncoder.setVelocityConversionFactor(wheelDiameter * Math.PI / gearRatio / 60);
 
-    rightEncoder.setPositionConversionFactor(wheelCircumference * Math.PI / gearRatio);
-    rightEncoder.setVelocityConversionFactor(wheelCircumference * Math.PI / gearRatio / 60);
+    rightEncoder.setPositionConversionFactor(wheelDiameter * Math.PI / gearRatio);
+    rightEncoder.setVelocityConversionFactor(wheelDiameter * Math.PI / gearRatio / 60);
   }
 
   public Pose2d getPose() {
